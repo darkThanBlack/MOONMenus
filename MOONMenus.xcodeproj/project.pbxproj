@@ -17,6 +17,7 @@
 		88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE591F23F7F58700127C8E /* BasicMenuView.swift */; };
 		88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE592123F7F5A400127C8E /* MenuConfigs.swift */; };
 		88B351A723FA99C00051C34C /* MOONMenuSkin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */; };
+		88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		88AE591F23F7F58700127C8E /* BasicMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuView.swift; sourceTree = "<group>"; };
 		88AE592123F7F5A400127C8E /* MenuConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigs.swift; sourceTree = "<group>"; };
 		88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MOONMenuSkin.bundle; sourceTree = "<group>"; };
+		88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONSegment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				88AE591C23F7D9C900127C8E /* Resources */,
 				88AE58EC23F7D8C000127C8E /* AppDelegate.swift */,
+				88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */,
 				88AE591D23F7DDCE00127C8E /* MenuCore.swift */,
 				885F641F23F939C60089FDD3 /* MenuRootController.swift */,
 				88AE592123F7F5A400127C8E /* MenuConfigs.swift */,
@@ -278,6 +281,7 @@
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
+				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
