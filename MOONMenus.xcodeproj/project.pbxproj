@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,10 @@
 		88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE591F23F7F58700127C8E /* BasicMenuView.swift */; };
 		88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE592123F7F5A400127C8E /* MenuConfigs.swift */; };
 		88B351A723FA99C00051C34C /* MOONMenuSkin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */; };
+		88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB1B052403B8BB006A48AA /* MenuItem.swift */; };
+		88FB1B082403E1D4006A48AA /* ItemConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB1B072403E1D4006A48AA /* ItemConfigs.swift */; };
 		88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */; };
+		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOONMenus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26A9F00FB6DAF513EB8BB2AD /* Pods-MOONMenus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.debug.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.debug.xcconfig"; sourceTree = "<group>"; };
 		885F641F23F939C60089FDD3 /* MenuRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRootController.swift; sourceTree = "<group>"; };
 		885F642123F98C9F0089FDD3 /* SubMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuView.swift; sourceTree = "<group>"; };
 		88AE58E923F7D8C000127C8E /* MOONMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOONMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +59,10 @@
 		88AE591F23F7F58700127C8E /* BasicMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuView.swift; sourceTree = "<group>"; };
 		88AE592123F7F5A400127C8E /* MenuConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigs.swift; sourceTree = "<group>"; };
 		88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MOONMenuSkin.bundle; sourceTree = "<group>"; };
+		88FB1B052403B8BB006A48AA /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		88FB1B072403E1D4006A48AA /* ItemConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemConfigs.swift; sourceTree = "<group>"; };
 		88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONSegment.swift; sourceTree = "<group>"; };
+		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +91,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E2E37E250ECB4D724A5741B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22683AC569A14273A61DD610 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				26A9F00FB6DAF513EB8BB2AD /* Pods-MOONMenus.debug.xcconfig */,
+				B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		88AE58E023F7D8C000127C8E = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +115,8 @@
 				88AE590223F7D8C400127C8E /* MOONMenusTests */,
 				88AE590D23F7D8C400127C8E /* MOONMenusUITests */,
 				88AE58EA23F7D8C000127C8E /* Products */,
+				22683AC569A14273A61DD610 /* Pods */,
+				1E2E37E250ECB4D724A5741B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +141,8 @@
 				88AE592123F7F5A400127C8E /* MenuConfigs.swift */,
 				88AE591F23F7F58700127C8E /* BasicMenuView.swift */,
 				885F642123F98C9F0089FDD3 /* SubMenuView.swift */,
+				88FB1B052403B8BB006A48AA /* MenuItem.swift */,
+				88FB1B072403E1D4006A48AA /* ItemConfigs.swift */,
 			);
 			path = MOONMenus;
 			sourceTree = "<group>";
@@ -152,9 +182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88AE591323F7D8C400127C8E /* Build configuration list for PBXNativeTarget "MOONMenus" */;
 			buildPhases = (
+				1CC37CE4A3D2E0AB3D4C3475 /* [CP] Check Pods Manifest.lock */,
 				88AE58E523F7D8C000127C8E /* Sources */,
 				88AE58E623F7D8C000127C8E /* Frameworks */,
 				88AE58E723F7D8C000127C8E /* Resources */,
+				F083D960BF04CE0E61E15EFF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,16 +302,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CC37CE4A3D2E0AB3D4C3475 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MOONMenus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F083D960BF04CE0E61E15EFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MOONMenus/Pods-MOONMenus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MOONMenus/Pods-MOONMenus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MOONMenus/Pods-MOONMenus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		88AE58E523F7D8C000127C8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88FB1B082403E1D4006A48AA /* ItemConfigs.swift in Sources */,
 				885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */,
 				88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */,
 				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
+				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
 				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
 			);
@@ -433,6 +509,7 @@
 		};
 		88AE591423F7D8C400127C8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26A9F00FB6DAF513EB8BB2AD /* Pods-MOONMenus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -451,6 +528,7 @@
 		};
 		88AE591523F7D8C400127C8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

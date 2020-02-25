@@ -97,7 +97,6 @@ class BasicMenuView: UIView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.center = beginPoint_
         touchesHandle()
     }
     
@@ -106,7 +105,6 @@ class BasicMenuView: UIView {
     }
         
 //MARK: Private
-    
     
     private func touchesHandle() {
                 if config.state == .isClose {

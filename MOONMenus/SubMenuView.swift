@@ -8,27 +8,56 @@
 
 import UIKit
 
-class SubMenuView: UIView {
-
+class SubMenuView: UIView, BasicMenuDelegate {
+    
+    var items: [MenuItem] = []
+    
+    func updateMenuItems(items: [MenuItem]) {
+        for item in self.items {
+            item.removeFromSuperview()
+        }
+        self.items.removeAll()
+        
+        self.items = items
+        for item in self.items {
+            self.addSubview(item)
+        }
+    }
+    
+    func basicMenuStateWillChange(state: MenuState) {
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = .green
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
-extension SubMenuView: BasicMenuDelegate {
-    
-    func basicMenuStateWillChange(state: MenuState) {
-        
-    }
-}
+//MARK: -
 
 class MoonStyleMenu: SubMenuView {
+    
+    override func updateMenuItems(items: [MenuItem]) {
+        super.updateMenuItems(items: items)
+        
+        
+    }
+    
+    private lazy var visualView: UIVisualEffectView = {
+        var effect: UIVisualEffect
+        if #available(iOS 13.0, *) {
+            effect = UIBlurEffect(style: .systemMaterial)
+        } else {
+            effect = UIBlurEffect(style: .extraLight)
+        }
+        let visualView = UIVisualEffectView(effect: effect)
+        return visualView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +70,19 @@ class MoonStyleMenu: SubMenuView {
     }
     
     private func loadViewsForMoonStyleMenu() {
+        self.addSubview(visualView)
         
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        visualView.frame = self.bounds
+        
+        for (index, item) in items.enumerated() {
+            
+        }
+    }
+    
+    
 }

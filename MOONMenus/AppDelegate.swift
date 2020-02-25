@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,10 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 class DemoViewController: UIViewController {
     
+    private lazy var testLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "test"
+        label.backgroundColor = .yellow
+        return label
+    }()
+    
     private lazy var segment: MOONSegment = {
         let segment = MOONSegment()
 //        segment.backgroundColor = .yellow
-        segment.titles = ["日", "周", "每月"]
+        segment.titles = ["日", "周", "每月", "每季度", "每年"]
         return segment
     }()
     
@@ -42,7 +50,26 @@ class DemoViewController: UIViewController {
         
         view.backgroundColor = .lightGray
         
+        view.addSubview(testLabel)
         view.addSubview(segment)
+        segment.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()            
+        }
+        testLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(segment.snp_right)
+            make.centerY.equalTo(segment.snp_centerY)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.segment.titles = ["日", "周"]
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.segment.snp.remakeConstraints { (make) in
+                    make.centerY.equalToSuperview()
+                    make.left.equalToSuperview()
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,8 +79,8 @@ class DemoViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        segment.sizeToFit()
-        segment.center = view.center
+//        segment.sizeToFit()
+//        segment.center = view.center
     }
 }
 

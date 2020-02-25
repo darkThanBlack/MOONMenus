@@ -26,7 +26,7 @@ class MenuRootController: UIViewController {
     
     private lazy var basicMenu: BasicMenuView = {
         let basicMenu = BasicMenuView.init(customConfig: nil)
-        basicMenu.backgroundColor = .systemPink
+        basicMenu.backgroundColor = .clear
         
         basicMenu.isUserInteractionEnabled = true
         let singleTap = UITapGestureRecognizer.init(target: self, action: #selector(updateMunuEvent))
@@ -37,8 +37,8 @@ class MenuRootController: UIViewController {
         return basicMenu
     }()
     
-    private lazy var subMenu: SubMenuView = {
-        let subMenu = SubMenuView.init(frame: .zero)
+    private lazy var subMenu: MoonStyleMenu = {
+        let subMenu = MoonStyleMenu.init(frame: .zero)
         
         subMenu.layer.cornerRadius = 18.0
         subMenu.layer.masksToBounds = true

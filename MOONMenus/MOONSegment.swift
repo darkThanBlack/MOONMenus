@@ -26,6 +26,9 @@ class MOONSegmentThemes {
         self.style = style ?? .xm_orange
     }
     
+    var itemMinWidth: CGFloat = 45.0
+    var itemMinHeight: CGFloat = 24.0
+    
     var sliderColor: UIColor = UIColor.init(red: 255/255.0, green: 133/255.0, blue: 52/255.0, alpha: 1.0)
     var highLightTextColor = UIColor.white
     var normalTextColor = UIColor.init(red: 255/255.0, green: 133/255.0, blue: 52/255.0, alpha: 1.0)
@@ -85,6 +88,12 @@ class MOONSegment: UIView {
                 
                 self.addSubview(item)
             }
+            //重置
+            itemWidth = 0
+            itemHeight = 0
+            setNeedsLayout()
+            layoutIfNeeded()
+            invalidateIntrinsicContentSize()
         }
     }
     
@@ -98,10 +107,13 @@ class MOONSegment: UIView {
     private var itemHeight :CGFloat = 0
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
-        
         return CGSize(width: itemWidth * CGFloat(items.count), height: max(size.height, itemHeight))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            return CGSize(width: itemWidth * CGFloat(items.count), height: itemHeight)
+        }
     }
     
     override func layoutSubviews() {
@@ -112,23 +124,23 @@ class MOONSegment: UIView {
         
         self.layer.borderWidth = theme.borderWidth
         self.layer.borderColor = theme.borderColor.cgColor
-        
+
         //求出单个最大宽高
         for item in items {
             item.sizeToFit()
-            itemWidth = max(item.bounds.width, itemWidth)
-            itemHeight = max(item.bounds.height, itemHeight)
+            itemWidth = max(item.bounds.width + 8.0, itemWidth)
+            itemHeight = max(item.bounds.height + 4.0, itemHeight)
         }
         //如果外部设置了更大的总宽高
-        if (self.bounds.width > itemWidth * CGFloat(items.count)) {
-            itemWidth = self.bounds.width / CGFloat(items.count)
-        }
-        if (self.bounds.height > itemHeight) {
-            itemHeight = self.bounds.height
-        }
+//        if (self.bounds.width > itemWidth * CGFloat(items.count)) {
+//            itemWidth = self.bounds.width / CGFloat(items.count)
+//        }
+//        if (self.bounds.height > itemHeight) {
+//            itemHeight = self.bounds.height
+//        }
         //保证不小于
-        itemWidth = max(45.0, itemWidth)
-        itemHeight = max(24.0, itemHeight)
+        itemWidth = max(theme.itemMinWidth, itemWidth)
+        itemHeight = max(theme.itemMinHeight, itemHeight)
         
         for (index, item) in items.enumerated() {
             item.frame = CGRect(x: itemWidth * CGFloat(index), y: 0, width: itemWidth, height: itemHeight)
