@@ -1,16 +1,24 @@
 PODS:
+  - AliyunOSSiOS (2.10.8)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
+  - AliyunOSSiOS (from `~/.moonPods/aliyun-oss-ios-sdk`)
   - SnapKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - SnapKit
 
+EXTERNAL SOURCES:
+  AliyunOSSiOS:
+    :branch: master
+    :path: "~/.moonPods/aliyun-oss-ios-sdk"
+
 SPEC CHECKSUMS:
+  AliyunOSSiOS: 8db92936545593b9e5c66d680ef2ac0738946651
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: f9df7e76d6c1415c195199fbf67187aa9cd4f60f
+PODFILE CHECKSUM: eb0ebe21a0b320b7e1c946348e09138869854365
 
 COCOAPODS: 1.8.4

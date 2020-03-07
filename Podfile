@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios, '9.0'
 
@@ -8,6 +8,7 @@ use_frameworks!
 target 'MOONMenus' do
 
 pod 'SnapKit'
+pod 'AliyunOSSiOS', :path => '~/.moonPods/aliyun-oss-ios-sdk', :branch =>'master'
 
 end
 
