@@ -29,6 +29,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//MARK: - header
+
+class TJSignUpIncomeHeader: UITableViewHeaderFooterView {
+    
+    var price: String? {
+        didSet {
+            self.priceLabel.text = self.price ?? " "
+        }
+    }
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        
+        loadViews(box: self.contentView)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func loadViews(box: UIView) {
+        box.addSubview(bgView)
+        box.addSubview(hintLabel)
+        box.addSubview(priceLabel)
+        box.addSubview(sepLine)
+        
+        loadConstraints(box: box)
+    }
+    
+    private func loadConstraints(box: UIView) {
+        hintLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        bgView.snp.makeConstraints { (make) in
+            make.top.left.right.bottom.equalToSuperview()
+        }
+        hintLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(box)
+            make.left.equalTo(box).offset(16.0)
+            make.height.equalTo(50.0)
+            make.bottom.equalTo(box.snp.bottom).offset(0).priority(.low)
+        }
+        priceLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(hintLabel.snp_centerY)
+            make.left.equalTo(hintLabel.snp_right).offset(0)
+            make.right.lessThanOrEqualTo(box.snp_right).offset(-16)
+        }
+        sepLine.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+    }
+    
+    private lazy var bgView: UIView = {
+        let bgView = UIView()
+        bgView.backgroundColor = .white
+        return bgView
+    }()
+    
+    private lazy var hintLabel: UILabel = {
+        let hintLabel = UILabel()
+        hintLabel.font = UIFont.systemFont(ofSize: 15.0)
+        hintLabel.textColor = .lightGray
+        hintLabel.text = "应收："
+        return hintLabel
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let priceLabel = UILabel()
+        priceLabel.font = UIFont.systemFont(ofSize: 17.0)
+        priceLabel.textColor = .gray
+        priceLabel.numberOfLines = 1
+        priceLabel.text = ""
+        return priceLabel
+    }()
+    
+    private lazy var sepLine: UIView = {
+        let sepLine = UIView()
+        sepLine.backgroundColor = .separator
+        return sepLine
+    }()
+}
+
 //MARK: - cell
 
 class TJSignUpIncomeGradientView: UIView {
@@ -401,10 +483,11 @@ class DemoViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var cellArray = [TJSignUpIncomeCellModel]()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .lightGray
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(TJSignUpIncomeHeader.self, forHeaderFooterViewReuseIdentifier: "TJSignUpIncomeHeader")
         tableView.register(TJSignUpIncomeCell.self, forCellReuseIdentifier: "TJSignUpIncomeCell")
         return tableView
     }()
@@ -424,7 +507,7 @@ class DemoViewController: UIViewController, UITableViewDelegate, UITableViewData
         let datas = [0, 1, 2, 3, 4, 5]
         for (index, _) in datas.enumerated() {
             let cellInfo = TJSignUpIncomeCellModel()
-            cellInfo.title = "完成课后练习第五单元第3小节完成课后练习第五单元" + ((index % 2) == 0 ? "完成课后练习第五单元第3小节完成课后练习第五单元第3小节" : "")
+            cellInfo.title = "完成课后练习第五单元第3小节完成课后练习第五单元" + ((index % 2) == 1 ? "完成课后练习第五单元第3小节完成课后练习第五单元第3小节" : "")
             cellInfo.detail = "购买24个月；赠送4个月"
             cellInfo.price = "￥1200"
             cellInfo.buttonTitle = ""
@@ -472,9 +555,9 @@ class DemoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = "Section Header"
-        return label
+        let header: TJSignUpIncomeHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TJSignUpIncomeHeader") as! TJSignUpIncomeHeader
+        header.price = "2345.67"
+        return header
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
