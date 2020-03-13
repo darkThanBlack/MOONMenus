@@ -24,6 +24,7 @@
 		A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BA2241B298B005666AF /* LessonViewController.swift */; };
 		A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BA4241B2D3B005666AF /* CapacityAlertController.swift */; };
 		A26D2BA7241B3825005666AF /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BA6241B3825005666AF /* LessonView.swift */; };
+		A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BA8241B91E9005666AF /* LessonCell.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		A26D2BA2241B298B005666AF /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		A26D2BA4241B2D3B005666AF /* CapacityAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityAlertController.swift; sourceTree = "<group>"; };
 		A26D2BA6241B3825005666AF /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		A26D2BA8241B91E9005666AF /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +192,7 @@
 				A26D2BA0241B22B6005666AF /* LessonHelper.swift */,
 				A26D2BA2241B298B005666AF /* LessonViewController.swift */,
 				A26D2BA6241B3825005666AF /* LessonView.swift */,
+				A26D2BA8241B91E9005666AF /* LessonCell.swift */,
 				A26D2BA4241B2D3B005666AF /* CapacityAlertController.swift */,
 			);
 			path = Lesson;
@@ -376,6 +379,7 @@
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
 				A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
+				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
