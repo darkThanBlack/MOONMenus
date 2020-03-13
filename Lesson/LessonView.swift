@@ -76,6 +76,7 @@ class LessonView: UIView {
         capacity.process = CGFloat(slider.value)
         if slider.value == 1.0 {
             let alert = CapacityAlertController()
+            alert.progress = 1.0
             UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
