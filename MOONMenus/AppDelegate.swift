@@ -23,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let leesonVC = LessonViewController()
+            nav.pushViewController(leesonVC, animated: true)
+        }
+        
         return true
     }
 
