@@ -1,20 +1,20 @@
 //
-//  LessonViewController.swift
+//  SubSubLessonViewController.swift
 //  MOONMenus
 //
-//  Created by 徐一丁 on 2020/3/13.
+//  Created by 月之暗面 on 2020/3/15.
 //  Copyright © 2020 月之暗面. All rights reserved.
 //
 
 import UIKit
 
-class LessonViewController: UIViewController {
+class SubLessonViewController: UIViewController {
     
     //MARK: Interface
     
-    //MARK: Property
+    var viewInfo = LessonModel()
     
-    private var viewInfo = LessonViewModel()
+    //MARK: Property
     
     //MARK: Life Cycle
     
@@ -22,33 +22,28 @@ class LessonViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        loadViewsForLesson()
+        loadViewsForSubLesson()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadRequestForLesson()
     }
     
     //MARK: View
     
-    private func loadNavigationsForLesson() {
+    private func loadNavigationsForSubLesson() {
         
     }
     
-    private func loadViewsForLesson() {
+    private func loadViewsForSubLesson() {
         view.addSubview(basicView)
-        view.addSubview(tableView)
         
-        loadConstraintsForLesson()
+        loadConstraintsForSubLesson()
     }
     
-    private func loadConstraintsForLesson() {
+    private func loadConstraintsForSubLesson() {
         basicView.snp.makeConstraints { (make) in
-            make.top.left.right.bottom.equalToSuperview()
-        }
-        tableView.snp.makeConstraints { (make) in
             make.top.left.right.bottom.equalToSuperview()
         }
     }
@@ -70,35 +65,30 @@ class LessonViewController: UIViewController {
     
     //MARK: Data
     
-    private func loadRequestForLesson() {
-        viewInfo.loadRequestForLesson { (success) in
-            self.tableView.reloadData()
-        }
+    private func loadRequestForSubLesson() {
+        
     }
     
     //MARK: Event
     
 }
 
-extension LessonViewController: UITableViewDelegate {
+extension SubLessonViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let subVC = SubLessonViewController()
-        
-        self.navigationController?.pushViewController(subVC, animated: true)
+
     }
 }
 
-extension LessonViewController: UITableViewDataSource {
+extension SubLessonViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewInfo.lessons.count
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonCell") as? LessonCell
-        cell?.configCell(dataSource: viewInfo.lessons[indexPath.row])
+
         return cell ?? UITableViewCell()
     }
     
     
 }
-

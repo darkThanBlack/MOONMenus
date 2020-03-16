@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BE9D2241E23F600C06290 /* SubLessonViewController.swift */; };
+		881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BE9D4241E242500C06290 /* LessonViewModel.swift */; };
+		881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BE9D6241E308700C06290 /* SubLessonCell.swift */; };
 		885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F641F23F939C60089FDD3 /* MenuRootController.swift */; };
 		885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F642123F98C9F0089FDD3 /* SubMenuView.swift */; };
 		88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE58EC23F7D8C000127C8E /* AppDelegate.swift */; };
@@ -48,6 +51,9 @@
 /* Begin PBXFileReference section */
 		1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOONMenus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A9F00FB6DAF513EB8BB2AD /* Pods-MOONMenus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.debug.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.debug.xcconfig"; sourceTree = "<group>"; };
+		881BE9D2241E23F600C06290 /* SubLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonViewController.swift; sourceTree = "<group>"; };
+		881BE9D4241E242500C06290 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		881BE9D6241E308700C06290 /* SubLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonCell.swift; sourceTree = "<group>"; };
 		885F641F23F939C60089FDD3 /* MenuRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRootController.swift; sourceTree = "<group>"; };
 		885F642123F98C9F0089FDD3 /* SubMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuView.swift; sourceTree = "<group>"; };
 		88AE58E923F7D8C000127C8E /* MOONMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOONMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +122,15 @@
 				B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		881BE9D1241E23E100C06290 /* SubLesson */ = {
+			isa = PBXGroup;
+			children = (
+				881BE9D2241E23F600C06290 /* SubLessonViewController.swift */,
+				881BE9D6241E308700C06290 /* SubLessonCell.swift */,
+			);
+			path = SubLesson;
 			sourceTree = "<group>";
 		};
 		88AE58E023F7D8C000127C8E = {
@@ -189,11 +204,13 @@
 		A26D2B9F241B2143005666AF /* Lesson */ = {
 			isa = PBXGroup;
 			children = (
+				881BE9D1241E23E100C06290 /* SubLesson */,
 				A26D2BA0241B22B6005666AF /* LessonHelper.swift */,
 				A26D2BA2241B298B005666AF /* LessonViewController.swift */,
 				A26D2BA6241B3825005666AF /* LessonView.swift */,
 				A26D2BA8241B91E9005666AF /* LessonCell.swift */,
 				A26D2BA4241B2D3B005666AF /* CapacityAlertController.swift */,
+				881BE9D4241E242500C06290 /* LessonViewModel.swift */,
 			);
 			path = Lesson;
 			sourceTree = "<group>";
@@ -373,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88FB1B082403E1D4006A48AA /* ItemConfigs.swift in Sources */,
+				881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */,
 				885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */,
 				88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */,
 				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
@@ -382,6 +400,8 @@
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
+				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,
+				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,

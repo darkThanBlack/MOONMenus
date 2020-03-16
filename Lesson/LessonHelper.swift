@@ -24,6 +24,9 @@ struct LessonHelper {
     static func grayText() -> UIColor {
         return LessonHelper.xm_color(hex: 0x666666)
     }
+    static func lightGrayText() -> UIColor {
+        return LessonHelper.xm_color(hex: 0x999999)
+    }
     static func blueText() -> UIColor {
         return LessonHelper.xm_color(hex: 0x0076FF)
     }
