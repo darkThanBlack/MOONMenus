@@ -1,5 +1,5 @@
 //
-//  SubSubLessonCell.swift
+//  SubLessonCell.swift
 //  MOONMenus
 //
 //  Created by 月之暗面 on 2020/3/15.
@@ -14,13 +14,13 @@ protocol SubLessonCellDataSource {
     var counts: String? { get }
 }
 
-class SubSubLessonCell: UITableViewCell {
+class SubLessonCell: UITableViewCell {
 
 //MARK: Interface
         
     func configCell(dataSource: SubLessonCellDataSource) {
-//        titleLabel.text = dataSource.title ?? " "
-//        countsLabel.text = dataSource.counts
+        titleLabel.text = dataSource.title ?? " "
+        countsLabel.text = dataSource.counts
     }
     
 //MARK: Life Cycle
@@ -40,22 +40,32 @@ class SubSubLessonCell: UITableViewCell {
 //MARK: View
     
     private func loadViewsForSubLesson(box: UIView) {
-        self.addSubview(titleLabel)
-        self.addSubview(countsLabel)
+        box.addSubview(titleLabel)
+        box.addSubview(countsLabel)
+        box.addSubview(arrow)
         
         loadConstraintsForSubLesson(box: box)
     }
     
     private func loadConstraintsForSubLesson(box: UIView) {
         
-        titleLabel.snp.makeConstraints { (make) in
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        countsLabel.snp.makeConstraints { (make) in
             make.top.equalTo(box.snp.top).offset(12.0)
             make.left.equalTo(box.snp.left).offset(16.0)
             make.bottom.equalTo(box.snp.bottom).offset(-11.0)
         }
-        countsLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(titleLabel.snp.centerY)
-            make.left.equalTo(titleLabel.snp.right).offset(48.0)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(countsLabel.snp.centerY)
+            make.left.equalTo(countsLabel.snp.right).offset(48.0)
+            make.right.lessThanOrEqualTo(arrow.snp.left).offset(-10.0)
+        }
+        arrow.snp.makeConstraints { (make) in
+            make.centerY.equalTo(countsLabel.snp.centerY)
+            make.right.equalTo(box.snp.right).offset(-16.0)
+            make.width.equalTo(10.0)
+            make.height.equalTo(10.0)
         }
     }
     
@@ -75,5 +85,10 @@ class SubSubLessonCell: UITableViewCell {
         countsLabel.text = " "
         return countsLabel
     }()
-
+    
+    private lazy var arrow: UIImageView = {
+        let arrow = UIImageView(image: UIImage(named: ""))
+        arrow.backgroundColor = .red
+        return arrow
+    }()
 }

@@ -23,12 +23,13 @@ class LessonViewController: UIViewController {
         view.backgroundColor = .white
         
         loadViewsForLesson()
+        
+        loadRequestForLesson()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadRequestForLesson()
     }
     
     //MARK: View
@@ -38,27 +39,17 @@ class LessonViewController: UIViewController {
     }
     
     private func loadViewsForLesson() {
-        view.addSubview(basicView)
         view.addSubview(tableView)
         
         loadConstraintsForLesson()
     }
     
     private func loadConstraintsForLesson() {
-        basicView.snp.makeConstraints { (make) in
-            make.top.left.right.bottom.equalToSuperview()
-        }
         tableView.snp.makeConstraints { (make) in
             make.top.left.right.bottom.equalToSuperview()
         }
     }
-    
-    private lazy var basicView: LessonView = {
-        let basicView = LessonView()
-        basicView.backgroundColor = .white
-        return basicView
-    }()
-    
+        
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
@@ -83,7 +74,7 @@ class LessonViewController: UIViewController {
 extension LessonViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subVC = SubLessonViewController()
-        
+        subVC.viewInfo = viewInfo.lessons[indexPath.row].subLessons
         self.navigationController?.pushViewController(subVC, animated: true)
     }
 }
