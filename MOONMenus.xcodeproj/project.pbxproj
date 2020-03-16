@@ -31,6 +31,10 @@
 		A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BAA241F4E0A005666AF /* LessonAuthorView.swift */; };
 		A26D2BAE241F78D9005666AF /* LessonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BAD241F78D8005666AF /* LessonDetailViewController.swift */; };
 		A26D2BB0241F7971005666AF /* LessonDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BAF241F7971005666AF /* LessonDetailCell.swift */; };
+		A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB2241FB9EF005666AF /* LessonSelectViewController.swift */; };
+		A26D2BB5241FBD22005666AF /* LessonSelectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB4241FBD22005666AF /* LessonSelectHelper.swift */; };
+		A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */; };
+		A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +88,10 @@
 		A26D2BAA241F4E0A005666AF /* LessonAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAuthorView.swift; sourceTree = "<group>"; };
 		A26D2BAD241F78D8005666AF /* LessonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailViewController.swift; sourceTree = "<group>"; };
 		A26D2BAF241F7971005666AF /* LessonDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailCell.swift; sourceTree = "<group>"; };
+		A26D2BB2241FB9EF005666AF /* LessonSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectViewController.swift; sourceTree = "<group>"; };
+		A26D2BB4241FBD22005666AF /* LessonSelectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectHelper.swift; sourceTree = "<group>"; };
+		A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectViewModel.swift; sourceTree = "<group>"; };
+		A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectCell.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +141,7 @@
 		881BE9D1241E23E100C06290 /* SubLesson */ = {
 			isa = PBXGroup;
 			children = (
+				A26D2BAC241F78C8005666AF /* LessonDetail */,
 				881BE9D2241E23F600C06290 /* SubLessonViewController.swift */,
 				881BE9D6241E308700C06290 /* SubLessonCell.swift */,
 			);
@@ -142,6 +151,7 @@
 		88AE58E023F7D8C000127C8E = {
 			isa = PBXGroup;
 			children = (
+				A26D2BB1241FB8BF005666AF /* LessonSelect */,
 				A26D2B9F241B2143005666AF /* Lesson */,
 				88AE58EB23F7D8C000127C8E /* MOONMenus */,
 				88AE590223F7D8C400127C8E /* MOONMenusTests */,
@@ -210,7 +220,6 @@
 		A26D2B9F241B2143005666AF /* Lesson */ = {
 			isa = PBXGroup;
 			children = (
-				A26D2BAC241F78C8005666AF /* LessonDetail */,
 				881BE9D1241E23E100C06290 /* SubLesson */,
 				A26D2BA0241B22B6005666AF /* LessonHelper.swift */,
 				A26D2BA2241B298B005666AF /* LessonViewController.swift */,
@@ -230,6 +239,25 @@
 				A26D2BAF241F7971005666AF /* LessonDetailCell.swift */,
 			);
 			path = LessonDetail;
+			sourceTree = "<group>";
+		};
+		A26D2BB1241FB8BF005666AF /* LessonSelect */ = {
+			isa = PBXGroup;
+			children = (
+				A26D2BBA241FC1BB005666AF /* SubLessonSelect */,
+				A26D2BB2241FB9EF005666AF /* LessonSelectViewController.swift */,
+				A26D2BB4241FBD22005666AF /* LessonSelectHelper.swift */,
+				A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */,
+				A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */,
+			);
+			path = LessonSelect;
+			sourceTree = "<group>";
+		};
+		A26D2BBA241FC1BB005666AF /* SubLessonSelect */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubLessonSelect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,16 +438,20 @@
 				881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */,
 				885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */,
 				A26D2BAE241F78D9005666AF /* LessonDetailViewController.swift in Sources */,
+				A26D2BB5241FBD22005666AF /* LessonSelectHelper.swift in Sources */,
 				88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */,
 				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
+				A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */,
 				A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */,
+				A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */,
 				A26D2BB0241F7971005666AF /* LessonDetailCell.swift in Sources */,
 				A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
+				A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */,
 				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,
 				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
