@@ -46,6 +46,6 @@ struct LessonSelectHelper {
         return LessonSelectHelper.xm_color(hex: 0x747474)
     }
     static func background() -> UIColor {
-        return LessonSelectHelper.xm_color(hex: 0xFCFCFC)
+        return LessonSelectHelper.xm_color(hex: 0xFAFAFA)
     }
 }

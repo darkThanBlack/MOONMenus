@@ -35,6 +35,8 @@
 		A26D2BB5241FBD22005666AF /* LessonSelectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB4241FBD22005666AF /* LessonSelectHelper.swift */; };
 		A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */; };
 		A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */; };
+		A26D2BBC24206373005666AF /* SubLessonSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BBB24206373005666AF /* SubLessonSelectViewController.swift */; };
+		A2BB623A242073810020A85B /* SubLessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB6239242073810020A85B /* SubLessonSelectCell.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,8 @@
 		A26D2BB4241FBD22005666AF /* LessonSelectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectHelper.swift; sourceTree = "<group>"; };
 		A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectViewModel.swift; sourceTree = "<group>"; };
 		A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectCell.swift; sourceTree = "<group>"; };
+		A26D2BBB24206373005666AF /* SubLessonSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonSelectViewController.swift; sourceTree = "<group>"; };
+		A2BB6239242073810020A85B /* SubLessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonSelectCell.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,6 +260,8 @@
 		A26D2BBA241FC1BB005666AF /* SubLessonSelect */ = {
 			isa = PBXGroup;
 			children = (
+				A26D2BBB24206373005666AF /* SubLessonSelectViewController.swift */,
+				A2BB6239242073810020A85B /* SubLessonSelectCell.swift */,
 			);
 			path = SubLessonSelect;
 			sourceTree = "<group>";
@@ -444,12 +450,14 @@
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
 				A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */,
 				A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */,
+				A2BB623A242073810020A85B /* SubLessonSelectCell.swift in Sources */,
 				A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */,
 				A26D2BB0241F7971005666AF /* LessonDetailCell.swift in Sources */,
 				A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
+				A26D2BBC24206373005666AF /* SubLessonSelectViewController.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */,
 				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,

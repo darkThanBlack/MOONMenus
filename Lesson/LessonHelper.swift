@@ -46,7 +46,7 @@ struct LessonHelper {
         return LessonHelper.xm_color(hex: 0x747474)
     }
     static func background() -> UIColor {
-        return LessonHelper.xm_color(hex: 0xFCFCFC)
+        return LessonHelper.xm_color(hex: 0xFAFAFA)
     }
 }
 
