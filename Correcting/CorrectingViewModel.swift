@@ -20,7 +20,7 @@ class CorrectingTextModel: CorrectingCellModel, CorrectingTextCellDataSource {
     var text: String?
 }
 
-class CorrectingCellModel {
+class CorrectingCellModel: CorrectingInputCellDataSource {
     ///学生作业类型
     enum WorkStyle {
         case student

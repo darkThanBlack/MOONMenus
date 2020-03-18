@@ -15,10 +15,7 @@ protocol CorrectingInputCellDelegate: class {
 
 ///CorrectingInputCell 数据源
 protocol CorrectingInputCellDataSource {
-    var isEditing: Bool { get }
-    var teacher: CorrectingCellModel.TeacherModel? { get }
-    var voice: [CorrectingCellModel.VoiceModel]? { get }
-    var teacherText: String? { get }
+    var corrects: CorrectingCellModel.Corrects { get }
 }
 
 class CorrectingInputCell: UITableViewCell {
@@ -37,7 +34,7 @@ class CorrectingInputCell: UITableViewCell {
     }
     
     func configCell(dataSource: CorrectingInputCellDataSource) {
-        if dataSource.isEditing {
+        if dataSource.corrects.isEmpty {
             correctingView.snp.remakeConstraints { (make) in
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
                 make.left.equalToSuperview().offset(16.0)
