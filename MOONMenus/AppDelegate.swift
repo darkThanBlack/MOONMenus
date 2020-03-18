@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let leesonVC = LessonViewController()
+            let leesonVC = CorrectingViewController()
             nav.pushViewController(leesonVC, animated: true)
         }
         
