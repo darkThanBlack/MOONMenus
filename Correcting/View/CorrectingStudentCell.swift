@@ -50,20 +50,23 @@ class CorrectingStudentCell: UITableViewCell {
     }
     
     private func loadConstraintsForCorrcetingStudent(box: UIView) {
+        
+        avatar.layer.masksToBounds = true
+        avatar.layer.cornerRadius = 20.0
         avatar.snp.makeConstraints { (make) in
-            make.top.equalTo(box.snp.top).offset(0)
+            make.top.equalTo(box.snp.top).offset(16.0)
             make.left.equalTo(box.snp.left).offset(16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-0)
-            make.width.equalTo(60.0)
-            make.height.equalTo(60.0)
+            make.bottom.equalTo(box.snp.bottom).offset(-2.0)
+            make.width.equalTo(40.0)
+            make.height.equalTo(40.0)
         }
         nameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(avatar.snp.top).offset(0)
-            make.left.equalTo(avatar.snp.right).offset(16.0)
+            make.top.equalTo(avatar.snp.top).offset(2.0)
+            make.left.equalTo(avatar.snp.right).offset(10.0)
             make.right.lessThanOrEqualTo(box.snp.right).offset(-16.0)
         }
         detailLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel.snp.bottom).offset(4.0)
+            make.top.equalTo(nameLabel.snp.bottom).offset(2.0)
             make.left.equalTo(nameLabel.snp.left).offset(0)
             make.right.lessThanOrEqualTo(box.snp.right).offset(-16.0)
         }
@@ -77,7 +80,7 @@ class CorrectingStudentCell: UITableViewCell {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         nameLabel.textColor = CorrectingHelper.blackText()
         nameLabel.text = " "
         return nameLabel
@@ -86,7 +89,7 @@ class CorrectingStudentCell: UITableViewCell {
     private lazy var detailLabel: UILabel = {
         let detailLabel = UILabel()
         detailLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        detailLabel.textColor = CorrectingHelper.grayText()
+        detailLabel.textColor = CorrectingHelper.lightGrayText()
         detailLabel.text = " "
         return detailLabel
     }()

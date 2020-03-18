@@ -13,11 +13,11 @@ protocol CustomCellType: UITableViewCell {
     func configCell(data: DataSource)
 }
 ///CorrectingTextCell 数据源
-protocol CorrectingTextCellDataSource: CorrectingInputCellDataSource {
+protocol CorrectingTextCellDataSource: CorrectingCellDataSource {
     var text: String? { get }
 }
 
-class CorrectingTextCell: CorrectingInputCell {
+class CorrectingTextCell: CorrectingCell {
     
     //MARK: Interface
         
@@ -51,10 +51,10 @@ class CorrectingTextCell: CorrectingInputCell {
     
     private func loadConstraintsForCorrectingText(box: UIView) {
         workLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(box.snp.top).offset(8.0)
-            make.left.equalTo(box.snp.left).offset(16.0)
-            make.right.equalTo(box.snp.right).offset(-16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-8.0)
+            make.top.equalTo(box.snp.top).offset(0.0)
+            make.left.equalTo(box.snp.left).offset(0.0)
+            make.right.equalTo(box.snp.right).offset(-0.0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0.0)
         }
     }
     

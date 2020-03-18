@@ -8,6 +8,7 @@
 
 import UIKit
 
+///学生信息，没有点评父类
 class CorrectingStudentModel: CorrectingCellModel, CorrectingStudentCellDataSource {
     var avatar: String?
     
@@ -16,11 +17,25 @@ class CorrectingStudentModel: CorrectingCellModel, CorrectingStudentCellDataSour
     var detail: String?
 }
 
-class CorrectingTextModel: CorrectingCellModel, CorrectingTextCellDataSource {
+///作业 - 文本类型
+class CorrectingTextCellModel: CorrectingCellModel, CorrectingTextCellDataSource {
     var text: String?
 }
+///作业 - 音频类型
+class CorrectingVoiceCellModel: CorrectingCellModel, CorrectingVoiceCellDataSource {
+    
+}
+///作业 - 图片类型
+class CorrectingImageCellModel: CorrectingCellModel, CorrectingImageCellDataSource {
+    
+}
+///作业 - 视频类型
+class CorrectingVideoCellModel: CorrectingCellModel, CorrectingVideoCellDataSource {
+    
+}
 
-class CorrectingCellModel: CorrectingInputCellDataSource {
+///批改作业 - 父类 cell 类型
+class CorrectingCellModel: CorrectingCellDataSource {
     ///学生作业类型
     enum WorkStyle {
         case student
@@ -30,7 +45,8 @@ class CorrectingCellModel: CorrectingInputCellDataSource {
         case video
     }
     var style: WorkStyle = .text
-        
+    
+    ///老师点名类型
     class Corrects {
         
         var isEmpty: Bool {
@@ -62,6 +78,7 @@ class CorrectingCellModel: CorrectingInputCellDataSource {
     var corrects = Corrects()
 }
 
+///批改作业 - 基础页面模型
 class CorrectingViewModel {
     
     var cells: [CorrectingCellModel] = []
@@ -77,9 +94,9 @@ class CorrectingViewModel {
                 student.detail = "提交于\(NSDate.now.description)"
                 cells.append(student)
             } else {
-                let text = CorrectingTextModel()
+                let text = CorrectingTextCellModel()
                 text.style = .text
-                text.text = "这个页面月之暗面不太确定，请大神指导下，只能祝客户端万寿无疆，工程师身体永远健康！"
+                text.text = "这个页面月之暗面一直做不好，请大神指导下，大神只能祝福祝伟大的客户端万寿无疆，人民的工程师身体永远健康！"
                 
                 text.corrects.teacher.avatar = "moonShadow"
                 text.corrects.teacher.name = "月之暗面-老师"

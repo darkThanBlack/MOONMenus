@@ -67,6 +67,9 @@ class CorrectingViewController: UIViewController {
         
         tableView.register(CorrectingStudentCell.self, forCellReuseIdentifier: "CorrectingStudentCell")
         tableView.register(CorrectingTextCell.self, forCellReuseIdentifier: "CorrectingTextCell")
+        tableView.register(CorrectingVoiceCell.self, forCellReuseIdentifier: "CorrectingVoiceCell")
+        tableView.register(CorrectingImageCell.self, forCellReuseIdentifier: "CorrectingImageCell")
+        tableView.register(CorrectingVideoCell.self, forCellReuseIdentifier: "CorrectingVideoCell")
 
         return tableView
     }()
@@ -97,8 +100,13 @@ extension CorrectingViewController: UITableViewDataSource {
             return cell ?? UITableViewCell()
         case .text:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingTextCell") as? CorrectingTextCell
-            cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingTextModel)
+            cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingTextCellModel)
             return cell ?? UITableViewCell()
+        case .voice:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVoiceCell") as? CorrectingVoiceCell
+            cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVoiceCellModel)
+            return cell ?? UITableViewCell()
+            
         default:
             return UITableViewCell()
         }

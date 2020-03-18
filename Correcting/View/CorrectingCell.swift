@@ -1,5 +1,5 @@
 //
-//  CorrectingInputCell.swift
+//  CorrectingCell.swift
 //  MOONMenus
 //
 //  Created by 徐一丁 on 2020/3/18.
@@ -10,15 +10,15 @@ import UIKit
 
 ///CorrectingInputCell 用户事件
 protocol CorrectingInputCellDelegate: class {
-    func correctingInputEvent(cell: CorrectingInputCell)
+    func correctingInputEvent(cell: CorrectingCell)
 }
 
 ///CorrectingInputCell 数据源
-protocol CorrectingInputCellDataSource {
+protocol CorrectingCellDataSource {
     var corrects: CorrectingCellModel.Corrects { get }
 }
 
-class CorrectingInputCell: UITableViewCell {
+class CorrectingCell: UITableViewCell {
     
     //MARK: Interface
     
@@ -33,7 +33,7 @@ class CorrectingInputCell: UITableViewCell {
         self.delegate = delegate
     }
     
-    func configCell(dataSource: CorrectingInputCellDataSource) {
+    func configCell(dataSource: CorrectingCellDataSource) {
         if dataSource.corrects.isEmpty {
             correctingView.snp.remakeConstraints { (make) in
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
@@ -81,13 +81,13 @@ class CorrectingInputCell: UITableViewCell {
     
     private func loadConstraintsForCorrectingInput(box: UIView) {
         workView.snp.makeConstraints { (make) in
-            make.top.equalTo(box.snp.top).offset(0)
-            make.left.equalTo(box.snp.left).offset(0)
-            make.right.equalTo(box.snp.right).offset(-0)
+            make.top.equalTo(box.snp.top).offset(8.0)
+            make.left.equalTo(box.snp.left).offset(16.0)
+            make.right.equalTo(box.snp.right).offset(-16.0)
             
         }
         inputHintsView.snp.makeConstraints { (make) in
-            make.top.equalTo(workView.snp.bottom).offset(0)
+            make.top.equalTo(workView.snp.bottom).offset(4.0)
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0)
         }
