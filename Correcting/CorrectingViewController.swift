@@ -106,7 +106,14 @@ extension CorrectingViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVoiceCell") as? CorrectingVoiceCell
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVoiceCellModel)
             return cell ?? UITableViewCell()
-            
+        case .image:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingImageCell") as? CorrectingVoiceCell
+            cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingImageCellModel)
+            return cell ?? UITableViewCell()
+        case .video:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVideoCell") as? CorrectingVoiceCell
+            cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVideoCellModel)
+            return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
         }

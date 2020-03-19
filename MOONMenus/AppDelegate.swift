@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MenuCore.core.start()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
-        let nav = UINavigationController.init(rootViewController: DemoViewController.init())
+        let nav = UINavigationController.init(rootViewController: UIViewController.init())
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         

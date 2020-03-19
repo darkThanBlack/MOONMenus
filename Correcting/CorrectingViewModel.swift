@@ -46,15 +46,15 @@ class CorrectingCellModel: CorrectingCellDataSource {
     }
     var style: WorkStyle = .text
     
-    ///老师点名类型
+    ///老师点评内容
     class Corrects {
         
         var isEmpty: Bool {
             get {
                 if (voices.count > 0) || (mark.count > 0) {
-                    return true
+                    return false
                 }
-                return false
+                return true
             }
         }
         
@@ -85,7 +85,7 @@ class CorrectingViewModel {
         
     func loadRequestForCorrecting(complete: ((Bool) -> Void)?) {
         
-        for idx in 0...3 {
+        for idx in 0...30 {
             if idx == 0 {
                 let student = CorrectingStudentModel()
                 student.style = .student

@@ -73,7 +73,7 @@ class CorrectingStudentCell: UITableViewCell {
     }
     
     private lazy var avatar: UIImageView = {
-        let avatar = UIImageView(image: UIImage(named: ""))
+        let avatar = UIImageView()
         avatar.backgroundColor = CorrectingHelper.grayText()
         return avatar
     }()
