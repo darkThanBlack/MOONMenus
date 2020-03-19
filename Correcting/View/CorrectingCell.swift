@@ -11,6 +11,7 @@ import UIKit
 ///CorrectingCell 用户事件
 protocol CorrectingCellDelegate: class {
     func correctingInputEvent(cell: CorrectingCell)
+    func correctEditEvent(cell: CorrectingCell, event: CorrectingCell.Events, object: CorrectingCell.EventsObject, context: [String: Any]?)
 }
 
 ///CorrectingCell 数据源
@@ -22,6 +23,17 @@ class CorrectingCell: UITableViewCell {
     
     //MARK: Interface
     
+    ///用户事件
+    enum Events {
+        case delete
+        case update
+    }
+    ///用户事件对象
+    enum EventsObject {
+        case voice
+        case text
+    }
+    
     ///豫定由子类实现，负责展示学生提交的作业
     lazy var workView: UIView = {
         let workView = UIView()
@@ -31,12 +43,15 @@ class CorrectingCell: UITableViewCell {
     private weak var delegate: CorrectingCellDelegate?
     func bindCell(delegate: CorrectingCellDelegate) {
         self.delegate = delegate
+        self.editView.bindCell { (event, object, context) in
+            self.delegate?.correctEditEvent(cell: self, event: event, object: object, context: context)
+        }
     }
     
     func configCell(dataSource: CorrectingCellDataSource) {
         if dataSource.corrects.isEmpty {
-            correctingView.isHidden = true
-            correctingView.snp.remakeConstraints { (make) in
+            editView.isHidden = true
+            editView.snp.remakeConstraints { (make) in
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
                 make.left.equalToSuperview().offset(16.0)
                 make.right.equalToSuperview().offset(-16.0)
@@ -45,15 +60,15 @@ class CorrectingCell: UITableViewCell {
                 make.height.equalTo(0)
             }
         } else {
-            correctingView.isHidden = false
-            correctingView.snp.remakeConstraints { (make) in
+            editView.isHidden = false
+            editView.snp.remakeConstraints { (make) in
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
                 make.left.equalToSuperview().offset(16.0)
                 make.right.equalToSuperview().offset(-16.0)
                 make.bottom.equalToSuperview().offset(-8.0)
             }
         }
-        correctingView.reloadSubViews(corrects: dataSource.corrects)
+        editView.reloadSubViews(corrects: dataSource.corrects)
     }
     
     //MARK: Life Cycle
@@ -75,7 +90,7 @@ class CorrectingCell: UITableViewCell {
     private func loadViewsForCorrectingInput(box: UIView) {
         box.addSubview(workView)
         box.addSubview(inputHintsView)
-        box.addSubview(correctingView)
+        box.addSubview(editView)
         
         loadConstraintsForCorrectingInput(box: box)
     }
@@ -106,10 +121,10 @@ class CorrectingCell: UITableViewCell {
     }()
     
     ///豫定由本类实现，负责处理添加老师的点评
-    private var correctingView: CorrectingView = {
-        let correctingView = CorrectingView()
-        correctingView.backgroundColor = CorrectingHelper.red()
-        return correctingView
+    private var editView: CorrectEditView = {
+        let editView = CorrectEditView()
+        editView.backgroundColor = CorrectingHelper.red()
+        return editView
     }()
 
     //MARK: Event
@@ -175,9 +190,14 @@ class CorrectingCell: UITableViewCell {
         
     }
 
-    class CorrectingView: UIView {
+    class CorrectEditView: UIView {
         
         //MARK: Interface
+        
+        private var events: ((CorrectingCell.Events, CorrectingCell.EventsObject, [String: Any]?) -> Void)?
+        func bindCell(events: ((CorrectingCell.Events, CorrectingCell.EventsObject, [String: Any]?) -> Void)?) {
+            self.events = events
+        }
         
         private var views: [DeleteView] = []
         
@@ -198,20 +218,33 @@ class CorrectingCell: UITableViewCell {
             }
             views.removeAll()
             
-            for voice in corrects.voices {
+            for (index, voice) in corrects.voices.enumerated() {
                 let item = VoiceView()
                 item.vid = voice.vid
                 views.append(item)
+                
                 self.addSubview(item)
+                item.tag = index
+                item.bindDelete {
+                    self.events?(.delete, .voice, ["index": item.tag])
+                }
             }
             
-            if corrects.mark.count > 0 {
-                let marks = MarksView()
-                marks.mark = corrects.mark
-                views.append(marks)
-                self.addSubview(marks)
+            if corrects.review.isEditing {
+                let review = ReviewsView()
+                review.text = corrects.review.text
+                views.append(review)
+                
+                self.addSubview(review)
+                review.tag = views.count - 1
+                review.bindDelete {
+                    self.events?(.delete, .text, nil)
+                }
+                review.bindUpdate { (text) in
+                    self.events?(.update, .text, ["text": text ?? ""])
+                }
             }
-            
+                        
             if views.count == 0 {
                 assert(true, "MOON__Assert  不可能，要展示点评页面必然有点名数据")
             }
@@ -294,11 +327,10 @@ class CorrectingCell: UITableViewCell {
             
             //MARK: Interface
             
-            enum Styles {
-                case voice
-                case text
+            private var delete: (() -> Void)?
+            func bindDelete(event: (() -> Void)?) {
+                self.delete = event
             }
-            var style: Styles = .voice
             
             ///豫定子类实现，用于具体点评内容展示和相应逻辑
             var contentView = UIView()
@@ -371,7 +403,7 @@ class CorrectingCell: UITableViewCell {
             //MARK: Event
             
             @objc private func deleteEvent(gesture: UITapGestureRecognizer) {
-                print("MOON__Log delete corrects...")
+                delete?()
             }
             
         }
@@ -500,16 +532,20 @@ class CorrectingCell: UITableViewCell {
         }
         
         ///文字点评
-        class MarksView: DeleteView {
+        class ReviewsView: DeleteView, UITextViewDelegate {
             
             //MARK: Interface
             
-            var mark: String? {
-                didSet {
-                    textView.text = mark
-                }
+            private var update: ((String?) -> Void)?
+            func bindUpdate(event: ((String?) -> Void)?) {
+                self.update = event
             }
             
+            var text: String? {
+                didSet {
+                    textView.text = text
+                }
+            }
             
             //MARK: Life Cycle
             
@@ -550,14 +586,18 @@ class CorrectingCell: UITableViewCell {
                 textView.layer.borderColor = CorrectingHelper.singleLine().cgColor
                 textView.layer.borderWidth = 1.0
                 
+                textView.delegate = self
+                
                 return textView
             }()
             
             //MARK: Event
             
-            
+            func textViewDidChange(_ textView: UITextView) {
+                self.update?(textView.text)
+            }
         }
-
+        
 
     }
 

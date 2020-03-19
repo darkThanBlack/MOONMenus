@@ -100,6 +100,7 @@ extension CorrectingViewController: UITableViewDataSource {
             return cell ?? UITableViewCell()
         case .text:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingTextCell") as? CorrectingTextCell
+            cell?.bindCell(delegate: self)
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingTextCellModel)
             return cell ?? UITableViewCell()
         case .voice:
@@ -107,15 +108,50 @@ extension CorrectingViewController: UITableViewDataSource {
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVoiceCellModel)
             return cell ?? UITableViewCell()
         case .image:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingImageCell") as? CorrectingVoiceCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingImageCell") as? CorrectingImageCell
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingImageCellModel)
             return cell ?? UITableViewCell()
         case .video:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVideoCell") as? CorrectingVoiceCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVideoCell") as? CorrectingVideoCell
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVideoCellModel)
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension CorrectingViewController: CorrectingCellDelegate {
+    func correctingInputEvent(cell: CorrectingCell) {
+        print("MOON__log need append sth...")
+    }
+    
+    func correctEditEvent(cell: CorrectingCell, event: CorrectingCell.Events, object: CorrectingCell.EventsObject, context: [String : Any]?) {
+        let indexPath = tableView.indexPath(for: cell)
+        let index = indexPath?.row ?? -1
+        if (index < 0) || (index >= viewInfo.cells.count) { return }
+        var corrects = viewInfo.cells[index].corrects
+        
+        switch object {
+        case .voice:
+            switch event {
+            case .delete:
+                let idx = context?["index"] as? Int ?? -1
+                if (idx < 0) || (idx >= corrects.voices.count) { return }
+                corrects.voices.remove(at: idx)
+            case .update:
+                break
+            }
+        case .text:
+            switch event {
+            case .delete:
+                corrects.review.isEditing = false
+                corrects.review.text = ""
+                break
+            case .update:
+                break
+            }
+        }
+        tableView.reloadRows(at: [indexPath!], with: .fade)
     }
 }

@@ -51,7 +51,7 @@ class CorrectingCellModel: CorrectingCellDataSource {
         
         var isEmpty: Bool {
             get {
-                if (voices.count > 0) || (mark.count > 0) {
+                if (voices.count > 0) || review.isEditing {
                     return false
                 }
                 return true
@@ -73,7 +73,12 @@ class CorrectingCellModel: CorrectingCellDataSource {
         var voices: [Voice] = []
         
         ///文字点评
-        var mark: String = ""
+        struct Review {
+            ///是否需要展示输入框
+            var isEditing: Bool = false
+            var text: String = ""
+        }
+        var review = Review()
     }
     var corrects = Corrects()
 }
@@ -103,7 +108,8 @@ class CorrectingViewModel {
                 
                 text.corrects.voices = [.init(vid: "001"), .init(vid: "002")]
                 
-                text.corrects.mark = "Buckethead，著名吉他手Paul Gilbert的高徒，他的音乐风格是将电子乐，吉他噪音，独特的创意，融合到一起。Buckethead 共收集有 40 余个 现已停产的肯德基桶，并将它作为自己的帽子，这就是 Buckethead 名字的由来。Buckethead 任何时候都带着白色的面具，没有人见过他的真面目。"
+                text.corrects.review.isEditing = true
+                text.corrects.review.text = "Buckethead，著名吉他手Paul Gilbert的高徒，他的音乐风格是将电子乐，吉他噪音，独特的创意，融合到一起。Buckethead 共收集有 40 余个 现已停产的肯德基桶，并将它作为自己的帽子，这就是 Buckethead 名字的由来。Buckethead 任何时候都带着白色的面具，没有人见过他的真面目。"
                                 
                 cells.append(text)
             }
