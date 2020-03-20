@@ -39,7 +39,7 @@ class CorrectingVideoCell: CorrectingCell {
         
         self.selectionStyle = .none
         
-        loadViewsForCorrectingVideo(box: contentView)
+        loadViewsForCorrectingVideo(box: workView)
     }
     
     required init?(coder: NSCoder) {

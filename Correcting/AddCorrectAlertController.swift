@@ -8,6 +8,7 @@
 
 import UIKit
 
+///批改作业 - 添加点评
 class AddCorrectAlertController: UIViewController {
     
     //MARK: Interface
@@ -85,12 +86,12 @@ class AddCorrectAlertController: UIViewController {
     
     private func loadConstraintsForAddCorrectAlertItem(box: UIView) {
         voiceView.snp.makeConstraints { (make) in
-            make.top.equalTo(box.snp.top).offset(0)
-            make.left.equalTo(box.snp.left).offset(0)
-            make.right.equalTo(box.snp.right).offset(-0)
-            make.bottom.equalTo(box.snp.bottom).offset(-0)
-            make.width.equalTo(0.0)
-            make.height.equalTo(0.0)
+            make.top.equalTo(box.snp.top).offset(30.0)
+            make.left.equalTo(box.snp.left).offset(84.0)
+        }
+        textsView.snp.makeConstraints { (make) in
+            make.top.equalTo(box.snp.top).offset(30.0)
+            make.right.equalTo(box.snp.right).offset(-84.0)
         }
     }
     
@@ -150,6 +151,7 @@ class AddCorrectAlertController: UIViewController {
         } else {
             complete?(.text)
         }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func cancelButtonEvent() {

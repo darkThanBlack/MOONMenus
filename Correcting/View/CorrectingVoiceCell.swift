@@ -15,6 +15,7 @@ protocol CorrectingVoiceCellDelegate: class {
 
 ///CorrectingVoiceCell 数据源
 protocol CorrectingVoiceCellDataSource: CorrectingCellDataSource {
+    var vid: String? { get }
     
 }
 
@@ -30,6 +31,7 @@ class CorrectingVoiceCell: CorrectingCell {
     func configCell(dataSource: CorrectingVoiceCellDataSource) {
         super.configCell(dataSource: dataSource)
         
+        voiceView.text = dataSource.vid
     }
     
     //MARK: Life Cycle
@@ -39,7 +41,7 @@ class CorrectingVoiceCell: CorrectingCell {
         
         self.selectionStyle = .none
         
-        loadViewsForCorrectingVoice(box: contentView)
+        loadViewsForCorrectingVoice(box: workView)
     }
     
     required init?(coder: NSCoder) {
@@ -49,16 +51,28 @@ class CorrectingVoiceCell: CorrectingCell {
     //MARK: View
     
     private func loadViewsForCorrectingVoice(box: UIView) {
-        
+        box.addSubview(voiceView)
         
         loadConstraintsForCorrectingVoice(box: box)
     }
     
     private func loadConstraintsForCorrectingVoice(box: UIView) {
-        
+        voiceView.snp.makeConstraints { (make) in
+            make.top.equalTo(box.snp.top).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0)
+            make.height.equalTo(50.0)
+        }
     }
     
-    //MARK: Event
-    
+    private lazy var voiceView: UILabel = {
+        let voiceView = UILabel()
+        voiceView.backgroundColor = CorrectingHelper.orange()
+        voiceView.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        voiceView.textColor = CorrectingHelper.blackText()
+        voiceView.text = " "
+        return voiceView
+    }()
+
 }
 

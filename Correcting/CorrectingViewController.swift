@@ -105,25 +105,45 @@ extension CorrectingViewController: UITableViewDataSource {
             return cell ?? UITableViewCell()
         case .voice:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVoiceCell") as? CorrectingVoiceCell
+            cell?.bindCell(delegate: self)
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVoiceCellModel)
             return cell ?? UITableViewCell()
         case .image:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingImageCell") as? CorrectingImageCell
+            cell?.bindCell(delegate: self)
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingImageCellModel)
             return cell ?? UITableViewCell()
         case .video:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CorrectingVideoCell") as? CorrectingVideoCell
+            cell?.bindCell(delegate: self)
             cell?.configCell(dataSource: viewInfo.cells[indexPath.row] as! CorrectingVideoCellModel)
             return cell ?? UITableViewCell()
-        default:
-            return UITableViewCell()
         }
     }
 }
 
 extension CorrectingViewController: CorrectingCellDelegate {
     func correctAddEvent(cell: CorrectingCell) {
-        print("MOON__log need append sth...")
+        let indexPath = tableView.indexPath(for: cell)
+        let index = indexPath?.row ?? -1
+        if (index < 0) || (index >= viewInfo.cells.count) { return }
+        let corrects = viewInfo.cells[index].corrects
+        
+        let selectVC = AddCorrectAlertController()
+        selectVC.correctSelected { (style) in
+            switch style {
+            case .voice:
+                corrects.voices.append(.init(vid: "00X"))
+            case .text:
+                if corrects.review.text.count == 0 {
+                    corrects.review.text = "张三为保证公司项目进度，根据领导指示要求李四留宿公司进行开发，后李四在开发过程中因心梗死亡，请问张三可能构成什么罪？\nA.过失致人死亡罪\nB.强迫劳动罪的间接正犯\nC.诈骗罪\nD.故意损坏财物罪"
+                } else {
+                    print("MOON__log 文字点评最多添加一条")
+                }
+            }
+            self.tableView.reloadRows(at: [indexPath!], with: .fade)
+        }
+        self.present(selectVC, animated: true, completion: nil)
     }
     
     func correctEditEvent(cell: CorrectingCell, event: CorrectingCell.Events, object: CorrectingCell.EventsObject, context: [String : Any]?) {
@@ -155,5 +175,16 @@ extension CorrectingViewController: CorrectingCellDelegate {
             }
         }
         tableView.reloadRows(at: [indexPath!], with: .fade)
+    }
+}
+
+extension CorrectingViewController: CorrectingImageCellDelegate {
+    func correctImageEvent(cell: CorrectingImageCell, event: CorrectingImageCell.ImageEvents) {
+        switch event {
+        case .show:
+            print("MOON_log 展示图片浏览器...")
+        case .edit:
+            print("MOON_log 批改图片...")
+        }
     }
 }

@@ -55,7 +55,7 @@ class CorrectingCell: UITableViewCell {
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
                 make.left.equalToSuperview().offset(16.0)
                 make.right.equalToSuperview().offset(-16.0)
-                make.bottom.equalToSuperview().offset(-8.0)
+                make.bottom.equalToSuperview().offset(-8.0).priority(.low)
                 
                 make.height.equalTo(0)
             }
@@ -65,7 +65,7 @@ class CorrectingCell: UITableViewCell {
                 make.top.equalTo(inputHintsView.snp.bottom).offset(0)
                 make.left.equalToSuperview().offset(16.0)
                 make.right.equalToSuperview().offset(-16.0)
-                make.bottom.equalToSuperview().offset(-8.0)
+                make.bottom.equalToSuperview().offset(-8.0).priority(.low)
             }
         }
         editView.reloadSubViews(corrects: dataSource.corrects)
@@ -86,7 +86,7 @@ class CorrectingCell: UITableViewCell {
     }
     
     //MARK: View
-    
+        
     private func loadViewsForCorrectingInput(box: UIView) {
         box.addSubview(workView)
         box.addSubview(inputHintsView)
@@ -123,7 +123,6 @@ class CorrectingCell: UITableViewCell {
     ///豫定由本类实现，负责处理添加老师的点评
     private var editView: CorrectEditView = {
         let editView = CorrectEditView()
-        editView.backgroundColor = CorrectingHelper.red()
         return editView
     }()
 

@@ -26,11 +26,6 @@ class CorrectEditView: UIView {
         teacher.avatar = corrects.teacher.avatar
         teacher.name = corrects.teacher.name
         
-        teacher.snp.remakeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(23.0)
-            make.left.equalTo(self.snp.left).offset(16.0)
-        }
-        
         for item in views {
             item.removeFromSuperview()
         }
@@ -123,6 +118,65 @@ class CorrectEditView: UIView {
     
     //MARK: View
     
+    private var shape: CAShapeLayer = {
+        let shape = CAShapeLayer()
+        shape.lineWidth = 1.0
+        shape.strokeColor = CorrectingHelper.grayLayer().cgColor
+        shape.fillColor = CorrectingHelper.background().cgColor
+        return shape
+    }()
+    
+    override func draw(_ rect: CGRect) {
+        shape.removeFromSuperlayer()
+        
+        let path = drawBubble(box: self)
+        shape.path = path.cgPath
+        self.layer.insertSublayer(shape, at: 0)
+    }
+    
+    private func drawBubble(box: UIView) -> UIBezierPath {
+        
+        let path = UIBezierPath()
+        
+        let line: CGFloat = 1.0
+        let width = box.bounds.width
+        let height = box.bounds.height
+        let arrow_h: CGFloat = 8.0
+        let rad: CGFloat = 5.0
+        
+        //左上开始顺时针
+        let r1 = CGPoint(x: rad + line, y: rad + arrow_h + line)
+        let r1_start = CGPoint(x: r1.x - rad, y: r1.y)
+        
+        let a1 = CGPoint(x: r1.x + 8.0, y: r1.y - rad)
+        let a2 = CGPoint(x: a1.x + 4.0, y: a1.y - arrow_h)
+        let a3 = CGPoint(x: a1.x + 8.0, y: a1.y)
+        
+        let r2 = CGPoint(x: width - rad - line, y: r1.y)
+        let r2_start = CGPoint(x: r2.x, y: r2.y - rad)
+        
+        let r3 = CGPoint(x: r2.x, y: height - rad - line)
+        let r3_start = CGPoint(x: r3.x + rad, y: r3.y)
+        
+        let r4 = CGPoint(x: r1.x, y: r3.y)
+        let r4_start = CGPoint(x: r4.x, y: r4.y + rad)
+        
+        path.move(to: r1_start)
+        path.addArc(withCenter: r1, radius: rad, startAngle: .pi, endAngle: 1.5 * .pi, clockwise: true)
+        path.addLine(to: a1)
+        path.addLine(to: a2)
+        path.addLine(to: a3)
+        path.addLine(to: r2_start)
+        path.addArc(withCenter: r2, radius: rad, startAngle: 1.5 * .pi, endAngle: 2.0 * .pi, clockwise: true)
+        path.addLine(to: r3_start)
+        path.addArc(withCenter: r3, radius: rad, startAngle: 0, endAngle: 0.5 * .pi, clockwise: true)
+        path.addLine(to: r4_start)
+        path.addArc(withCenter: r4, radius: rad, startAngle: 0.5 * .pi, endAngle: .pi, clockwise: true)
+        path.close()
+        
+        return path
+    }
+    
     private func loadViewsForCorrecting(box: UIView) {
         box.addSubview(teacher)
         
@@ -130,7 +184,11 @@ class CorrectEditView: UIView {
     }
     
     private func loadConstraintsForCorrecting(box: UIView) {
-        
+        teacher.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(23.0)
+            make.left.equalTo(self.snp.left).offset(16.0)
+            make.right.lessThanOrEqualTo(self.snp.right).offset(-16.0).priority(.low)
+        }
     }
     
     private lazy var teacher: TeacherView = {
