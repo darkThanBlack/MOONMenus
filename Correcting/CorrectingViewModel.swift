@@ -92,7 +92,7 @@ class CorrectingViewModel {
         
     func loadRequestForCorrecting(complete: ((Bool) -> Void)?) {
         
-        for idx in 0...30 {
+        for idx in 0...5 {
             if (idx == 0) {
                 let student = CorrectingStudentModel()
                 student.style = .student
@@ -131,7 +131,7 @@ class CorrectingViewModel {
         }
         
         for (index, item) in cells.enumerated() {
-            if index < 6 {
+            if index < 2 {
                 item.corrects.teacher.avatar = "moonShadow"
                 item.corrects.teacher.name = "月之暗面-老师"
                 
