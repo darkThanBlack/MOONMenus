@@ -122,7 +122,7 @@ extension CorrectingViewController: UITableViewDataSource {
 }
 
 extension CorrectingViewController: CorrectingCellDelegate {
-    func correctingInputEvent(cell: CorrectingCell) {
+    func correctAddEvent(cell: CorrectingCell) {
         print("MOON__log need append sth...")
     }
     
@@ -130,7 +130,7 @@ extension CorrectingViewController: CorrectingCellDelegate {
         let indexPath = tableView.indexPath(for: cell)
         let index = indexPath?.row ?? -1
         if (index < 0) || (index >= viewInfo.cells.count) { return }
-        var corrects = viewInfo.cells[index].corrects
+        let corrects = viewInfo.cells[index].corrects
         
         switch object {
         case .voice:
@@ -149,6 +149,8 @@ extension CorrectingViewController: CorrectingCellDelegate {
                 corrects.review.text = ""
                 break
             case .update:
+                let text = context?["text"] as? String
+                corrects.review.text = text ?? ""
                 break
             }
         }

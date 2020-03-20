@@ -74,7 +74,7 @@ class CorrectingCellModel: CorrectingCellDataSource {
         
         ///文字点评
         struct Review {
-            ///是否需要展示输入框
+            ///用户是否主动添加了输入框
             var isEditing: Bool = false
             var text: String = ""
         }

@@ -46,6 +46,8 @@
 		A2BB624A2422616C0020A85B /* CorrectingVoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB62492422616C0020A85B /* CorrectingVoiceCell.swift */; };
 		A2BB624C242261950020A85B /* CorrectingImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624B242261950020A85B /* CorrectingImageCell.swift */; };
 		A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624D242261A70020A85B /* CorrectingVideoCell.swift */; };
+		A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624F2424682C0020A85B /* CorrectEditView.swift */; };
+		A2BB625224246A000020A85B /* AddCorrectAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB625124246A000020A85B /* AddCorrectAlertController.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +116,8 @@
 		A2BB62492422616C0020A85B /* CorrectingVoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingVoiceCell.swift; sourceTree = "<group>"; };
 		A2BB624B242261950020A85B /* CorrectingImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingImageCell.swift; sourceTree = "<group>"; };
 		A2BB624D242261A70020A85B /* CorrectingVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingVideoCell.swift; sourceTree = "<group>"; };
+		A2BB624F2424682C0020A85B /* CorrectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectEditView.swift; sourceTree = "<group>"; };
+		A2BB625124246A000020A85B /* AddCorrectAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCorrectAlertController.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,6 +294,7 @@
 			children = (
 				A2BB62402421C0E90020A85B /* View */,
 				A2BB623C2421BD410020A85B /* CorrectingViewController.swift */,
+				A2BB625124246A000020A85B /* AddCorrectAlertController.swift */,
 				A2BB623E2421C0350020A85B /* CorrectingHelper.swift */,
 				A2BB62432421CB6D0020A85B /* CorrectingViewModel.swift */,
 			);
@@ -305,6 +310,7 @@
 				A2BB624B242261950020A85B /* CorrectingImageCell.swift */,
 				A2BB624D242261A70020A85B /* CorrectingVideoCell.swift */,
 				A2BB62452421F1650020A85B /* CorrectingCell.swift */,
+				A2BB624F2424682C0020A85B /* CorrectEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -485,6 +491,7 @@
 			files = (
 				88FB1B082403E1D4006A48AA /* ItemConfigs.swift in Sources */,
 				881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */,
+				A2BB625224246A000020A85B /* AddCorrectAlertController.swift in Sources */,
 				A2BB623D2421BD410020A85B /* CorrectingViewController.swift in Sources */,
 				885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */,
 				A2BB62422421C15D0020A85B /* CorrectingStudentCell.swift in Sources */,
@@ -498,6 +505,7 @@
 				A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */,
 				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
+				A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */,
 				A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */,
 				A2BB624C242261950020A85B /* CorrectingImageCell.swift in Sources */,
 				A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */,
