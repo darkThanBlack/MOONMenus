@@ -9,8 +9,8 @@
 import UIKit
 
 ///CorrectingVideoCell 用户事件
-protocol CorrectingVideoCellDelegate: class {
-    func CorrectingVideoCellEvent()
+protocol CorrectingVideoCellDelegate: CorrectingCellDelegate {
+    func correctVideoEvent()
 }
 
 ///CorrectingVideoCell 数据源
@@ -24,6 +24,8 @@ class CorrectingVideoCell: CorrectingCell {
     
     private weak var delegate: CorrectingVideoCellDelegate?
     func bindCell(delegate: CorrectingVideoCellDelegate) {
+        super.bindCell(delegate: delegate)
+        
         self.delegate = delegate
     }
     
@@ -55,16 +57,37 @@ class CorrectingVideoCell: CorrectingCell {
     }
     
     private func loadConstraintsForCorrectingVideo(box: UIView) {
-        
+        videoView.snp.makeConstraints { (make) in
+            make.top.equalTo(box.snp.top).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0)
+            make.height.equalTo(193.0)
+        }
     }
     
-    private lazy var videoView: UIView = {
-        let videoView = UIView()
+    private lazy var videoView: UILabel = {
+        let videoView = UILabel()
         videoView.backgroundColor = CorrectingHelper.orange()
+        videoView.layer.cornerRadius = 5.0
+        videoView.layer.masksToBounds = true
+        videoView.textAlignment = .center
+        videoView.text = "Student Videos..."
+        
+        videoView.isUserInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(videoViewEvent(gesture:)))
+        singleTap.numberOfTapsRequired = 1
+        singleTap.numberOfTouchesRequired = 1
+        videoView.addGestureRecognizer(singleTap)
+        
         return videoView
     }()
     
     //MARK: Event
-    
+
+    @objc private func videoViewEvent(gesture: UITapGestureRecognizer) {
+        self.delegate?.correctVideoEvent()
+    }
+
 }
 

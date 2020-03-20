@@ -160,6 +160,8 @@ extension CorrectingViewController: CorrectingCellDelegate {
                 let idx = context?["index"] as? Int ?? -1
                 if (idx < 0) || (idx >= corrects.voices.count) { return }
                 corrects.voices.remove(at: idx)
+                
+                tableView.reloadRows(at: [indexPath!], with: .fade)
             case .update:
                 break
             }
@@ -168,14 +170,19 @@ extension CorrectingViewController: CorrectingCellDelegate {
             case .delete:
                 corrects.review.isEditing = false
                 corrects.review.text = ""
-                break
+                
+                tableView.reloadRows(at: [indexPath!], with: .fade)
             case .update:
                 let text = context?["text"] as? String
                 corrects.review.text = text ?? ""
-                break
             }
         }
-        tableView.reloadRows(at: [indexPath!], with: .fade)
+    }
+}
+
+extension CorrectingViewController: CorrectingVoiceCellDelegate {
+    func correctVoiceEvent() {
+        print("MOON_log 播放声音...")
     }
 }
 
@@ -187,5 +194,11 @@ extension CorrectingViewController: CorrectingImageCellDelegate {
         case .edit:
             print("MOON_log 批改图片...")
         }
+    }
+}
+
+extension CorrectingViewController: CorrectingVideoCellDelegate {
+    func correctVideoEvent() {
+        print("MOON_log 播放视频...")
     }
 }

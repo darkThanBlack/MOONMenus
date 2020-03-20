@@ -9,8 +9,8 @@
 import UIKit
 
 ///CorrectingVoiceCell 用户事件
-protocol CorrectingVoiceCellDelegate: class {
-    func CorrectingVoiceCellEvent()
+protocol CorrectingVoiceCellDelegate: CorrectingCellDelegate {
+    func correctVoiceEvent()
 }
 
 ///CorrectingVoiceCell 数据源
@@ -25,6 +25,8 @@ class CorrectingVoiceCell: CorrectingCell {
     
     private weak var delegate: CorrectingVoiceCellDelegate?
     func bindCell(delegate: CorrectingVoiceCellDelegate) {
+        super.bindCell(delegate: delegate)
+        
         self.delegate = delegate
     }
     
@@ -71,8 +73,21 @@ class CorrectingVoiceCell: CorrectingCell {
         voiceView.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         voiceView.textColor = CorrectingHelper.blackText()
         voiceView.text = " "
+        
+        voiceView.isUserInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(voiceViewEvent(gesture:)))
+        singleTap.numberOfTapsRequired = 1
+        singleTap.numberOfTouchesRequired = 1
+        voiceView.addGestureRecognizer(singleTap)
+                
         return voiceView
     }()
-
+    
+    //MARK: Event
+    
+    @objc private func voiceViewEvent(gesture: UITapGestureRecognizer) {
+        self.delegate?.correctVoiceEvent()
+    }
+    
 }
 

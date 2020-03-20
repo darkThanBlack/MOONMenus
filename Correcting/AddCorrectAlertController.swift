@@ -215,7 +215,7 @@ class AddCorrectAlertController: UIViewController {
             titleLabel.snp.makeConstraints { (make) in
                 make.centerX.equalTo(box.snp.centerX)
                 make.top.equalTo(hintImageView.snp.bottom).offset(6)
-                make.bottom.equalTo(box.snp.bottom).offset(-0)
+                make.bottom.equalTo(box.snp.bottom).offset(0)
             }
         }
         
