@@ -86,7 +86,7 @@ class CorrectingCell: UITableViewCell {
     }
     
     //MARK: View
-        
+    
     private func loadViewsForCorrectingInput(box: UIView) {
         box.addSubview(workView)
         box.addSubview(inputHintsView)
@@ -103,8 +103,7 @@ class CorrectingCell: UITableViewCell {
         }
         inputHintsView.snp.makeConstraints { (make) in
             make.top.equalTo(workView.snp.bottom).offset(4.0)
-            make.left.equalTo(box.snp.left).offset(0)
-            make.right.equalTo(box.snp.right).offset(-0)
+            make.right.equalTo(box.snp.right).offset(-16.0)
         }
     }
     

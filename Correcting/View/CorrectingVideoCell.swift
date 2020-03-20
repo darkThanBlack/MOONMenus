@@ -49,7 +49,7 @@ class CorrectingVideoCell: CorrectingCell {
     //MARK: View
     
     private func loadViewsForCorrectingVideo(box: UIView) {
-        
+        box.addSubview(videoView)
         
         loadConstraintsForCorrectingVideo(box: box)
     }
@@ -57,6 +57,12 @@ class CorrectingVideoCell: CorrectingCell {
     private func loadConstraintsForCorrectingVideo(box: UIView) {
         
     }
+    
+    private lazy var videoView: UIView = {
+        let videoView = UIView()
+        videoView.backgroundColor = CorrectingHelper.orange()
+        return videoView
+    }()
     
     //MARK: Event
     

@@ -135,6 +135,7 @@ extension CorrectingViewController: CorrectingCellDelegate {
             case .voice:
                 corrects.voices.append(.init(vid: "00X"))
             case .text:
+                corrects.review.isEditing = true
                 if corrects.review.text.count == 0 {
                     corrects.review.text = "张三为保证公司项目进度，根据领导指示要求李四留宿公司进行开发，后李四在开发过程中因心梗死亡，请问张三可能构成什么罪？\nA.过失致人死亡罪\nB.强迫劳动罪的间接正犯\nC.诈骗罪\nD.故意损坏财物罪"
                 } else {

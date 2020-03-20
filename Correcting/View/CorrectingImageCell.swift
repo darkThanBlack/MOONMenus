@@ -72,7 +72,7 @@ class CorrectingImageCell: CorrectingCell {
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0).priority(.low)
             make.bottom.equalTo(box.snp.bottom).offset(-0)
-            make.height.equalTo(100.0)
+            make.height.equalTo(135.0)
         }
         edit.snp.makeConstraints { (make) in
             make.left.equalTo(box.snp.left).offset(8.0)

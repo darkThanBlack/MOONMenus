@@ -18,9 +18,7 @@ class CorrectEditView: UIView {
     }
     
     private var views: [DeleteView] = []
-    
-    var corrects = CorrectingCellModel.Corrects()
-    
+        
     ///父类负责子类宽度；子类负责自身高度
     func reloadSubViews(corrects: CorrectingCellModel.Corrects) {
         teacher.avatar = corrects.teacher.avatar
@@ -101,6 +99,7 @@ class CorrectEditView: UIView {
         }
         
         //?
+        self.setNeedsDisplay()
         
     }
     
@@ -133,9 +132,27 @@ class CorrectEditView: UIView {
         shape.path = path.cgPath
         self.layer.insertSublayer(shape, at: 0)
     }
+        
+    private func loadViewsForCorrecting(box: UIView) {
+        box.addSubview(teacher)
+        
+        loadConstraintsForCorrecting(box: box)
+    }
+    
+    private func loadConstraintsForCorrecting(box: UIView) {
+        teacher.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(23.0)
+            make.left.equalTo(self.snp.left).offset(16.0)
+            make.right.lessThanOrEqualTo(self.snp.right).offset(-16.0).priority(.low)
+        }
+    }
+    
+    private lazy var teacher: TeacherView = {
+        let teacher = TeacherView()
+        return teacher
+    }()
     
     private func drawBubble(box: UIView) -> UIBezierPath {
-        
         let path = UIBezierPath()
         
         let line: CGFloat = 1.0
@@ -148,9 +165,9 @@ class CorrectEditView: UIView {
         let r1 = CGPoint(x: rad + line, y: rad + arrow_h + line)
         let r1_start = CGPoint(x: r1.x - rad, y: r1.y)
         
-        let a1 = CGPoint(x: r1.x + 8.0, y: r1.y - rad)
-        let a2 = CGPoint(x: a1.x + 4.0, y: a1.y - arrow_h)
-        let a3 = CGPoint(x: a1.x + 8.0, y: a1.y)
+        let a1 = CGPoint(x: r1.x + 16.0, y: r1.y - rad)
+        let a2 = CGPoint(x: a1.x + 8.0, y: a1.y - arrow_h)
+        let a3 = CGPoint(x: a1.x + 16.0, y: a1.y)
         
         let r2 = CGPoint(x: width - rad - line, y: r1.y)
         let r2_start = CGPoint(x: r2.x, y: r2.y - rad)
@@ -176,27 +193,6 @@ class CorrectEditView: UIView {
         
         return path
     }
-    
-    private func loadViewsForCorrecting(box: UIView) {
-        box.addSubview(teacher)
-        
-        loadConstraintsForCorrecting(box: box)
-    }
-    
-    private func loadConstraintsForCorrecting(box: UIView) {
-        teacher.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(23.0)
-            make.left.equalTo(self.snp.left).offset(16.0)
-            make.right.lessThanOrEqualTo(self.snp.right).offset(-16.0).priority(.low)
-        }
-    }
-    
-    private lazy var teacher: TeacherView = {
-        let teacher = TeacherView()
-        return teacher
-    }()
-    
-    //MARK: Event
     
     //MARK: - SubClass
     
@@ -248,7 +244,7 @@ class CorrectEditView: UIView {
             deleteImageView.snp.makeConstraints { (make) in
                 make.centerY.equalTo(contentView.snp.centerY)
                 make.left.equalTo(contentView.snp.right).offset(10.0)
-                make.right.equalTo(box.snp.right).offset(-16.0)
+                make.right.equalTo(box.snp.right).offset(0)
                 make.width.equalTo(16.0)
                 make.height.equalTo(16.0)
             }
