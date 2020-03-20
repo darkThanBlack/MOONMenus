@@ -17,10 +17,11 @@ class CorrectEditView: UIView {
         self.events = events
     }
     
-    private var views: [DeleteView] = []
-        
+    fileprivate var views: [DeleteView] = []
+    
     ///父类负责子类宽度；子类负责自身高度
     func reloadSubViews(corrects: CorrectingCellModel.Corrects) {
+        //教师信息
         teacher.avatar = corrects.teacher.avatar
         teacher.name = corrects.teacher.name
         
@@ -29,8 +30,9 @@ class CorrectEditView: UIView {
         }
         views.removeAll()
         
+        //音频
         for (index, voice) in corrects.voices.enumerated() {
-            let item = VoiceView()
+            let item = VoiceView(canEdit: corrects.canEdit)
             item.vid = voice.vid
             views.append(item)
             
@@ -41,10 +43,11 @@ class CorrectEditView: UIView {
             }
         }
         
+        //文字
         //用户添加 | 有文本内容时 展示 textView
         let needShow = corrects.review.isEditing ? true : (corrects.review.text.count > 0 ? true : false)
         if needShow {
-            let review = ReviewsView()
+            let review = ReviewEditView(canEdit: corrects.canEdit)
             review.text = corrects.review.text
             views.append(review)
             
@@ -57,7 +60,7 @@ class CorrectEditView: UIView {
                 self.events?(.update, .text, ["text": text ?? ""])
             }
         }
-                    
+        
         if views.count == 0 {
             assert(true, "MOON__Assert  不可能，要展示点评页面必然有点名数据")
         }
@@ -71,7 +74,7 @@ class CorrectEditView: UIView {
                 make.bottom.equalTo(self.snp.bottom).offset(-16.0)
             })
         } else {
-            var tmpView = DeleteView()
+            var tmpView = UIView()
             for (index, item) in views.enumerated() {
                 if (index == 0) {
                     item.snp.remakeConstraints { (make) in
@@ -132,7 +135,7 @@ class CorrectEditView: UIView {
         shape.path = path.cgPath
         self.layer.insertSublayer(shape, at: 0)
     }
-        
+    
     private func loadViewsForCorrecting(box: UIView) {
         box.addSubview(teacher)
         
@@ -211,10 +214,11 @@ class CorrectEditView: UIView {
         
         //MARK: Life Cycle
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
+        ///业务上编辑状态不可改变
+        required init(canEdit: Bool) {
+            super.init(frame: .zero)
             
-            loadViewsForDelete(box: self)
+            loadViewsForDelete(box: self, canEdit: canEdit)
         }
         
         required init?(coder: NSCoder) {
@@ -223,36 +227,43 @@ class CorrectEditView: UIView {
         
         //MARK: View
         
-        private func loadViewsForDelete(box: UIView) {
+        private func loadViewsForDelete(box: UIView, canEdit: Bool) {
             box.addSubview(contentView)
-            box.addSubview(deleteEvent)
-            box.addSubview(deleteImageView)
+            if canEdit {
+                box.addSubview(deleteEvent)
+                box.addSubview(deleteImageView)
+            }
             
-            loadConstraintsForDelete(box: box)
+            loadConstraintsForDelete(box: box, canEdit: canEdit)
         }
         
-        private func loadConstraintsForDelete(box: UIView) {
-            
-            contentView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-            contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-            
-            contentView.snp.makeConstraints { (make) in
-                make.top.equalTo(box.snp.top).offset(0)
-                make.left.equalTo(box.snp.left).offset(0)
-                make.bottom.equalTo(box.snp.bottom).offset(-0)
-            }
-            deleteImageView.snp.makeConstraints { (make) in
-                make.centerY.equalTo(contentView.snp.centerY)
-                make.left.equalTo(contentView.snp.right).offset(10.0)
-                make.right.equalTo(box.snp.right).offset(0)
-                make.width.equalTo(16.0)
-                make.height.equalTo(16.0)
-            }
-            deleteEvent.snp.makeConstraints { (make) in
-                make.centerX.equalTo(deleteImageView.snp.centerX)
-                make.centerY.equalTo(deleteImageView.snp.centerY)
-                make.width.equalTo(32.0)
-                make.height.equalTo(32.0)
+        private func loadConstraintsForDelete(box: UIView, canEdit: Bool) {
+            if canEdit {
+                contentView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+                contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+                
+                contentView.snp.makeConstraints { (make) in
+                    make.top.equalTo(box.snp.top).offset(0)
+                    make.left.equalTo(box.snp.left).offset(0)
+                    make.bottom.equalTo(box.snp.bottom).offset(-0)
+                }
+                deleteImageView.snp.makeConstraints { (make) in
+                    make.centerY.equalTo(contentView.snp.centerY)
+                    make.left.equalTo(contentView.snp.right).offset(10.0)
+                    make.right.equalTo(box.snp.right).offset(0)
+                    make.width.equalTo(16.0)
+                    make.height.equalTo(16.0)
+                }
+                deleteEvent.snp.makeConstraints { (make) in
+                    make.centerX.equalTo(deleteImageView.snp.centerX)
+                    make.centerY.equalTo(deleteImageView.snp.centerY)
+                    make.width.equalTo(32.0)
+                    make.height.equalTo(32.0)
+                }
+            } else {
+                contentView.snp.makeConstraints { (make) in
+                    make.top.left.right.bottom.equalTo(box)
+                }
             }
         }
         
@@ -282,7 +293,7 @@ class CorrectEditView: UIView {
         
     }
     
-    ///老师信息，必然展示，无需删除
+    ///老师信息，必然展示，无需继承
     class TeacherView: UIView {
         
         //MARK: Interface
@@ -364,8 +375,8 @@ class CorrectEditView: UIView {
         
         //MARK: Life Cycle
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
+        required init(canEdit: Bool) {
+            super.init(canEdit: canEdit)
             
             loadViewsForVoice(box: contentView)
         }
@@ -406,7 +417,7 @@ class CorrectEditView: UIView {
     }
     
     ///文字点评
-    class ReviewsView: DeleteView, UITextViewDelegate {
+    class ReviewEditView: DeleteView, UITextViewDelegate {
         
         //MARK: Interface
         
@@ -418,15 +429,16 @@ class CorrectEditView: UIView {
         var text: String? {
             didSet {
                 textView.text = text
+                reviewLabel.text = text
             }
         }
         
         //MARK: Life Cycle
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
+        required init(canEdit: Bool) {
+            super.init(canEdit: canEdit)
             
-            loadViewsForMarks(box: contentView)
+            loadViewsForMarks(box: contentView, canEdit: canEdit)
         }
         
         required init?(coder: NSCoder) {
@@ -435,34 +447,51 @@ class CorrectEditView: UIView {
         
         //MARK: View
         
-        private func loadViewsForMarks(box: UIView) {
-            box.addSubview(textView)
-            
-            loadConstraintsForMarks(box: box)
+        private func loadViewsForMarks(box: UIView, canEdit: Bool) {
+            if canEdit {
+                box.addSubview(textView)
+            } else {
+                box.addSubview(reviewLabel)
+            }
+            loadConstraintsForMarks(box: box, canEdit: canEdit)
         }
         
-        private func loadConstraintsForMarks(box: UIView) {
-            textView.snp.makeConstraints { (make) in
-                make.top.equalTo(box.snp.top).offset(0)
-                make.left.equalTo(box.snp.left).offset(0)
-                make.right.equalTo(box.snp.right).offset(-0)
-                make.bottom.equalTo(box.snp.bottom).offset(-0)
-                make.height.equalTo(120.0)
+        private func loadConstraintsForMarks(box: UIView, canEdit: Bool) {
+            if canEdit {
+                textView.snp.makeConstraints { (make) in
+                    make.top.left.right.bottom.equalTo(box)
+                    make.height.equalTo(120.0)
+                }
+            } else {
+                reviewLabel.snp.makeConstraints { (make) in
+                    make.top.left.right.bottom.equalTo(box)
+                }
             }
         }
         
         private lazy var textView: UITextView = {
             let textView = UITextView()
-            textView.text = "500字以内"
+            textView.delegate = self
+            textView.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+            textView.textColor = CorrectingHelper.blackText()
             
             textView.layer.masksToBounds = true
             textView.layer.cornerRadius = 5.0
             textView.layer.borderColor = CorrectingHelper.singleLine().cgColor
             textView.layer.borderWidth = 1.0
             
-            textView.delegate = self
+            textView.text = "500字以内"
             
             return textView
+        }()
+        
+        private lazy var reviewLabel: UILabel = {
+            let reviewLabel = UILabel()
+            reviewLabel.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+            reviewLabel.textColor = CorrectingHelper.blackText()
+            reviewLabel.text = " "
+            reviewLabel.numberOfLines = 0
+            return reviewLabel
         }()
         
         //MARK: Event
@@ -472,5 +501,5 @@ class CorrectEditView: UIView {
         }
     }
     
-
 }
+

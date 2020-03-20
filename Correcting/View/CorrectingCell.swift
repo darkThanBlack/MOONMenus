@@ -49,6 +49,18 @@ class CorrectingCell: UITableViewCell {
     }
     
     func configCell(dataSource: CorrectingCellDataSource) {
+        if dataSource.corrects.canEdit {
+            inputHintsView.isHidden = false
+            inputHintsView.snp.updateConstraints { (make) in
+                make.height.equalTo(20.0)
+            }
+        } else {
+            inputHintsView.isHidden = true
+            inputHintsView.snp.updateConstraints { (make) in
+                make.height.equalTo(0)
+            }
+        }
+        
         if dataSource.corrects.isEmpty {
             editView.isHidden = true
             editView.snp.remakeConstraints { (make) in
@@ -103,7 +115,8 @@ class CorrectingCell: UITableViewCell {
         }
         inputHintsView.snp.makeConstraints { (make) in
             make.top.equalTo(workView.snp.bottom).offset(4.0)
-            make.right.equalTo(box.snp.right).offset(-16.0)
+            make.right.equalToSuperview().offset(-16.0)
+            make.height.equalTo(0)
         }
     }
     
@@ -135,7 +148,7 @@ class CorrectingCell: UITableViewCell {
     
     ///"添加点评"按钮
     class InputHintView: UIView {
-                
+        
         //MARK: Life Cycle
         
         override init(frame: CGRect) {
@@ -162,8 +175,7 @@ class CorrectingCell: UITableViewCell {
                 make.top.equalTo(box.snp.top).offset(0)
                 make.left.equalTo(box.snp.left).offset(0)
                 make.bottom.equalTo(box.snp.bottom).offset(0)
-                make.width.equalTo(20.0)
-                make.height.equalTo(20.0)
+                make.width.equalTo(hints.snp.height)
             }
             hintLabel.snp.makeConstraints { (make) in
                 make.centerY.equalTo(box.snp.centerY)

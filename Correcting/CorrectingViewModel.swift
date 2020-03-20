@@ -49,6 +49,8 @@ class CorrectingCellModel: CorrectingCellDataSource {
     ///老师点评内容
     class Corrects {
         
+        var canEdit: Bool = false
+        
         var isEmpty: Bool {
             get {
                 if (voices.count > 0) || review.isEditing {
@@ -122,6 +124,10 @@ class CorrectingViewModel {
                 
                 cells.append(video)
             }
+        }
+        
+        for item in cells {
+            item.corrects.canEdit = false
         }
         
         for (index, item) in cells.enumerated() {
