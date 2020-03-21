@@ -23,15 +23,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let leesonVC = CorrectingViewController()
-            nav.pushViewController(leesonVC, animated: true)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            let leesonVC = CorrectingViewController()
+//            nav.pushViewController(leesonVC, animated: true)
+//        }
         
         return true
     }
 
 
+}
+
+class DemoTempViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let enterView = CorrectingEnterView()
+        enterView.style = .edited
+        view.addSubview(enterView)
+        enterView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
 }
 
 //MARK: - header
