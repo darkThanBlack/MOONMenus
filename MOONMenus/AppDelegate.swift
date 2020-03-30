@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            let historyVC = CorrectHistoryAlertController()
+            nav.present(historyVC, animated: true, completion: nil)
 //            let leesonVC = CorrectingViewController()
 //            nav.pushViewController(leesonVC, animated: true)
-//        }
+        }
         
         return true
     }

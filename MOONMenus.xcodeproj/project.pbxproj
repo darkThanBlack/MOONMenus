@@ -49,6 +49,7 @@
 		A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624D242261A70020A85B /* CorrectingVideoCell.swift */; };
 		A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624F2424682C0020A85B /* CorrectEditView.swift */; };
 		A2BB625224246A000020A85B /* AddCorrectAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB625124246A000020A85B /* AddCorrectAlertController.swift */; };
+		A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		A2BB624D242261A70020A85B /* CorrectingVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingVideoCell.swift; sourceTree = "<group>"; };
 		A2BB624F2424682C0020A85B /* CorrectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectEditView.swift; sourceTree = "<group>"; };
 		A2BB625124246A000020A85B /* AddCorrectAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCorrectAlertController.swift; sourceTree = "<group>"; };
+		A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectHistoryAlertController.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,6 +299,7 @@
 				A2BB62402421C0E90020A85B /* View */,
 				A2BB623C2421BD410020A85B /* CorrectingViewController.swift */,
 				A2BB625124246A000020A85B /* AddCorrectAlertController.swift */,
+				A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */,
 				A2BB623E2421C0350020A85B /* CorrectingHelper.swift */,
 				A2BB62432421CB6D0020A85B /* CorrectingViewModel.swift */,
 			);
@@ -525,6 +528,7 @@
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */,
 				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,
+				A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */,
 				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
