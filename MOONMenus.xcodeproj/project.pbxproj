@@ -37,6 +37,13 @@
 		A26D2BB7241FC0A5005666AF /* LessonSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */; };
 		A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */; };
 		A26D2BBC24206373005666AF /* SubLessonSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D2BBB24206373005666AF /* SubLessonSelectViewController.swift */; };
+		A293D0F42435831B0032806D /* SignUpIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0F32435831B0032806D /* SignUpIncomeViewController.swift */; };
+		A293D0F7243583E40032806D /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0F6243583E40032806D /* DemoViewController.swift */; };
+		A293D0FA2435E0180032806D /* ExamPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0F92435E0180032806D /* ExamPageViewController.swift */; };
+		A293D0FC2435E22E0032806D /* ExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0FB2435E22E0032806D /* ExamViewController.swift */; };
+		A293D0FE2435E52F0032806D /* ExamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0FD2435E52F0032806D /* ExamViewModel.swift */; };
+		A293D1012436DCF90032806D /* ExamQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D1002436DCF90032806D /* ExamQuestionCell.swift */; };
+		A293D1032436E98D0032806D /* ExamAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D1022436E98D0032806D /* ExamAnswerCell.swift */; };
 		A2BB623A242073810020A85B /* SubLessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB6239242073810020A85B /* SubLessonSelectCell.swift */; };
 		A2BB623D2421BD410020A85B /* CorrectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB623C2421BD410020A85B /* CorrectingViewController.swift */; };
 		A2BB623F2421C0350020A85B /* CorrectingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB623E2421C0350020A85B /* CorrectingHelper.swift */; };
@@ -109,6 +116,13 @@
 		A26D2BB6241FC0A5005666AF /* LessonSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectViewModel.swift; sourceTree = "<group>"; };
 		A26D2BB8241FC12A005666AF /* LessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSelectCell.swift; sourceTree = "<group>"; };
 		A26D2BBB24206373005666AF /* SubLessonSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonSelectViewController.swift; sourceTree = "<group>"; };
+		A293D0F32435831B0032806D /* SignUpIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIncomeViewController.swift; sourceTree = "<group>"; };
+		A293D0F6243583E40032806D /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		A293D0F92435E0180032806D /* ExamPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPageViewController.swift; sourceTree = "<group>"; };
+		A293D0FB2435E22E0032806D /* ExamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamViewController.swift; sourceTree = "<group>"; };
+		A293D0FD2435E52F0032806D /* ExamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamViewModel.swift; sourceTree = "<group>"; };
+		A293D1002436DCF90032806D /* ExamQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionCell.swift; sourceTree = "<group>"; };
+		A293D1022436E98D0032806D /* ExamAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamAnswerCell.swift; sourceTree = "<group>"; };
 		A2BB6239242073810020A85B /* SubLessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonSelectCell.swift; sourceTree = "<group>"; };
 		A2BB623C2421BD410020A85B /* CorrectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingViewController.swift; sourceTree = "<group>"; };
 		A2BB623E2421C0350020A85B /* CorrectingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingHelper.swift; sourceTree = "<group>"; };
@@ -181,6 +195,8 @@
 		88AE58E023F7D8C000127C8E = {
 			isa = PBXGroup;
 			children = (
+				A293D0F82435D0C20032806D /* Exam */,
+				A293D0F5243583B90032806D /* SignUpIncome */,
 				A2BB623B2421BBE20020A85B /* Correcting */,
 				A26D2BB1241FB8BF005666AF /* LessonSelect */,
 				A26D2B9F241B2143005666AF /* Lesson */,
@@ -208,6 +224,7 @@
 			children = (
 				88AE591C23F7D9C900127C8E /* Resources */,
 				88AE58EC23F7D8C000127C8E /* AppDelegate.swift */,
+				A293D0F6243583E40032806D /* DemoViewController.swift */,
 				88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */,
 				88AE591D23F7DDCE00127C8E /* MenuCore.swift */,
 				885F641F23F939C60089FDD3 /* MenuRootController.swift */,
@@ -291,6 +308,34 @@
 				A2BB6239242073810020A85B /* SubLessonSelectCell.swift */,
 			);
 			path = SubLessonSelect;
+			sourceTree = "<group>";
+		};
+		A293D0F5243583B90032806D /* SignUpIncome */ = {
+			isa = PBXGroup;
+			children = (
+				A293D0F32435831B0032806D /* SignUpIncomeViewController.swift */,
+			);
+			path = SignUpIncome;
+			sourceTree = "<group>";
+		};
+		A293D0F82435D0C20032806D /* Exam */ = {
+			isa = PBXGroup;
+			children = (
+				A293D0FF2436DB4E0032806D /* View */,
+				A293D0F92435E0180032806D /* ExamPageViewController.swift */,
+				A293D0FB2435E22E0032806D /* ExamViewController.swift */,
+				A293D0FD2435E52F0032806D /* ExamViewModel.swift */,
+			);
+			path = Exam;
+			sourceTree = "<group>";
+		};
+		A293D0FF2436DB4E0032806D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A293D1002436DCF90032806D /* ExamQuestionCell.swift */,
+				A293D1022436E98D0032806D /* ExamAnswerCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A2BB623B2421BBE20020A85B /* Correcting */ = {
@@ -517,23 +562,30 @@
 				A2BB624C242261950020A85B /* CorrectingImageCell.swift in Sources */,
 				A26D2BA3241B298B005666AF /* LessonViewController.swift in Sources */,
 				A2BB623A242073810020A85B /* SubLessonSelectCell.swift in Sources */,
+				A293D0FA2435E0180032806D /* ExamPageViewController.swift in Sources */,
 				A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */,
 				A26D2BB0241F7971005666AF /* LessonDetailCell.swift in Sources */,
+				A293D0FE2435E52F0032806D /* ExamViewModel.swift in Sources */,
 				A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				A2BB624A2422616C0020A85B /* CorrectingVoiceCell.swift in Sources */,
+				A293D0FC2435E22E0032806D /* ExamViewController.swift in Sources */,
 				A26D2BBC24206373005666AF /* SubLessonSelectViewController.swift in Sources */,
 				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */,
 				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,
+				A293D1032436E98D0032806D /* ExamAnswerCell.swift in Sources */,
 				A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */,
 				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
+				A293D1012436DCF90032806D /* ExamQuestionCell.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
 				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
+				A293D0F7243583E40032806D /* DemoViewController.swift in Sources */,
+				A293D0F42435831B0032806D /* SignUpIncomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

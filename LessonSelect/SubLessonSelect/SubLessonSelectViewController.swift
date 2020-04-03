@@ -93,6 +93,6 @@ extension SubLessonSelectViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonSelectCell") as? SubLessonSelectCell
         
-        return UITableViewCell()
+        return cell ?? UITableViewCell()
     }
 }
