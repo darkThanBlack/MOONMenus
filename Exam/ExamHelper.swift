@@ -17,6 +17,9 @@ class ExamHelper {
                        alpha: alpha)
     }
     
+    static func background() -> UIColor {
+        return ExamHelper.xm_color(hex: 0xFAFAFA)
+    }
     static func blackText() -> UIColor {
         return ExamHelper.xm_color(hex: 0x333333)
     }
@@ -25,6 +28,9 @@ class ExamHelper {
     }
     static func lightGrayText() -> UIColor {
         return ExamHelper.xm_color(hex: 0x999999)
+    }
+    static func heavyOrange() -> UIColor {
+        return ExamHelper.xm_color(hex: 0xFF8534)
     }
     static func orange() -> UIColor {
         return ExamHelper.xm_color(hex: 0xFFAB1A)
