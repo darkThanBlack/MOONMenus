@@ -8,27 +8,21 @@
 
 import UIKit
 
-///ExamEnglishCell 用户事件
-protocol ExamEnglishCellDelegate: class {
-    func ExamEnglishCellEvent()
-}
-
 ///ExamEnglishCell 数据源
 protocol ExamEnglishCellDataSource {
-    
+    var text: String? { get }
+    var rank: String? { get }
+    var star: Int64 { get }
 }
 
 class ExamEnglishCell: UITableViewCell {
     
     //MARK: Interface
-    
-    private weak var delegate: ExamEnglishCellDelegate?
-    func bindCell(delegate: ExamEnglishCellDelegate) {
-        self.delegate = delegate
-    }
-    
-    func configCell(dataSource: ExamEnglishCellDataSource) {
         
+    func configCell(dataSource: ExamEnglishCellDataSource) {
+        englishLabel.text = dataSource.text
+        rankLabel.text = dataSource.rank
+        star.configStar(count: dataSource.star)
     }
     
     //MARK: Life Cycle

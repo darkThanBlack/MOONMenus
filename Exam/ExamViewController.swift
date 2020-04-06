@@ -64,6 +64,10 @@ class ExamViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         
+        tableView.register(ExamHeader.Option.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Option")
+        tableView.register(ExamHeader.Answer.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Answer")
+        tableView.register(ExamHeader.English.self, forHeaderFooterViewReuseIdentifier: "xamHeader.English")
+        
         tableView.register(ExamCell.Text.self, forCellReuseIdentifier: "ExamCell.Text")
         tableView.register(ExamCell.Voice.self, forCellReuseIdentifier: "ExamCell.Voice")
         tableView.register(ExamCell.Image.self, forCellReuseIdentifier: "ExamCell.Image")
@@ -88,8 +92,23 @@ extension ExamViewController: UITableViewDelegate {
 }
 
 extension ExamViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var number: Int = 0
+        number = number + (viewInfo.questions.count > 0 ? 1 : 0)
+        
+        
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewInfo.questions.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Option")
+        
+        return header
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

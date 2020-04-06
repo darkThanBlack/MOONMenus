@@ -39,20 +39,15 @@ class ExamAnswerCell: UITableViewCell {
     //MARK: View
     
     private func loadViewsForExamAnswer(box: UIView) {
-        box.addSubview(hintLabel)
         box.addSubview(answerLabel)
         
         loadConstraintsForExamAnswer(box: box)
     }
     
     private func loadConstraintsForExamAnswer(box: UIView) {
-        hintLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(box.snp.top).offset(26.0)
-            make.left.equalTo(box.snp.left).offset(16.0)
-        }
         answerLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(hintLabel.snp.bottom).offset(12.0)
-            make.left.equalTo(hintLabel.snp.left).offset(0)
+            make.top.equalTo(box.snp.top).offset(26.0)
+            make.left.equalTo(box.snp.left).offset(0)
             make.right.lessThanOrEqualTo(box.snp.right).offset(-16.0)
             make.bottom.equalTo(box.snp.bottom).offset(-24.0)
         }

@@ -23,7 +23,7 @@ protocol ExamCellImageDataSource {
     var image: String? { get }
 }
 
-///题目，解析通用
+///测评题目
 class ExamCell {
     
     ///图片类型
