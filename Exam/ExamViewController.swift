@@ -33,7 +33,7 @@ class ExamViewController: UIViewController {
     
     private func loadRequestForExam() {
         viewInfo.loadMocks {
-            
+            self.tableView.reloadData()
         }
     }
     
@@ -95,10 +95,13 @@ extension ExamViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var number: Int = 0
-        number = number + (viewInfo.questions.count > 0 ? 1 : 0)
+        number += viewInfo.questions.count > 0 ? 1 : 0
+        number += viewInfo.options.count > 0 ? 1 : 0
+        number += viewInfo.correctAnswer != nil ? 1 : 0
+        number += viewInfo.english != nil ? 1 : 0
+        number += viewInfo.explans.count > 0 ? 1 : 0
         
-        
-        return 2
+        return number
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

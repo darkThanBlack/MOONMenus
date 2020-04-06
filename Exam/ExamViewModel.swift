@@ -11,6 +11,20 @@ import UIKit
 ///测评试卷详情
 class ExamViewModel {
     
+    class Section {
+        enum Style {
+            case question
+            case option
+            case answer
+            case english
+            case explan
+        }
+        var style: Style = .question
+        
+        var cells: [Any] = []
+    }
+    var cells: [Section] = []
+    
     ///问题
     class Question {
         
@@ -89,6 +103,8 @@ class ExamViewModel {
         var rank: String?
         var star: Int64 = 0
     }
+    var english: English?
+    
     
     ///点击展开解析
     var isExplanOpened: Bool = false
@@ -101,6 +117,11 @@ class ExamViewModel {
     
     
     func loadMocks(complete: (() -> Void)?) {
+        
+        cells.removeAll()
+        
+        let question = Section()
+        question.style = .question
         
         questions.removeAll()
         
@@ -120,6 +141,8 @@ class ExamViewModel {
         let option_text = Option.Text()
         option_text.optionText = ""
         
+        question.cells = questions
+
         complete?()
     }
 }
