@@ -278,9 +278,7 @@ extension ExamOptionCell.Text {
     private func loadViewsForExamOptionText(box: UIView) {
         box.addSubview(optionTextLabel)
         optionTextLabel.snp.makeConstraints { (make) in
-            make.left.right.equalTo(box)
-            make.top.equalTo(box.snp.top).offset(16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-16.0)
+            make.top.left.right.bottom.equalTo(box)
             make.height.greaterThanOrEqualTo(22.0)
         }
     }
@@ -301,9 +299,7 @@ extension ExamOptionCell.Voice {
     private func loadViewsForExamOptionVoice(box: UIView) {
         box.addSubview(voiceView)
         voiceView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(box)
-            make.top.equalTo(box.snp.top).offset(16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-16.0)
+            make.top.left.right.bottom.equalTo(box)
             make.height.equalTo(40.0)
         }
     }
@@ -325,9 +321,7 @@ extension ExamOptionCell.Image {
     private func loadViewsForExamOptionImage(box: UIView) {
         box.addSubview(optionImageView)
         optionImageView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(box)
-            make.top.equalTo(box.snp.top).offset(16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-16.0)
+            make.top.left.right.bottom.equalTo(box)
             make.height.equalTo(40.0)
         }
     }

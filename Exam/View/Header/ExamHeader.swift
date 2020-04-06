@@ -41,7 +41,7 @@ class ExamHeader {
             box.backgroundColor = ExamHelper.background()
             
             box.addSubview(bgView)
-            box.addSubview(titleLabel)
+            bgView.addSubview(titleLabel)
             
             bgView.snp.makeConstraints { (make) in
                 make.top.equalTo(box.snp.top).offset(15.0)
@@ -54,7 +54,6 @@ class ExamHeader {
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(bgView.snp.top).offset(16.0)
                 make.left.equalTo(bgView.snp.left).offset(16.0)
-                make.bottom.equalTo(bgView.snp.bottom).offset(4.0)
             }
         }
         

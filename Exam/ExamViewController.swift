@@ -157,6 +157,7 @@ extension ExamViewController: UITableViewDataSource {
             } else {
                 let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Explan") as! ExamHeader.Explan
                 header.bindEvent {
+                    data.isOpened = !data.isOpened
                     self.tableView.reloadSections(IndexSet(integer: section), with: .none)
                 }
                 return header
