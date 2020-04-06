@@ -38,7 +38,7 @@ class ExamHeader {
         
         private func loadViewsForOption(box: UIView) {
             
-            self.backgroundColor = ExamHelper.background()
+            box.backgroundColor = ExamHelper.background()
             
             box.addSubview(bgView)
             box.addSubview(titleLabel)
@@ -93,13 +93,13 @@ class ExamHeader {
         
         private func loadViewsForAnswer(box: UIView) {
             
-            self.backgroundColor = .white
+            box.backgroundColor = .white
             
             box.addSubview(titleLabel)
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(box.snp.top).offset(26.0)
                 make.left.equalTo(box.snp.left).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(6.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-6.0)
             }
         }
         
@@ -133,7 +133,7 @@ class ExamHeader {
         
         private func loadViewsForEnglish(box: UIView) {
             
-            self.backgroundColor = ExamHelper.background()
+            box.backgroundColor = ExamHelper.background()
             
             box.addSubview(bgView)
             box.addSubview(titleLabel)
@@ -296,7 +296,7 @@ class ExamHeader {
         
         private func loadViewsForExplan(box: UIView) {
             
-            self.backgroundColor = ExamHelper.background()
+            box.backgroundColor = ExamHelper.background()
                         
             explanButton.layer.masksToBounds = true
             explanButton.layer.cornerRadius = 14.0

@@ -47,7 +47,7 @@ class ExamAnswerCell: UITableViewCell {
     private func loadConstraintsForExamAnswer(box: UIView) {
         answerLabel.snp.makeConstraints { (make) in
             make.top.equalTo(box.snp.top).offset(26.0)
-            make.left.equalTo(box.snp.left).offset(0)
+            make.left.equalTo(box.snp.left).offset(16.0)
             make.right.lessThanOrEqualTo(box.snp.right).offset(-16.0)
             make.bottom.equalTo(box.snp.bottom).offset(-24.0)
         }

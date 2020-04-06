@@ -58,7 +58,7 @@ class ExamViewController: UIViewController {
     }
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = ExamHelper.background()
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,7 +66,7 @@ class ExamViewController: UIViewController {
         
         tableView.register(ExamHeader.Option.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Option")
         tableView.register(ExamHeader.Answer.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Answer")
-        tableView.register(ExamHeader.English.self, forHeaderFooterViewReuseIdentifier: "xamHeader.English")
+        tableView.register(ExamHeader.English.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.English")
         
         tableView.register(ExamCell.Text.self, forCellReuseIdentifier: "ExamCell.Text")
         tableView.register(ExamCell.Voice.self, forCellReuseIdentifier: "ExamCell.Voice")
@@ -85,7 +85,7 @@ class ExamViewController: UIViewController {
     //MARK: Event
     
     //MARK: - SubClass
-    
+        
 }
 
 extension ExamViewController: UITableViewDelegate {
@@ -95,6 +95,14 @@ extension ExamViewController: UITableViewDelegate {
 }
 
 extension ExamViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewInfo.cells.count
