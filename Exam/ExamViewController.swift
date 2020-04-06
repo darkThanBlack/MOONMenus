@@ -72,9 +72,12 @@ class ExamViewController: UIViewController {
         tableView.register(ExamCell.Voice.self, forCellReuseIdentifier: "ExamCell.Voice")
         tableView.register(ExamCell.Image.self, forCellReuseIdentifier: "ExamCell.Image")
 
-        tableView.register(ExamOptionCell.Text.self, forCellReuseIdentifier: "ExamOptionCell.TextCell")
-        tableView.register(ExamOptionCell.Voice.self, forCellReuseIdentifier: "ExamOptionCell.VoiceCell")
-        tableView.register(ExamOptionCell.Image.self, forCellReuseIdentifier: "ExamOptionCell.ImageCell")
+        tableView.register(ExamOptionCell.Text.self, forCellReuseIdentifier: "ExamOptionCell.Text")
+        tableView.register(ExamOptionCell.Voice.self, forCellReuseIdentifier: "ExamOptionCell.Voice")
+        tableView.register(ExamOptionCell.Image.self, forCellReuseIdentifier: "ExamOptionCell.Image")
+        
+        tableView.register(ExamAnswerCell.self, forCellReuseIdentifier: "ExamAnswerCell")
+        tableView.register(ExamEnglishCell.self, forCellReuseIdentifier: "ExamEnglishCell")
         
         return tableView
     }()
@@ -94,43 +97,114 @@ extension ExamViewController: UITableViewDelegate {
 extension ExamViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        var number: Int = 0
-        number += viewInfo.questions.count > 0 ? 1 : 0
-        number += viewInfo.options.count > 0 ? 1 : 0
-        number += viewInfo.correctAnswer != nil ? 1 : 0
-        number += viewInfo.english != nil ? 1 : 0
-        number += viewInfo.explans.count > 0 ? 1 : 0
-        
-        return number
+        return viewInfo.cells.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewInfo.questions.count
+        let sectionInfo = viewInfo.cells[section]
+        switch sectionInfo.sectionStyle {
+        case .question:
+            let data = sectionInfo as! ExamViewModel.Section.Question
+            return data.contents.count
+        case .option:
+            let data = sectionInfo as! ExamViewModel.Section.Option
+            return data.contents.count
+        case .answer:
+            let data = sectionInfo as! ExamViewModel.Section.Answer
+            return data.contents.count
+        case .english:
+            let data = sectionInfo as! ExamViewModel.Section.English
+            return data.contents.count
+        case .explan:
+            let data = sectionInfo as! ExamViewModel.Section.Explan
+            return data.contents.count
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Option")
-        
-        return header
+        let sectionInfo = viewInfo.cells[section]
+        switch sectionInfo.sectionStyle {
+        case .question:
+            return nil
+        case .option:
+            let data = sectionInfo as! ExamViewModel.Section.Option
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Option") as! ExamHeader.Option
+            header.title = data.isMulti ? "多选题" : "单选题"
+            return header
+        case .answer:
+            let data = sectionInfo as! ExamViewModel.Section.Answer
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Answer") as! ExamHeader.Answer
+            return header
+        case .english:
+            let data = sectionInfo as! ExamViewModel.Section.English
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.English") as! ExamHeader.English
+            return header
+        case .explan:
+            let data = sectionInfo as! ExamViewModel.Section.Explan
+            if data.isOpened {
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Option") as! ExamHeader.Option
+                header.title = "解析"
+                return header
+            } else {
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExamHeader.Explan") as! ExamHeader.Explan
+                header.bindEvent {
+                    self.tableView.reloadSections(IndexSet(integer: section), with: .none)
+                }
+                return header
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellInfo = viewInfo.questions[indexPath.row]
-        switch cellInfo.style {
-        case .image:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Image") as! ExamCell.Image
-            cell.configCell(dataSource: cellInfo as! ExamCellImageDataSource)
+        let sectionInfo = viewInfo.cells[indexPath.section]
+        switch sectionInfo.sectionStyle {
+        case .question, .explan:
+            let data = sectionInfo as! ExamViewModel.Section.Question
+            let cellInfo = data.contents[indexPath.row]
+            switch cellInfo.style {
+            case .image:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Image") as! ExamCell.Image
+                cell.configCell(dataSource: cellInfo as! ExamCellImageDataSource)
+                return cell
+            case .voice:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Voice") as! ExamCell.Voice
+                cell.configCell(dataSource: cellInfo as! ExamCellVoiceDataSource)
+                return cell
+            case .text:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Text") as! ExamCell.Text
+                cell.configCell(dataSource: cellInfo as! ExamCellTextDataSource)
+                return cell
+            }
+        case .option:
+            let data = sectionInfo as! ExamViewModel.Section.Option
+            let cellInfo = data.contents[indexPath.row]
+            switch cellInfo.style {
+            case .image:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamOptionCell.Image") as! ExamOptionCell.Image
+                cell.configCell(dataSource: cellInfo as! ExamOptionCellImageDataSource)
+                return cell
+            case .voice:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamOptionCell.Voice") as! ExamOptionCell.Voice
+                cell.configCell(dataSource: cellInfo as! ExamOptionCellVoiceDataSource)
+                return cell
+            case .text:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExamOptionCell.Text") as! ExamOptionCell.Text
+                cell.configCell(dataSource: cellInfo as! ExamOptionCellTextDataSource)
+                return cell
+            }
+        case .answer:
+            let data = sectionInfo as! ExamViewModel.Section.Answer
+            let cellInfo = data.contents[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExamAnswerCell") as! ExamAnswerCell
+            cell.configCell(dataSource: cellInfo)
             return cell
-        case .voice:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Voice") as! ExamCell.Voice
-            cell.configCell(dataSource: cellInfo as! ExamCellVoiceDataSource)
-            return cell
-        case .text:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExamCell.Text") as! ExamCell.Text
-            cell.configCell(dataSource: cellInfo as! ExamCellTextDataSource)
+        case .english:
+            let data = sectionInfo as! ExamViewModel.Section.English
+            let cellInfo = data.contents[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExamEnglishCell") as! ExamEnglishCell
+            cell.configCell(dataSource: cellInfo)
             return cell
         }
-        return UITableViewCell()
     }
 }
 
