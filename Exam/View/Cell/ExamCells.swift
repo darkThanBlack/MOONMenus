@@ -118,7 +118,7 @@ extension ExamCell.Image {
             make.top.equalTo(box.snp.top).offset(6.0)
             make.left.equalTo(box.snp.left).offset(16.0)
             make.right.equalTo(box.snp.right).offset(-16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-6.0)
+            make.bottom.equalTo(box.snp.bottom).offset(-6.0).priority(.low)
             make.height.equalTo(examImageView.snp.width).multipliedBy(9.0/16.0)
         }
     }

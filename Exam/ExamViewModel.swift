@@ -116,8 +116,10 @@ class ExamViewModel {
             var contents: [Content] = []
         }
         
-        ///解析，与"问题"类型相同
+        ///解析, cell 与"问题"类型相同
         class Explan: Question {
+            override var sectionStyle: SectionStyle { return .explan }
+            
             ///点击展开解析
             var isOpened: Bool = false
         }

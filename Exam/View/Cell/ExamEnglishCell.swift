@@ -56,7 +56,6 @@ class ExamEnglishCell: UITableViewCell {
             make.top.equalTo(box.snp.top).offset(6.0)
             make.left.equalTo(box.snp.left).offset(16.0)
             make.right.equalTo(box.snp.right).offset(-16.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-0)
         }
         voiceView.snp.makeConstraints { (make) in
             make.top.equalTo(englishLabel.snp.bottom).offset(16.0)
@@ -149,7 +148,7 @@ class ExamEnglishCell: UITableViewCell {
         private func loadViewsForStar(box: UIView) {
             
             starArray.removeAll()
-            for _ in 0...3 {
+            for _ in 0...2 {
                 let star = UIImageView()
                 star.backgroundColor = ExamHelper.lightGrayText()
                 box.addSubview(star)

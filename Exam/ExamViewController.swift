@@ -67,6 +67,7 @@ class ExamViewController: UIViewController {
         tableView.register(ExamHeader.Option.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Option")
         tableView.register(ExamHeader.Answer.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Answer")
         tableView.register(ExamHeader.English.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.English")
+        tableView.register(ExamHeader.Explan.self, forHeaderFooterViewReuseIdentifier: "ExamHeader.Explan")
         
         tableView.register(ExamCell.Text.self, forCellReuseIdentifier: "ExamCell.Text")
         tableView.register(ExamCell.Voice.self, forCellReuseIdentifier: "ExamCell.Voice")
