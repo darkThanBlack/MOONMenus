@@ -128,17 +128,32 @@ class ExamViewModel {
     var cells: [Section] = []
     
     ///导航
-    class Lesson {
-        var titles: [String] = []
-        var defIndex: Int64 = 0
-        var isOpened: Bool = false
-        
-        class Topic {
+    class Lesson: ExamNavigateHeaderDataSource {
+        var isSelected: Bool = false
+        var title: String?
+        var totalCount: Int {
+            get {
+                return topics.count
+            }
+        }
+
+        class Topic: ExamNavigateCellDataSource {
+            var isSelected: Bool = false
             var title: String?
             var star: Int64?
         }
+        var topics: [Topic] = []
     }
-    var lesson: Lesson = Lesson()
+    var lessons: [Lesson] = []
+    
+    var selectedLessonIndex: Int = 0
+    var isNavOpened: Bool = false
+    
+    func queryLessonTitles() -> [String] {
+        return lessons.map { lesson in
+            return lesson.title ?? ""
+        }
+    }
     
     func loadMocks(complete: (() -> Void)?) {
         
@@ -210,9 +225,25 @@ class ExamViewModel {
         ex.contents.append(ex_voice)
         
         cells.append(ex)
-                
-        lesson.titles = ["牛刀小试", "大展身手", "突破自我", "最后入土", "牛刀", "大", "突破自我", "最后入土", "牛刀小试", "大展身手", "突破自我", "最后入土"]
         
+        lessons.removeAll()
+        
+        for index in 0..<9 {
+            let lesson = Lesson()
+            lesson.title = "章节名称"
+            lesson.isSelected = (index == selectedLessonIndex) ? true : false
+            
+            for idx in 0..<8 {
+                let topic = Lesson.Topic()
+                topic.title = "第\(idx)题"
+                topic.isSelected = idx == 0 ? true : false
+                topic.star = 2
+                lesson.topics.append(topic)
+            }
+            
+            lessons.append(lesson)
+        }
+                
         complete?()
     }
 }

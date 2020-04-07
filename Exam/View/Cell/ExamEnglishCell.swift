@@ -81,6 +81,7 @@ class ExamEnglishCell: UITableViewCell {
             make.centerX.equalTo(box.snp.centerX)
             make.top.equalTo(rankLabel.snp.bottom).offset(8.0)
             make.bottom.equalTo(box.snp.bottom).offset(-26.0).priority(.low)
+            make.height.equalTo(25.0)
         }
     }
     
@@ -115,87 +116,12 @@ class ExamEnglishCell: UITableViewCell {
         return rankLabel
     }()
     
-    private lazy var star: Star = {
-        let star = Star()
+    private lazy var star: ExamStar = {
+        let star = ExamStar(maxCount: 3, style: .normal)
         star.backgroundColor = ExamHelper.orange()
         return star
     }()
     
-    ///星星
-    private class Star: UIView {
-        
-        //MARK: Interface
-                
-        func configStar(count: Int64) {
-            for (index, star) in starArray.enumerated() {
-                star.image = index < count ? UIImage(named: "moonShadow") : nil
-            }
-        }
-        
-        private var starArray: [UIImageView] = []
-        
-        //MARK: Life Cycle
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            
-            loadViewsForStar(box: self)
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        //MARK: View
-        
-        private func loadViewsForStar(box: UIView) {
-            
-            starArray.removeAll()
-            for _ in 0...2 {
-                let star = UIImageView()
-                star.backgroundColor = ExamHelper.lightGrayText()
-                box.addSubview(star)
-                starArray.append(star)
-            }
-            
-            loadConstraintsForStar(box: box)
-        }
-        
-        private func loadConstraintsForStar(box: UIView) {
-            
-            var tmpView = UIView()
-            for (index, star) in starArray.enumerated() {
-                if index == 0 {
-                    star.snp.makeConstraints { (make) in
-                        make.top.equalTo(box.snp.top).offset(0)
-                        make.left.equalTo(box.snp.left).offset(0)
-                        make.bottom.equalTo(box.snp.bottom).offset(-0)
-                        make.width.equalTo(25.0)
-                        make.height.equalTo(25.0)
-                    }
-                } else if index == (starArray.count - 1) {
-                    star.snp.makeConstraints { (make) in
-                        make.centerY.equalTo(tmpView.snp.centerY)
-                        make.left.equalTo(tmpView.snp.right).offset(14.0)
-                        make.right.equalTo(box.snp.right).offset(-0)
-                        make.width.equalTo(tmpView)
-                        make.height.equalTo(tmpView)
-                    }
-                } else {
-                    star.snp.makeConstraints { (make) in
-                        make.centerY.equalTo(tmpView.snp.centerY)
-                        make.left.equalTo(tmpView.snp.right).offset(14.0)
-                        make.width.equalTo(tmpView)
-                        make.height.equalTo(tmpView)
-                    }
-                }
-                tmpView = star
-            }
-        }
-    
-    
-    }
-
 
 }
 

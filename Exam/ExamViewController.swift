@@ -34,7 +34,7 @@ class ExamViewController: UIViewController {
     
     private func loadRequestForExam() {
         viewInfo.loadMocks {
-            self.pagesView.configView(titles: self.viewInfo.lesson.titles, defIndex: 0)
+            self.pagesView.configView(titles: self.viewInfo.queryLessonTitles(), defIndex: 0)
             self.tableView.reloadData()
         }
     }
@@ -51,6 +51,8 @@ class ExamViewController: UIViewController {
         
         box.addSubview(pagesView)
         box.addSubview(tableView)
+        box.addSubview(collectionView)
+        
         loadConstraintsForExam(box: box)
     }
     
@@ -60,8 +62,13 @@ class ExamViewController: UIViewController {
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0)
         }
-        
         tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(pagesView.snp.bottom).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0)
+        }
+        collectionView.snp.makeConstraints { (make) in
             make.top.equalTo(pagesView.snp.bottom).offset(0)
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0)
@@ -72,6 +79,7 @@ class ExamViewController: UIViewController {
     private lazy var pagesView: ExamPagesView = {
         let pagesView = ExamPagesView()
         pagesView.backgroundColor = .white
+        pagesView.bindView(delegate: self)
         return pagesView
     }()
     
@@ -99,6 +107,30 @@ class ExamViewController: UIViewController {
         tableView.register(ExamEnglishCell.self, forCellReuseIdentifier: "ExamEnglishCell")
         
         return tableView
+    }()
+    
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.size.width, height: 48.0)
+        flowLayout.minimumLineSpacing = 12.0
+        flowLayout.minimumInteritemSpacing = 12.0
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 12, right: 16)
+        return flowLayout
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
+        collectionView.isHidden = true
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ExamNavigateHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExamNavigateHeader")
+        
+        collectionView.register(ExamNavigateCell.Single.self, forCellWithReuseIdentifier: "ExamNavigateCell.Single")
+        collectionView.register(ExamNavigateCell.Star.self, forCellWithReuseIdentifier: "ExamNavigateCell.Star")
+        
+        return collectionView
     }()
     
     //MARK: Event
@@ -236,3 +268,44 @@ extension ExamViewController: UITableViewDataSource {
     }
 }
 
+extension ExamViewController: UICollectionViewDelegate {
+    
+}
+
+extension ExamViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewInfo.lessons.count
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ExamNavigateHeader", for: indexPath) as! ExamNavigateHeader
+            header.configView(dataSource: viewInfo.lessons[indexPath.section])
+            return header
+        }
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewInfo.lessons[section].topics.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExamNavigateCell.Star", for: indexPath) as! ExamNavigateCell.Star
+        cell.configCell(dataSource: viewInfo.lessons[indexPath.section].topics[indexPath.row])
+        return cell ?? UICollectionViewCell()
+    }
+}
+
+extension ExamViewController: ExamPagesDelegate {
+    func examPages(event: ExamPagesView.Event) {
+        switch event {
+        case .item(let index):
+            break
+        case .arrow(let isOpened):
+            collectionView.isHidden = !isOpened
+        }
+    }
+}
