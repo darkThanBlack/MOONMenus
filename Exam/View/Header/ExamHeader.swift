@@ -53,7 +53,7 @@ class ExamHeader {
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(grayView.snp.bottom).offset(16.0)
                 make.left.equalTo(grayView.snp.left).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(-4.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-4.0).priority(.low)
             }
         }
         
@@ -99,7 +99,7 @@ class ExamHeader {
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(box.snp.top).offset(26.0)
                 make.left.equalTo(box.snp.left).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(-6.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-6.0).priority(.low)
             }
         }
         
@@ -150,7 +150,7 @@ class ExamHeader {
             titleLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(grayView.snp.bottom).offset(16.0)
                 make.left.equalTo(box.snp.left).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(-4.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-4.0).priority(.low)
             }
             sign2.snp.makeConstraints { (make) in
                 make.centerY.equalTo(titleLabel.snp.centerY)
@@ -308,7 +308,7 @@ class ExamHeader {
             explanButton.snp.makeConstraints { (make) in
                 make.centerX.equalTo(box.snp.centerX)
                 make.top.equalTo(box.snp.top).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(-16.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-16.0).priority(.low)
                 make.width.equalTo(110.0)
                 make.height.equalTo(28.0)
             }
