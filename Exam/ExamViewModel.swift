@@ -127,7 +127,7 @@ class ExamViewModel {
     }
     var cells: [Section] = []
     
-    ///导航
+    ///章节名称
     class Lesson: ExamNavigateHeaderDataSource {
         var isSelected: Bool = false
         var title: String?
@@ -136,7 +136,7 @@ class ExamViewModel {
                 return topics.count
             }
         }
-
+        ///第X题
         class Topic: ExamNavigateCellDataSource {
             var isSelected: Bool = false
             var title: String?
@@ -145,15 +145,18 @@ class ExamViewModel {
         var topics: [Topic] = []
     }
     var lessons: [Lesson] = []
-    
-    var selectedLessonIndex: Int = 0
-    var isNavOpened: Bool = false
-    
+    ///章节标题集合
     func queryLessonTitles() -> [String] {
         return lessons.map { lesson in
             return lesson.title ?? ""
         }
     }
+
+    var currentIndex: (lesson: Int, topic: Int) = (0, 0)
+    
+    ///是否显示导航目录
+    var isNavOpened: Bool = false
+    
     
     func loadMocks(complete: (() -> Void)?) {
         
@@ -231,7 +234,7 @@ class ExamViewModel {
         for index in 0..<9 {
             let lesson = Lesson()
             lesson.title = "章节名称"
-            lesson.isSelected = (index == selectedLessonIndex) ? true : false
+            lesson.isSelected = (index == currentIndex.lesson) ? true : false
             
             for idx in 0..<8 {
                 let topic = Lesson.Topic()
