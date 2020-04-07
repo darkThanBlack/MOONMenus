@@ -233,6 +233,13 @@ extension ExamOptionCell.Options {
     }
     
     private func loadConstraintsForBox(box: UIView) {
+        
+        serialLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        serialLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        
+        displayView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        displayView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
         serialLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(box.snp.centerY)
             make.left.equalTo(box.snp.left).offset(16.0)
@@ -279,7 +286,6 @@ extension ExamOptionCell.Text {
         box.addSubview(optionTextLabel)
         optionTextLabel.snp.makeConstraints { (make) in
             make.top.left.right.bottom.equalTo(box)
-            make.height.greaterThanOrEqualTo(22.0)
         }
     }
 

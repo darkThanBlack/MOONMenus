@@ -38,22 +38,22 @@ class ExamHeader {
         
         private func loadViewsForOption(box: UIView) {
             
-            box.backgroundColor = ExamHelper.background()
+            box.backgroundColor = .white
             
-            box.addSubview(bgView)
-            bgView.addSubview(titleLabel)
+            box.addSubview(grayView)
+            grayView.addSubview(titleLabel)
             
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(box.snp.top).offset(15.0)
+            grayView.snp.makeConstraints { (make) in
+                make.top.equalTo(box.snp.top).offset(12.0)  //用于填补 cell 不足的白色部分
                 make.left.equalTo(box.snp.left).offset(0)
                 make.right.equalTo(box.snp.right).offset(-0)
-                make.bottom.equalTo(box.snp.bottom).offset(-0)
-                make.height.equalTo(52.0)
+                make.height.equalTo(15.0)
             }
             
             titleLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(bgView.snp.top).offset(16.0)
-                make.left.equalTo(bgView.snp.left).offset(16.0)
+                make.top.equalTo(grayView.snp.bottom).offset(16.0)
+                make.left.equalTo(grayView.snp.left).offset(16.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-4.0)
             }
         }
         
@@ -65,10 +65,11 @@ class ExamHeader {
             return titleLabel
         }()
         
-        private lazy var bgView: UIView = {
-            let bgView = UIView()
-            bgView.backgroundColor = .white
-            return bgView
+        ///灰色间隔
+        private lazy var grayView: UIView = {
+            let grayView = UIView()
+            grayView.backgroundColor = ExamHelper.background()
+            return grayView
         }()
 
     }
@@ -132,41 +133,41 @@ class ExamHeader {
         
         private func loadViewsForEnglish(box: UIView) {
             
-            box.backgroundColor = ExamHelper.background()
+            box.backgroundColor = .white
             
-            box.addSubview(bgView)
+            box.addSubview(grayView)
             box.addSubview(titleLabel)
             box.addSubview(sign1)
             box.addSubview(sign2)
             
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(box.snp.top).offset(15.0)
+            grayView.snp.makeConstraints { (make) in
+                make.top.equalTo(box.snp.top).offset(12.0)
                 make.left.equalTo(box.snp.left).offset(0)
                 make.right.equalTo(box.snp.right).offset(-0)
-                make.bottom.equalTo(box.snp.bottom).offset(-0)
-                make.height.equalTo(52.0)
+                make.height.equalTo(15.0)
             }
-
+            
             titleLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(box.snp.top).offset(16.0)
+                make.top.equalTo(grayView.snp.bottom).offset(16.0)
                 make.left.equalTo(box.snp.left).offset(16.0)
-                make.bottom.equalTo(box.snp.bottom).offset(4.0)
+                make.bottom.equalTo(box.snp.bottom).offset(-4.0)
             }
             sign2.snp.makeConstraints { (make) in
-                make.centerY.equalTo(box.snp.centerY)
+                make.centerY.equalTo(titleLabel.snp.centerY)
                 make.right.equalTo(box.snp.right).offset(-16.0)
             }
             sign1.snp.makeConstraints { (make) in
-                make.centerY.equalTo(box.snp.centerY)
+                make.centerY.equalTo(titleLabel.snp.centerY)
                 make.right.equalTo(sign2.snp.left).offset(-16.0)
             }
             
         }
         
-        private lazy var bgView: UIView = {
-            let bgView = UIView()
-            bgView.backgroundColor = .white
-            return bgView
+        ///灰色间隔
+        private lazy var grayView: UIView = {
+            let grayView = UIView()
+            grayView.backgroundColor = ExamHelper.background()
+            return grayView
         }()
         
         private lazy var titleLabel: UILabel = {
@@ -296,7 +297,9 @@ class ExamHeader {
         private func loadViewsForExplan(box: UIView) {
             
             box.backgroundColor = ExamHelper.background()
-                        
+            
+            explanButton.layer.borderColor = ExamHelper.border().cgColor
+            explanButton.layer.borderWidth = 1.0
             explanButton.layer.masksToBounds = true
             explanButton.layer.cornerRadius = 14.0
             
@@ -306,6 +309,7 @@ class ExamHeader {
                 make.centerX.equalTo(box.snp.centerX)
                 make.top.equalTo(box.snp.top).offset(16.0)
                 make.bottom.equalTo(box.snp.bottom).offset(-16.0)
+                make.width.equalTo(110.0)
                 make.height.equalTo(28.0)
             }
         }

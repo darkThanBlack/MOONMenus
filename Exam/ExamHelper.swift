@@ -41,6 +41,9 @@ class ExamHelper {
     static func red() -> UIColor {
         return ExamHelper.xm_color(hex: 0xFF4F4F)
     }
+    static func border() -> UIColor {
+        return ExamHelper.xm_color(hex: 0xDDDDDD)
+    }
     static func grayBorder() -> UIColor {
         return ExamHelper.xm_color(hex: 0xEEEEEE)
     }

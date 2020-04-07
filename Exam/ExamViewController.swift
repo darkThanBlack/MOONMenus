@@ -126,7 +126,7 @@ extension ExamViewController: UITableViewDataSource {
             return data.contents.count
         case .explan:
             let data = sectionInfo as! ExamViewModel.Section.Explan
-            return data.contents.count
+            return data.isOpened ? data.contents.count : 0
         }
     }
     
