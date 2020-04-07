@@ -127,6 +127,18 @@ class ExamViewModel {
     }
     var cells: [Section] = []
     
+    ///导航
+    class Lesson {
+        var titles: [String] = []
+        var defIndex: Int64 = 0
+        var isOpened: Bool = false
+        
+        class Topic {
+            var title: String?
+            var star: Int64?
+        }
+    }
+    var lesson: Lesson = Lesson()
     
     func loadMocks(complete: (() -> Void)?) {
         
@@ -198,6 +210,8 @@ class ExamViewModel {
         ex.contents.append(ex_voice)
         
         cells.append(ex)
+                
+        lesson.titles = ["牛刀小试", "大展身手", "突破自我", "最后入土", "牛刀", "大", "突破自我", "最后入土", "牛刀小试", "大展身手", "突破自我", "最后入土"]
         
         complete?()
     }

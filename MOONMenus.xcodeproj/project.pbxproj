@@ -61,6 +61,7 @@
 		A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */; };
 		A2D4DB4E24370ADB00A77B26 /* ExamHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */; };
 		A2D4DB54243727E500A77B26 /* ExamOptionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */; };
+		A2FB07BF243C2C4400BD0474 /* ExamPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */; };
 		CD760275A68B2BA0CE6EB6A4 /* Pods_MOONMenus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7327A8B6F5D1C2A62CED81 /* Pods_MOONMenus.framework */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +145,7 @@
 		A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectHistoryAlertController.swift; sourceTree = "<group>"; };
 		A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHelper.swift; sourceTree = "<group>"; };
 		A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamOptionCells.swift; sourceTree = "<group>"; };
+		A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPagesView.swift; sourceTree = "<group>"; };
 		B4F87418DDC89E3F7434A491 /* Pods-MOONMenus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOONMenus.release.xcconfig"; path = "Target Support Files/Pods-MOONMenus/Pods-MOONMenus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,6 +351,7 @@
 		A293D0FF2436DB4E0032806D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */,
 				88AB65C9243ADADE00311F50 /* Header */,
 				A2D4DB52243727C600A77B26 /* Cell */,
 			);
@@ -596,6 +599,7 @@
 				A293D0FA2435E0180032806D /* ExamPageViewController.swift in Sources */,
 				A26D2BB9241FC12A005666AF /* LessonSelectCell.swift in Sources */,
 				A26D2BB0241F7971005666AF /* LessonDetailCell.swift in Sources */,
+				A2FB07BF243C2C4400BD0474 /* ExamPagesView.swift in Sources */,
 				A293D0FE2435E52F0032806D /* ExamViewModel.swift in Sources */,
 				A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 
+///答题记录/测评模块详情
 class ExamViewController: UIViewController {
     
     //MARK: Interface
@@ -33,6 +34,7 @@ class ExamViewController: UIViewController {
     
     private func loadRequestForExam() {
         viewInfo.loadMocks {
+            self.pagesView.configView(titles: self.viewInfo.lesson.titles, defIndex: 0)
             self.tableView.reloadData()
         }
     }
@@ -44,18 +46,34 @@ class ExamViewController: UIViewController {
     }
     
     private func loadViewsForExam(box: UIView) {
+        
+        self.edgesForExtendedLayout = .bottom
+        
+        box.addSubview(pagesView)
         box.addSubview(tableView)
         loadConstraintsForExam(box: box)
     }
     
     private func loadConstraintsForExam(box: UIView) {
-        tableView.snp.makeConstraints { (make) in
+        pagesView.snp.makeConstraints { (make) in
             make.top.equalTo(box.snp.top).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
+        }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(pagesView.snp.bottom).offset(0)
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0)
             make.bottom.equalTo(box.snp.bottom).offset(-0)
         }
     }
+    
+    private lazy var pagesView: ExamPagesView = {
+        let pagesView = ExamPagesView()
+        pagesView.backgroundColor = .white
+        return pagesView
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
