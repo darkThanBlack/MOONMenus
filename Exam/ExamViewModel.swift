@@ -145,18 +145,66 @@ class ExamViewModel {
         var topics: [Topic] = []
     }
     var lessons: [Lesson] = []
+    
+    ///章节下标
+    private var currentIndex: (lesson: Int, topic: Int) = (0, 0)
+
+    ///是否显示导航目录
+    var isNavOpened: Bool = false
+    
+}
+
+extension ExamViewModel {
+    
     ///章节标题集合
     func queryLessonTitles() -> [String] {
         return lessons.map { lesson in
             return lesson.title ?? ""
         }
     }
-
-    var currentIndex: (lesson: Int, topic: Int) = (0, 0)
     
-    ///是否显示导航目录
-    var isNavOpened: Bool = false
+    func updateIndex(newLesson: Int, complete: ((Bool) -> Void)?) {
+        updateIndex(newIndex: (newLesson, 0), complete: complete)
+    }
     
+    func updateIndex(newTopic: Int, complete: ((Bool) -> Void)?) {
+        updateIndex(newIndex: (0, newTopic), complete: complete)
+    }
+    
+    func updateIndex(newIndex: (lesson: Int, topic: Int), complete:((Bool) -> Void)?) {
+        let success = (currentIndex != newIndex) && updateLessons(newIndex: newIndex)
+        if success {
+            currentIndex = newIndex
+        }
+        complete?(success)
+    }
+    
+    ///更新数据源
+    private func updateLessons(newIndex: (lesson: Int, topic: Int)) -> Bool {
+        let success = canUpdateLessons(index: currentIndex) && canUpdateLessons(index: newIndex)
+        if success {
+            lessons[currentIndex.lesson].topics[currentIndex.topic].isSelected = false
+            lessons[newIndex.lesson].topics[newIndex.topic].isSelected = true
+        }
+        return success
+    }
+    
+    ///边界检查
+    private func canUpdateLessons(index: (lesson: Int, topic: Int)) -> Bool {
+        var success: Bool
+        //边界检查
+        if (index.lesson < 0) || (lessons.count <= index.lesson) {
+            success = false
+        } else {
+            let tmpLesson = lessons[index.lesson]
+            if (index.topic < 0) || (tmpLesson.topics.count <= index.topic) {
+                success = false
+            } else {
+                success = true
+            }
+        }
+        return success
+    }
     
     func loadMocks(complete: (() -> Void)?) {
         
@@ -234,19 +282,24 @@ class ExamViewModel {
         for index in 0..<9 {
             let lesson = Lesson()
             lesson.title = "章节名称"
-            lesson.isSelected = (index == currentIndex.lesson) ? true : false
+            lesson.isSelected = false
             
-            for idx in 0..<8 {
+            for idx in 0..<7 {
                 let topic = Lesson.Topic()
                 topic.title = "第\(idx)题"
-                topic.isSelected = idx == 0 ? true : false
+                topic.isSelected = false
                 topic.star = 2
                 lesson.topics.append(topic)
             }
             
             lessons.append(lesson)
         }
-                
+        
+        lessons[0].isSelected = true
+        lessons[0].topics[0].isSelected = true
+        
         complete?()
     }
+    
+    
 }

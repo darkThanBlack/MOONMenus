@@ -12,7 +12,7 @@ protocol ExamPagesDelegate: class {
     func examPages(event: ExamPagesView.Event)
 }
 
-///答题记录/测评模块详情 - 章节导航
+///答题记录/测评模块详情 - 上方章节导航
 class ExamPagesView: UIView {
     
     //MARK: Interface
@@ -32,6 +32,16 @@ class ExamPagesView: UIView {
     private weak var delegate: ExamPagesDelegate?
     func bindView(delegate: ExamPagesDelegate) {
         self.delegate = delegate
+    }
+    
+    ///更新选中项
+    func updateSelected(newIndex: Int) {
+        self.reloadSelectItem(selectedIndex: newIndex)
+    }
+    
+    ///触发按钮事件
+    func updateOpenState() {
+        self.arrowEvent(gesture: nil)
     }
     
     private var items: [Item] = []
@@ -158,7 +168,7 @@ class ExamPagesView: UIView {
         self.delegate?.examPages(event: .item(index: idx))
     }
     
-    @objc private func arrowEvent(gesture: UITapGestureRecognizer) {
+    @objc private func arrowEvent(gesture: UITapGestureRecognizer?) {
         self.isOpened = !self.isOpened
         UIView.animate(withDuration: 0.15, animations: {
             self.arrow.transform = self.isOpened ? CGAffineTransform(rotationAngle: -.pi) : .identity

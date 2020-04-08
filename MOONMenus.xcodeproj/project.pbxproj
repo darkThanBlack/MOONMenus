@@ -59,6 +59,7 @@
 		A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB624F2424682C0020A85B /* CorrectEditView.swift */; };
 		A2BB625224246A000020A85B /* AddCorrectAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB625124246A000020A85B /* AddCorrectAlertController.swift */; };
 		A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */; };
+		A2C9177F243DA7B20018D8CD /* ExamPagesBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9177E243DA7B20018D8CD /* ExamPagesBottomView.swift */; };
 		A2D4DB4E24370ADB00A77B26 /* ExamHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */; };
 		A2D4DB54243727E500A77B26 /* ExamOptionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */; };
 		A2FB07BF243C2C4400BD0474 /* ExamPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */; };
@@ -146,6 +147,7 @@
 		A2BB624F2424682C0020A85B /* CorrectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectEditView.swift; sourceTree = "<group>"; };
 		A2BB625124246A000020A85B /* AddCorrectAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCorrectAlertController.swift; sourceTree = "<group>"; };
 		A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectHistoryAlertController.swift; sourceTree = "<group>"; };
+		A2C9177E243DA7B20018D8CD /* ExamPagesBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPagesBottomView.swift; sourceTree = "<group>"; };
 		A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHelper.swift; sourceTree = "<group>"; };
 		A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamOptionCells.swift; sourceTree = "<group>"; };
 		A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPagesView.swift; sourceTree = "<group>"; };
@@ -357,10 +359,8 @@
 		A293D0FF2436DB4E0032806D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */,
-				A2FB07C3243C704800BD0474 /* ExamNavigateHeader.swift */,
-				A2FB07C1243C6FFC00BD0474 /* ExamNavigateCell.swift */,
-				A2FB07C5243C71AD00BD0474 /* ExamStar.swift */,
+				A2FB07C8243D6F2100BD0474 /* Bundle */,
+				A2FB07C7243D6EFE00BD0474 /* Navigates */,
 				88AB65C9243ADADE00311F50 /* Header */,
 				A2D4DB52243727C600A77B26 /* Cell */,
 			);
@@ -404,6 +404,25 @@
 				88AB65C7243A3B3C00311F50 /* ExamEnglishCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A2FB07C7243D6EFE00BD0474 /* Navigates */ = {
+			isa = PBXGroup;
+			children = (
+				A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */,
+				A2C9177E243DA7B20018D8CD /* ExamPagesBottomView.swift */,
+				A2FB07C3243C704800BD0474 /* ExamNavigateHeader.swift */,
+				A2FB07C1243C6FFC00BD0474 /* ExamNavigateCell.swift */,
+			);
+			path = Navigates;
+			sourceTree = "<group>";
+		};
+		A2FB07C8243D6F2100BD0474 /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				A2FB07C5243C71AD00BD0474 /* ExamStar.swift */,
+			);
+			path = Bundle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +648,7 @@
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
+				A2C9177F243DA7B20018D8CD /* ExamPagesBottomView.swift in Sources */,
 				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
 				A2FB07C4243C704800BD0474 /* ExamNavigateHeader.swift in Sources */,
 				A293D0F7243583E40032806D /* DemoViewController.swift in Sources */,

@@ -269,15 +269,22 @@ extension ExamViewController: UITableViewDataSource {
 }
 
 extension ExamViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewInfo.updateIndex(newIndex: (indexPath.section, indexPath.row)) { (success) in
+            if success {
+                self.pagesView.updateSelected(newIndex: indexPath.section)
+                self.pagesView.updateOpenState()
+                self.tableView.reloadData()
+                self.collectionView.reloadData()
+            }
+        }
+    }
 }
 
 extension ExamViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewInfo.lessons.count
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
@@ -295,7 +302,7 @@ extension ExamViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExamNavigateCell.Star", for: indexPath) as! ExamNavigateCell.Star
         cell.configCell(dataSource: viewInfo.lessons[indexPath.section].topics[indexPath.row])
-        return cell ?? UICollectionViewCell()
+        return cell
     }
 }
 
@@ -303,7 +310,12 @@ extension ExamViewController: ExamPagesDelegate {
     func examPages(event: ExamPagesView.Event) {
         switch event {
         case .item(let index):
-            break
+            viewInfo.updateIndex(newLesson: index) { (success) in
+                if success {
+                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
+                }
+            }
         case .arrow(let isOpened):
             collectionView.isHidden = !isOpened
         }
