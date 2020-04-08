@@ -61,6 +61,8 @@
 		A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */; };
 		A2C9177F243DA7B20018D8CD /* ExamStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9177E243DA7B20018D8CD /* ExamStepView.swift */; };
 		A2C91781243DADC60018D8CD /* ExamArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C91780243DADC60018D8CD /* ExamArrow.swift */; };
+		A2C91784243E04BE0018D8CD /* ExamHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C91783243E04BE0018D8CD /* ExamHistoryViewController.swift */; };
+		A2C91786243E050B0018D8CD /* ExamHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C91785243E050B0018D8CD /* ExamHistoryCell.swift */; };
 		A2D4DB4E24370ADB00A77B26 /* ExamHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */; };
 		A2D4DB54243727E500A77B26 /* ExamOptionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */; };
 		A2FB07BF243C2C4400BD0474 /* ExamPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */; };
@@ -150,6 +152,8 @@
 		A2BFF234242C41E2001B5B7A /* CorrectHistoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectHistoryAlertController.swift; sourceTree = "<group>"; };
 		A2C9177E243DA7B20018D8CD /* ExamStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStepView.swift; sourceTree = "<group>"; };
 		A2C91780243DADC60018D8CD /* ExamArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamArrow.swift; sourceTree = "<group>"; };
+		A2C91783243E04BE0018D8CD /* ExamHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHistoryViewController.swift; sourceTree = "<group>"; };
+		A2C91785243E050B0018D8CD /* ExamHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHistoryCell.swift; sourceTree = "<group>"; };
 		A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHelper.swift; sourceTree = "<group>"; };
 		A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamOptionCells.swift; sourceTree = "<group>"; };
 		A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPagesView.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 		A293D0F82435D0C20032806D /* Exam */ = {
 			isa = PBXGroup;
 			children = (
+				A2C91782243E03B60018D8CD /* History */,
 				A293D0FF2436DB4E0032806D /* View */,
 				A293D0F92435E0180032806D /* ExamPageViewController.swift */,
 				A293D0FB2435E22E0032806D /* ExamViewController.swift */,
@@ -395,6 +400,15 @@
 				A2247B9424260A700038F692 /* CorrectingEnterView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A2C91782243E03B60018D8CD /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A2C91783243E04BE0018D8CD /* ExamHistoryViewController.swift */,
+				A2C91785243E050B0018D8CD /* ExamHistoryCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		A2D4DB52243727C600A77B26 /* Cell */ = {
@@ -619,6 +633,7 @@
 				A26D2BB5241FBD22005666AF /* LessonSelectHelper.swift in Sources */,
 				88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */,
 				A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */,
+				A2C91786243E050B0018D8CD /* ExamHistoryCell.swift in Sources */,
 				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
 				88AB65CB243ADAFF00311F50 /* ExamHeader.swift in Sources */,
@@ -637,6 +652,7 @@
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
 				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
+				A2C91784243E04BE0018D8CD /* ExamHistoryViewController.swift in Sources */,
 				A2BB624A2422616C0020A85B /* CorrectingVoiceCell.swift in Sources */,
 				88AB65C8243A3B3C00311F50 /* ExamEnglishCell.swift in Sources */,
 				A293D0FC2435E22E0032806D /* ExamViewController.swift in Sources */,

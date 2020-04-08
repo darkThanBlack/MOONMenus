@@ -8,7 +8,7 @@
 
 import UIKit
 
-///星星
+///星星，布局时要放死高度
 class ExamStar: UIView {
     
     //MARK: Interface
@@ -24,7 +24,8 @@ class ExamStar: UIView {
     //MARK: Life Cycle
     
     enum Style {
-        case normal
+        case big
+        case middle
         case small
     }
     
@@ -56,8 +57,10 @@ class ExamStar: UIView {
     private func loadConstraintsForStar(box: UIView, style: Style) {
         var gap = 0.0
         switch style {
-        case .normal:
+        case .big:
             gap = 14.0
+        case .middle:
+            gap = 8.0
         case .small:
             gap = 4.0
         }

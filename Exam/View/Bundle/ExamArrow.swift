@@ -8,7 +8,7 @@
 
 import UIKit
 
-///代码绘制箭头
+///代码绘制箭头，布局时要放死成正方形
 class ExamArrow: UIView {
     
     //MARK: Interface

@@ -23,6 +23,8 @@ protocol ExamCellImageDataSource {
     var image: String? { get }
 }
 
+//protocol ExamCellType where Self: ExamCell
+
 ///测评题目
 class ExamCell {
     

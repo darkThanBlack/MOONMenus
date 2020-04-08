@@ -28,6 +28,10 @@ class ExamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            let vc = ExamHistoryViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     //MARK: Data
@@ -300,15 +304,6 @@ extension ExamViewController: UITableViewDataSource {
     }
 }
 
-extension ExamViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if viewInfo.updateIndex(newIndex: (indexPath.section, indexPath.row)) {
-            self.pagesView.updateOpenState()
-            reloadDatas()
-        }
-    }
-}
-
 extension ExamViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewInfo.lessons.count
@@ -331,6 +326,15 @@ extension ExamViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExamNavigateCell.Star", for: indexPath) as! ExamNavigateCell.Star
         cell.configCell(dataSource: viewInfo.lessons[indexPath.section].topics[indexPath.row])
         return cell
+    }
+}
+
+extension ExamViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if viewInfo.updateIndex(newIndex: (indexPath.section, indexPath.row)) {
+            self.pagesView.updateOpenState()
+            reloadDatas()
+        }
     }
 }
 

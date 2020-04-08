@@ -29,6 +29,9 @@ protocol ExamOptionCellDataSource {
     var serial: String? { get }
 }
 
+//protocol ExamOptionCellType where Self: ExamOptionCell {
+//     func configCell(dataSource: ExamOptionCellDataSource)
+//}
 ///单/多选，长条形选项
 class ExamOptionCell: UITableViewCell {
     

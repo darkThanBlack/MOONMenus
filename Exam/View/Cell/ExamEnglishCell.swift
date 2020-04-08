@@ -18,7 +18,7 @@ protocol ExamEnglishCellDataSource {
 class ExamEnglishCell: UITableViewCell {
     
     //MARK: Interface
-        
+    
     func configCell(dataSource: ExamEnglishCellDataSource) {
         englishLabel.text = dataSource.text
         rankLabel.text = dataSource.rank
@@ -117,7 +117,7 @@ class ExamEnglishCell: UITableViewCell {
     }()
     
     private lazy var star: ExamStar = {
-        let star = ExamStar(maxCount: 3, style: .normal)
+        let star = ExamStar(maxCount: 3, style: .big)
         star.backgroundColor = ExamHelper.orange()
         return star
     }()
