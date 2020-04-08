@@ -163,25 +163,73 @@ extension ExamViewModel {
         }
     }
     
-    func updateIndex(newLesson: Int, complete: ((Bool) -> Void)?) {
-        updateIndex(newIndex: (newLesson, 0), complete: complete)
+    ///章节下标
+    func queryLessonIndex() -> Int {
+        return currentIndex.lesson
     }
     
-    func updateIndex(newTopic: Int, complete: ((Bool) -> Void)?) {
-        updateIndex(newIndex: (0, newTopic), complete: complete)
+    ///尝试更新到上一题
+    func updatePreviousIndex() -> Bool {
+        return updateIndex(newIndex: getPreviousIndex())
+    }
+    ///是否存在上一题
+    func canUpdatePreviousIndex() -> Bool {
+        return getPreviousIndex() != currentIndex
+    }
+    ///尝试获取上一题下标
+    private func getPreviousIndex() -> (Int, Int) {
+        var previousIndex: (Int, Int)
+        if isLegal(index: (currentIndex.lesson, currentIndex.topic - 1)) {
+            previousIndex = (currentIndex.lesson, currentIndex.topic - 1)
+        } else {
+            if isLegal(index: (currentIndex.lesson - 1, 0)) {
+                if isLegal(index: (currentIndex.lesson - 1, lessons[currentIndex.lesson - 1].topics.count - 1)) {
+                    previousIndex = (currentIndex.lesson - 1, lessons[currentIndex.lesson - 1].topics.count - 1)
+                } else {
+                    previousIndex = currentIndex
+                }
+            } else {
+                previousIndex = currentIndex
+            }
+        }
+        return previousIndex
     }
     
-    func updateIndex(newIndex: (lesson: Int, topic: Int), complete:((Bool) -> Void)?) {
+    ///尝试更新到下一题
+    func updateNextIndex() -> Bool {
+        return updateIndex(newIndex: getNextIndex())
+    }
+    ///是否存在下一题
+    func canUpdateNextIndex() -> Bool {
+        return getNextIndex() != currentIndex
+    }
+    ///尝试获取下一题下标
+    private func getNextIndex() -> (Int, Int) {
+        var nextIndex: (Int, Int)
+        if isLegal(index: (currentIndex.lesson, currentIndex.topic + 1)) {
+            nextIndex = (currentIndex.lesson, currentIndex.topic + 1)
+        } else {
+            if isLegal(index: (currentIndex.lesson + 1, 0)) {
+                nextIndex = (currentIndex.lesson + 1, 0)
+            } else {
+                nextIndex = currentIndex
+            }
+        }
+        return nextIndex
+    }
+    
+    ///更新选中状态
+    func updateIndex(newIndex: (lesson: Int, topic: Int)) -> Bool {
         let success = (currentIndex != newIndex) && updateLessons(newIndex: newIndex)
         if success {
             currentIndex = newIndex
         }
-        complete?(success)
+        return success
     }
     
     ///更新数据源
     private func updateLessons(newIndex: (lesson: Int, topic: Int)) -> Bool {
-        let success = canUpdateLessons(index: currentIndex) && canUpdateLessons(index: newIndex)
+        let success = isLegal(index: currentIndex) && isLegal(index: newIndex)
         if success {
             lessons[currentIndex.lesson].topics[currentIndex.topic].isSelected = false
             lessons[newIndex.lesson].topics[newIndex.topic].isSelected = true
@@ -190,7 +238,7 @@ extension ExamViewModel {
     }
     
     ///边界检查
-    private func canUpdateLessons(index: (lesson: Int, topic: Int)) -> Bool {
+    private func isLegal(index: (lesson: Int, topic: Int)) -> Bool {
         var success: Bool
         //边界检查
         if (index.lesson < 0) || (lessons.count <= index.lesson) {
@@ -205,6 +253,8 @@ extension ExamViewModel {
         }
         return success
     }
+    
+    
     
     func loadMocks(complete: (() -> Void)?) {
         

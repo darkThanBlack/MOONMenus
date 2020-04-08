@@ -32,10 +32,31 @@ class ExamViewController: UIViewController {
     
     //MARK: Data
     
+    private func reloadDatas() {
+        self.tableView.reloadData()
+        self.collectionView.reloadData()
+        
+        self.pagesView.updateSelected(newIndex: viewInfo.queryLessonIndex())
+        
+        let canLeft = viewInfo.canUpdateNextIndex()
+        let canRight = viewInfo.canUpdatePreviousIndex()
+        if canLeft && canRight {
+            self.stepView.configView(state: .middle)
+        } else if canRight {
+            self.stepView.configView(state: .first)
+        } else if canLeft {
+            self.stepView.configView(state: .last)
+        } else {
+            self.stepView.configView(state: .disable)
+        }
+    }
+    
     private func loadRequestForExam() {
         viewInfo.loadMocks {
             self.pagesView.configView(titles: self.viewInfo.queryLessonTitles(), defIndex: 0)
+            self.collectionView.reloadData()
             self.tableView.reloadData()
+            self.stepView.configView(state: .first)
         }
     }
     
@@ -51,6 +72,7 @@ class ExamViewController: UIViewController {
         
         box.addSubview(pagesView)
         box.addSubview(tableView)
+        box.addSubview(stepView)
         box.addSubview(collectionView)
         
         loadConstraintsForExam(box: box)
@@ -66,7 +88,13 @@ class ExamViewController: UIViewController {
             make.top.equalTo(pagesView.snp.bottom).offset(0)
             make.left.equalTo(box.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-0)
+        }
+        stepView.snp.makeConstraints { (make) in
+            make.top.equalTo(tableView.snp.bottom).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
             make.bottom.equalTo(box.snp.bottom).offset(-0)
+            make.height.equalTo(48.0)
         }
         collectionView.snp.makeConstraints { (make) in
             make.top.equalTo(pagesView.snp.bottom).offset(0)
@@ -81,6 +109,14 @@ class ExamViewController: UIViewController {
         pagesView.backgroundColor = .white
         pagesView.bindView(delegate: self)
         return pagesView
+    }()
+    
+    private lazy var stepView: ExamStepView = {
+        let stepView = ExamStepView()
+        stepView.backgroundColor = .white
+        stepView.bindView(delegate: self)
+        stepView.configView(state: .disable)
+        return stepView
     }()
     
     private lazy var tableView: UITableView = {
@@ -132,10 +168,6 @@ class ExamViewController: UIViewController {
         
         return collectionView
     }()
-    
-    //MARK: Event
-    
-    //MARK: - SubClass
         
 }
 
@@ -270,13 +302,9 @@ extension ExamViewController: UITableViewDataSource {
 
 extension ExamViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewInfo.updateIndex(newIndex: (indexPath.section, indexPath.row)) { (success) in
-            if success {
-                self.pagesView.updateSelected(newIndex: indexPath.section)
-                self.pagesView.updateOpenState()
-                self.tableView.reloadData()
-                self.collectionView.reloadData()
-            }
+        if viewInfo.updateIndex(newIndex: (indexPath.section, indexPath.row)) {
+            self.pagesView.updateOpenState()
+            reloadDatas()
         }
     }
 }
@@ -310,14 +338,26 @@ extension ExamViewController: ExamPagesDelegate {
     func examPages(event: ExamPagesView.Event) {
         switch event {
         case .item(let index):
-            viewInfo.updateIndex(newLesson: index) { (success) in
-                if success {
-                    self.tableView.reloadData()
-                    self.collectionView.reloadData()
-                }
+            if viewInfo.updateIndex(newIndex: (index, 0)) {
+                reloadDatas()
             }
         case .arrow(let isOpened):
             collectionView.isHidden = !isOpened
+        }
+    }
+}
+
+extension ExamViewController: ExamStepViewDelegate {
+    func examStepEvent(event: ExamStepView.Event) {
+        switch event {
+        case .previous:
+            if viewInfo.updatePreviousIndex() {
+                reloadDatas()
+            }
+        case .next:
+            if viewInfo.updateNextIndex() {
+                reloadDatas()
+            }
         }
     }
 }
