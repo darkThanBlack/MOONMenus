@@ -38,8 +38,8 @@ class ExamViewController: UIViewController {
         
         self.pagesView.updateSelected(newIndex: viewInfo.queryLessonIndex())
         
-        let canLeft = viewInfo.canUpdateNextIndex()
-        let canRight = viewInfo.canUpdatePreviousIndex()
+        let canLeft = viewInfo.canUpdatePreviousIndex()
+        let canRight = viewInfo.canUpdateNextIndex()
         if canLeft && canRight {
             self.stepView.configView(state: .middle)
         } else if canRight {

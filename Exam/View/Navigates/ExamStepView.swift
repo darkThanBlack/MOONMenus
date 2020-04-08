@@ -42,11 +42,11 @@ class ExamStepView: UIView {
         case .first:
             leftButton.updateView(isEnabled: false)
             rightButton.updateView(isEnabled: true)
+        case .last:
+            leftButton.updateView(isEnabled: true)
+            rightButton.updateView(isEnabled: false)
         case .middle:
             leftButton.updateView(isEnabled: true)
-            rightButton.updateView(isEnabled: true)
-        case .last:
-            leftButton.updateView(isEnabled: false)
             rightButton.updateView(isEnabled: true)
         }
     }

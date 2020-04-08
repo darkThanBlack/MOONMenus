@@ -37,6 +37,8 @@ class ExamPagesView: UIView {
     ///更新选中项
     func updateSelected(newIndex: Int) {
         self.reloadSelectItem(selectedIndex: newIndex)
+        let width: CGFloat = (items.count > 0) ? items.first?.bounds.width ?? 0 : 0
+        contentView.setContentOffset(CGPoint(x: CGFloat(newIndex) * width, y: 0), animated: true)
     }
     
     ///触发按钮事件
