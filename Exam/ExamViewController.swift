@@ -29,7 +29,7 @@ class ExamViewController: UIViewController {
         super.viewWillAppear(animated)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            let vc = ExamHistoryViewController()
+//            let vc = ExamHistoryViewController.init()
 //            self.navigationController?.pushViewController(vc, animated: true)
 //        }
     }

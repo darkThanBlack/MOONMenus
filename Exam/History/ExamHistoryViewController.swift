@@ -23,10 +23,11 @@ class ExamHistoryViewModel {
         for index in 0...3 {
             let cellInfo = History()
             cellInfo.title = "今天 18:00"
-            cellInfo.star = 3
+            cellInfo.star = Int64(index)
             cellInfo.times = "用时：10分20秒"
             cells.append(cellInfo)
         }
+        complete?()
     }
 }
 
@@ -40,7 +41,7 @@ class ExamHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         loadViewsForExamHistory(box: view)
         
         loadRequestForExamHistory()
@@ -66,12 +67,18 @@ class ExamHistoryViewController: UIViewController {
     }
     
     private func loadViewsForExamHistory(box: UIView) {
+        box.addSubview(tableView)
         
         loadConstraintsForExamHistory(box: box)
     }
     
     private func loadConstraintsForExamHistory(box: UIView) {
-        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(box.snp.top).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0)
+        }
     }
     
     private lazy var tableView: UITableView = {
