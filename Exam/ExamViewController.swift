@@ -28,10 +28,14 @@ class ExamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            let vc = ExamHistoryViewController.init()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let vc = MakeHomeworkAlertController.init()
+            vc.bindEvent {
+                self.dismiss(animated: true, completion: nil)
+            }
+            self.present(vc, animated: true, completion: nil)
 //            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        }
     }
     
     //MARK: Data

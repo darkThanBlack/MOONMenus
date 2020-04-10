@@ -20,6 +20,17 @@ class MakeHomeworkAlertController: UIViewController {
     
     //MARK: Life Cycle
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        modalTransitionStyle = .crossDissolve
+        modalPresentationStyle = .overCurrentContext
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,10 +42,9 @@ class MakeHomeworkAlertController: UIViewController {
         
     }
     
-    //MARK: Data
-    
-    private func loadRequestForMakeHomework() {
-        
+    override func loadView() {
+        view = UIView(frame: .zero)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.50)
     }
     
     //MARK: View
@@ -52,7 +62,7 @@ class MakeHomeworkAlertController: UIViewController {
         box.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(box.snp.centerX)
-            make.top.equalTo(box.snp.top).offset(32.0)
+            make.top.equalTo(contentView.snp.bottom).offset(32.0)
             make.width.equalTo(22.0)
             make.height.equalTo(22.0)
         }
@@ -79,14 +89,14 @@ class MakeHomeworkAlertController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(4.0)
         }
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(20)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(14.0)
             make.left.equalTo(box.snp.left).offset(12.0)
             make.right.equalTo(box.snp.right).offset(-12.0)
-            make.height.equalTo(220.0)
+            make.height.equalTo(200.0)
         }
         nextButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(box.snp.centerX)
-            make.top.equalTo(tableView.snp.bottom).offset(15.0)
+            make.top.equalTo(tableView.snp.bottom).offset(9.0)
             make.bottom.equalTo(box.snp.bottom).offset(-24.0)
             make.width.equalTo(180.0)
             make.height.equalTo(44.0)
@@ -119,6 +129,7 @@ class MakeHomeworkAlertController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.isScrollEnabled = false
         tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
@@ -187,28 +198,27 @@ class MakeHomeworkAlertCell: UITableViewCell {
     }
         
     fileprivate func configCell(style: Style) {
-        
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 5.0
-        
+                
         switch style {
         case .normal:
-            contentView.layer.borderColor = ExamHelper.heavyOrange().cgColor
-            contentView.layer.borderWidth = 2.0
+            boxView.layer.borderColor = ExamHelper.heavyOrange().cgColor
+            boxView.layer.borderWidth = 2.0
             
             hintImageView.image = UIImage(named: "")
             titleLabel.text = "普通作业"
             tagsLabel.text = ""
             detailLabel.text = "适用机构：素质拓展类机构\n支持老师适用文字、图片、视频、语音布置单次课后作业。"
+            masksView.isHidden = true
             
         case .exam:
-            contentView.layer.borderColor = ExamHelper.border().cgColor
-            contentView.layer.borderWidth = 1.0
+            boxView.layer.borderColor = ExamHelper.border().cgColor
+            boxView.layer.borderWidth = 1.0
             
             hintImageView.image = UIImage(named: "")
             titleLabel.text = "测评作业"
             tagsLabel.text = "请使用电脑端布置"
             detailLabel.text = "适用机构：英语类机构\n支持老师布置课后练习题/英语口语测评，学生提交后系统自动阅卷。"
+            masksView.isHidden = false
         }
     }
     
@@ -219,13 +229,21 @@ class MakeHomeworkAlertCell: UITableViewCell {
         
         self.selectionStyle = .none
         
-        loadViewsForMakeHomeworkAlert(box: contentView)
+        self.contentView.addSubview(boxView)
+        boxView.snp.makeConstraints { (make) in
+            make.top.equalTo(contentView.snp.top).offset(6.0)
+            make.left.equalTo(contentView.snp.left).offset(0)
+            make.right.equalTo(contentView.snp.right).offset(-0)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-6.0).priority(.low)
+        }
+        
+        loadViewsForMakeHomeworkAlert(box: boxView)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     //MARK: View
     
     private func loadViewsForMakeHomeworkAlert(box: UIView) {
@@ -262,9 +280,23 @@ class MakeHomeworkAlertCell: UITableViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(8.0)
             make.left.equalTo(titleLabel.snp.left).offset(0)
             make.right.equalTo(box.snp.right).offset(-8.0)
-            make.bottom.equalTo(box.snp.bottom).offset(-12.0).priority(.low)
+            make.bottom.equalTo(box.snp.bottom).offset(-12.0)
+        }
+        masksView.snp.makeConstraints { (make) in
+            make.top.equalTo(box.snp.top).offset(0)
+            make.left.equalTo(box.snp.left).offset(0)
+            make.right.equalTo(box.snp.right).offset(-0)
+            make.bottom.equalTo(box.snp.bottom).offset(-0)
         }
     }
+    
+    private lazy var boxView: UIView = {
+        let boxView = UIView()
+        boxView.backgroundColor = .white
+        boxView.layer.masksToBounds = true
+        boxView.layer.cornerRadius = 5.0
+        return boxView
+    }()
     
     private lazy var hintImageView: UIImageView = {
         let hintImageView = UIImageView()
