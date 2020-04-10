@@ -19,7 +19,8 @@ class DemoViewController: UIViewController {
                                       .init(name: "CorrectHistoryAlertController",
                                             navigationStyle: .present),
                                       .init(name: "LessonViewController"),
-                                      .init(name: "ExamViewController")
+                                      .init(name: "ExamViewController"),
+                                      .init(name: "OrgT")
     ]
     
     //MARK: Life Cycle

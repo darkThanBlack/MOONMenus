@@ -65,6 +65,7 @@
 		A2C91786243E050B0018D8CD /* ExamHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C91785243E050B0018D8CD /* ExamHistoryCell.swift */; };
 		A2D4DB4E24370ADB00A77B26 /* ExamHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */; };
 		A2D4DB54243727E500A77B26 /* ExamOptionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */; };
+		A2DBC9E624401EB3005C54DE /* MakeHomeworkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBC9E524401EB3005C54DE /* MakeHomeworkAlertController.swift */; };
 		A2FB07BF243C2C4400BD0474 /* ExamPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */; };
 		A2FB07C2243C6FFC00BD0474 /* ExamNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07C1243C6FFC00BD0474 /* ExamNavigateCell.swift */; };
 		A2FB07C4243C704800BD0474 /* ExamNavigateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FB07C3243C704800BD0474 /* ExamNavigateHeader.swift */; };
@@ -156,6 +157,7 @@
 		A2C91785243E050B0018D8CD /* ExamHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHistoryCell.swift; sourceTree = "<group>"; };
 		A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHelper.swift; sourceTree = "<group>"; };
 		A2D4DB53243727E500A77B26 /* ExamOptionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamOptionCells.swift; sourceTree = "<group>"; };
+		A2DBC9E524401EB3005C54DE /* MakeHomeworkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeHomeworkAlertController.swift; sourceTree = "<group>"; };
 		A2FB07BE243C2C4400BD0474 /* ExamPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamPagesView.swift; sourceTree = "<group>"; };
 		A2FB07C1243C6FFC00BD0474 /* ExamNavigateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamNavigateCell.swift; sourceTree = "<group>"; };
 		A2FB07C3243C704800BD0474 /* ExamNavigateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamNavigateHeader.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				A293D0FB2435E22E0032806D /* ExamViewController.swift */,
 				A293D0FD2435E52F0032806D /* ExamViewModel.swift */,
 				A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */,
+				A2DBC9E524401EB3005C54DE /* MakeHomeworkAlertController.swift */,
 			);
 			path = Exam;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				882A2B82243A18A100D51D6C /* ExamCells.swift in Sources */,
 				881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */,
 				A293D1032436E98D0032806D /* ExamAnswerCell.swift in Sources */,
+				A2DBC9E624401EB3005C54DE /* MakeHomeworkAlertController.swift in Sources */,
 				A2BFF235242C41E2001B5B7A /* CorrectHistoryAlertController.swift in Sources */,
 				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
