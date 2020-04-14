@@ -30,6 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            nav.pushViewController(leesonVC, animated: true)
         }
         
+//        let text = NSString(string: item.data?.text ?? "")
+//        var idx: Int = 0
+//        let attr = NSMutableAttributedString(string: text as String, attributes: base)
+//        for detail in item.data?.result?.details ?? [] {
+//            let range: NSRange = text.range(of: detail.char ?? "", options: NSString.CompareOptions.literal, range: NSRange(location: idx, length: text.length - idx))
+//            idx = range.location + range.length
+////                guard let range = text.range(of: detail.char ?? "") else { return }
+////                text.removeSubrange(range)
+//            attr.addAttributes(detail.queryTextStyle(), range: range)
+
         return true
     }
 
