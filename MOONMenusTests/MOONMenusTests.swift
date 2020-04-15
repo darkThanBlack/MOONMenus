@@ -13,6 +13,9 @@ class MOONMenusTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        AppDelegate().configAttrs(string: "test for moon. Other test for Moon.")
+        
     }
 
     override func tearDown() {

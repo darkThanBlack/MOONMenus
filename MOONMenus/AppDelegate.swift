@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let leesonVC = CorrectingViewController()
 //            nav.pushViewController(leesonVC, animated: true)
         }
-        
+                
 //        let text = NSString(string: item.data?.text ?? "")
 //        var idx: Int = 0
 //        let attr = NSMutableAttributedString(string: text as String, attributes: base)
@@ -43,6 +43,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func configAttrs(string: String?) -> NSAttributedString {
+        let text = NSString(string: string ?? "")
+        var idx: Int = 0
+        let attr = NSMutableAttributedString(string: text as String, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0)])
+        
+        let normal = [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        let green = [NSAttributedString.Key.font: UIColor.green]
+        let red = [NSAttributedString.Key.font: UIColor.red]
+        
+        for index in 0..<4 {
+            let range: NSRange = text.range(of: "moon", options: NSString.CompareOptions.literal, range: NSRange(location: idx, length: text.length - idx))
+            idx = range.location + range.length
+            if idx > text.length - 1 {
+                break
+            }
+            //                guard let range = text.range(of: detail.char ?? "") else { return }
+            //                text.removeSubrange(range)
+            attr.addAttributes( (index % 2 == 0) ? green : red, range: range)
+        }
+        return attr
+    }
 
 }
 
