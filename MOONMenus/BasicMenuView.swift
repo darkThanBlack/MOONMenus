@@ -9,11 +9,6 @@
 import UIKit
 import CoreGraphics
 
-protocol BasicMenuDelegate {
-    
-    func basicMenuStateWillChange(state: MenuState)
-}
-
 class BasicMenuView: UIView {
     
     var config = MenuConfigs()

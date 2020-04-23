@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubMenuView: UIView, BasicMenuDelegate {
+class SubMenuView: UIView {
     
     var items: [MenuItem] = []
     
@@ -22,10 +22,6 @@ class SubMenuView: UIView, BasicMenuDelegate {
         for item in self.items {
             self.addSubview(item)
         }
-    }
-    
-    func basicMenuStateWillChange(state: MenuState) {
-        
     }
     
     override init(frame: CGRect) {

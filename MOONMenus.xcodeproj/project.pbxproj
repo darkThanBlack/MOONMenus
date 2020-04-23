@@ -11,7 +11,6 @@
 		881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BE9D4241E242500C06290 /* LessonViewModel.swift */; };
 		881BE9D7241E308700C06290 /* SubLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BE9D6241E308700C06290 /* SubLessonCell.swift */; };
 		882A2B82243A18A100D51D6C /* ExamCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A2B81243A18A100D51D6C /* ExamCells.swift */; };
-		885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F641F23F939C60089FDD3 /* MenuRootController.swift */; };
 		885F642223F98C9F0089FDD3 /* SubMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F642123F98C9F0089FDD3 /* SubMenuView.swift */; };
 		88AB65C8243A3B3C00311F50 /* ExamEnglishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB65C7243A3B3C00311F50 /* ExamEnglishCell.swift */; };
 		88AB65CB243ADAFF00311F50 /* ExamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB65CA243ADAFF00311F50 /* ExamHeader.swift */; };
@@ -19,10 +18,11 @@
 		88AE58F623F7D8C300127C8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88AE58F523F7D8C300127C8E /* Assets.xcassets */; };
 		88AE590423F7D8C400127C8E /* MOONMenusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE590323F7D8C400127C8E /* MOONMenusTests.swift */; };
 		88AE590F23F7D8C400127C8E /* MOONMenusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE590E23F7D8C400127C8E /* MOONMenusUITests.swift */; };
-		88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE591D23F7DDCE00127C8E /* MenuCore.swift */; };
 		88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE591F23F7F58700127C8E /* BasicMenuView.swift */; };
 		88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE592123F7F5A400127C8E /* MenuConfigs.swift */; };
 		88B351A723FA99C00051C34C /* MOONMenuSkin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */; };
+		88F6A707245141E800A62E51 /* EnglishTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6A706245141E800A62E51 /* EnglishTextViewController.swift */; };
+		88F6A709245186AB00A62E51 /* MOONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6A708245186AB00A62E51 /* MOONMenu.swift */; };
 		88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB1B052403B8BB006A48AA /* MenuItem.swift */; };
 		88FB1B082403E1D4006A48AA /* ItemConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB1B072403E1D4006A48AA /* ItemConfigs.swift */; };
 		88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */; };
@@ -97,7 +97,6 @@
 		881BE9D4241E242500C06290 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		881BE9D6241E308700C06290 /* SubLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonCell.swift; sourceTree = "<group>"; };
 		882A2B81243A18A100D51D6C /* ExamCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamCells.swift; sourceTree = "<group>"; };
-		885F641F23F939C60089FDD3 /* MenuRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRootController.swift; sourceTree = "<group>"; };
 		885F642123F98C9F0089FDD3 /* SubMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuView.swift; sourceTree = "<group>"; };
 		88AB65C7243A3B3C00311F50 /* ExamEnglishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamEnglishCell.swift; sourceTree = "<group>"; };
 		88AB65CA243ADAFF00311F50 /* ExamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamHeader.swift; sourceTree = "<group>"; };
@@ -111,10 +110,11 @@
 		88AE590A23F7D8C400127C8E /* MOONMenusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOONMenusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88AE590E23F7D8C400127C8E /* MOONMenusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONMenusUITests.swift; sourceTree = "<group>"; };
 		88AE591023F7D8C400127C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88AE591D23F7DDCE00127C8E /* MenuCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCore.swift; sourceTree = "<group>"; };
 		88AE591F23F7F58700127C8E /* BasicMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuView.swift; sourceTree = "<group>"; };
 		88AE592123F7F5A400127C8E /* MenuConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigs.swift; sourceTree = "<group>"; };
 		88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MOONMenuSkin.bundle; sourceTree = "<group>"; };
+		88F6A706245141E800A62E51 /* EnglishTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTextViewController.swift; sourceTree = "<group>"; };
+		88F6A708245186AB00A62E51 /* MOONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONMenu.swift; sourceTree = "<group>"; };
 		88FB1B052403B8BB006A48AA /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		88FB1B072403E1D4006A48AA /* ItemConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemConfigs.swift; sourceTree = "<group>"; };
 		88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONSegment.swift; sourceTree = "<group>"; };
@@ -260,8 +260,7 @@
 				88AE58EC23F7D8C000127C8E /* AppDelegate.swift */,
 				A293D0F6243583E40032806D /* DemoViewController.swift */,
 				88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */,
-				88AE591D23F7DDCE00127C8E /* MenuCore.swift */,
-				885F641F23F939C60089FDD3 /* MenuRootController.swift */,
+				88F6A708245186AB00A62E51 /* MOONMenu.swift */,
 				88AE592123F7F5A400127C8E /* MenuConfigs.swift */,
 				88AE591F23F7F58700127C8E /* BasicMenuView.swift */,
 				885F642123F98C9F0089FDD3 /* SubMenuView.swift */,
@@ -359,6 +358,7 @@
 				A293D0FF2436DB4E0032806D /* View */,
 				A293D0F92435E0180032806D /* ExamPageViewController.swift */,
 				A293D0FB2435E22E0032806D /* ExamViewController.swift */,
+				88F6A706245141E800A62E51 /* EnglishTextViewController.swift */,
 				A293D0FD2435E52F0032806D /* ExamViewModel.swift */,
 				A2D4DB4D24370ADB00A77B26 /* ExamHelper.swift */,
 				A2DBC9E524401EB3005C54DE /* MakeHomeworkAlertController.swift */,
@@ -631,13 +631,13 @@
 				A26D2BAE241F78D9005666AF /* LessonDetailViewController.swift in Sources */,
 				A2BB62442421CB6D0020A85B /* CorrectingViewModel.swift in Sources */,
 				A2BB62462421F1650020A85B /* CorrectingCell.swift in Sources */,
+				88F6A707245141E800A62E51 /* EnglishTextViewController.swift in Sources */,
 				A2BB6248242216920020A85B /* CorrectingTextCell.swift in Sources */,
 				A2BB623F2421C0350020A85B /* CorrectingHelper.swift in Sources */,
 				A26D2BB5241FBD22005666AF /* LessonSelectHelper.swift in Sources */,
 				88AE58ED23F7D8C000127C8E /* AppDelegate.swift in Sources */,
 				A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */,
 				A2C91786243E050B0018D8CD /* ExamHistoryCell.swift in Sources */,
-				88AE591E23F7DDCE00127C8E /* MenuCore.swift in Sources */,
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
 				88AB65CB243ADAFF00311F50 /* ExamHeader.swift in Sources */,
 				A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */,
@@ -660,7 +660,6 @@
 				88AB65C8243A3B3C00311F50 /* ExamEnglishCell.swift in Sources */,
 				A293D0FC2435E22E0032806D /* ExamViewController.swift in Sources */,
 				A26D2BBC24206373005666AF /* SubLessonSelectViewController.swift in Sources */,
-				885F642023F939C60089FDD3 /* MenuRootController.swift in Sources */,
 				A2C91781243DADC60018D8CD /* ExamArrow.swift in Sources */,
 				A26D2BB3241FB9EF005666AF /* LessonSelectViewController.swift in Sources */,
 				882A2B82243A18A100D51D6C /* ExamCells.swift in Sources */,
@@ -672,6 +671,7 @@
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
 				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
+				88F6A709245186AB00A62E51 /* MOONMenu.swift in Sources */,
 				A2C9177F243DA7B20018D8CD /* ExamStepView.swift in Sources */,
 				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
 				A2FB07C4243C704800BD0474 /* ExamNavigateHeader.swift in Sources */,

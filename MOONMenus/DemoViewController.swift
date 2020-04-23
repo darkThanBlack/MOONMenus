@@ -20,7 +20,7 @@ class DemoViewController: UIViewController {
                                             navigationStyle: .present),
                                       .init(name: "LessonViewController"),
                                       .init(name: "ExamViewController"),
-                                      .init(name: "OrgT")
+                                      .init(name: "EnglishTextViewController")
     ]
     
     //MARK: Life Cycle
