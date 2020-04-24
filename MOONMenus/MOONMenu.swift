@@ -10,7 +10,11 @@ import UIKit
 
 class MOONMenu {
     static let core = MOONMenu()
-    private init() {}
+    private let key = "kMOONMenuConfigKey"
+    private init() {
+    }
+    
+    let config = Config()
     
     func start() {
         window.isHidden = false
@@ -29,9 +33,29 @@ class MOONMenu {
         return rootVC
     }()
     
-    fileprivate class Config {
-        static let core = MOONMenu.Config()
-        private init() {}
+    @objc(MOONMenuConfig)
+    class Config: NSObject, NSCoding {
+        func encode(with coder: NSCoder) {
+            coder.encode(state, forKey: "state")
+            coder.encode(absorb, forKey: "state")
+            coder.encode(openSize, forKey: "openSize")
+            coder.encode(closeSize, forKey: "closeSize")
+            coder.encode(openCenter, forKey: "openCenter")
+            coder.encode(closeCenter, forKey: "closeCenter")
+        }
+        
+        required init?(coder: NSCoder) {
+            state = coder.decodeObject(forKey: "state") as? MenuState ?? .isClose
+            absorb = coder.decodeObject(forKey: "absorb") as? AbsorbMode ?? .system
+            openSize = coder.decodeCGSize(forKey: "openSize")
+            closeSize = coder.decodeCGSize(forKey: "closeSize")
+            openCenter = coder.decodeCGPoint(forKey: "openCenter")
+            closeCenter = coder.decodeCGPoint(forKey: "closeCenter")
+        }
+        
+        override init() {
+            
+        }
         
         enum MenuState {
             case isOpen
@@ -85,7 +109,7 @@ class MOONMenu {
         
         private lazy var basicMenu: Basic = {
             let basicMenu = Basic()
-            basicMenu.backgroundColor = .white
+            basicMenu.backgroundColor = .clear
             basicMenu.layer.cornerRadius = 15.0
             basicMenu.layer.masksToBounds = true
             
@@ -111,8 +135,9 @@ class MOONMenu {
     @objc(MOONMenuBasic)
     fileprivate class Basic: UIView {
         
-        private let config = Config.core
+        private let config = MOONMenu.core.config
         
+        private var isUpdating = false
         private var beginPoint = CGPoint.zero
         
         override init(frame: CGRect) {
@@ -148,6 +173,7 @@ class MOONMenu {
                 effect = UIBlurEffect(style: .extraLight)
             }
             let visualView = UIVisualEffectView(effect: effect)
+            visualView.alpha = 0.0
             return visualView
         }()
         
@@ -172,8 +198,8 @@ extension MOONMenu.RootController {
         view.addSubview(closeView)
         view.addSubview(basicMenu)
         
-        basicMenu.bounds = CGRect(origin: .zero, size: MOONMenu.Config.core.closeSize)
-        basicMenu.center = MOONMenu.Config.core.closeCenter
+        basicMenu.bounds = CGRect(origin: .zero, size: MOONMenu.core.config.closeSize)
+        basicMenu.center = MOONMenu.core.config.closeCenter
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,7 +216,7 @@ extension MOONMenu.RootController {
     
     @objc private func updateMunuEvent() {
         basicMenu.updateMunuState {
-            switch MOONMenu.Config.core.state {
+            switch MOONMenu.core.config.state {
             case .isOpen:
                 self.closeView.isHidden = false
             case .isClose:
@@ -206,6 +232,7 @@ extension MOONMenu.Basic {
     //MARK: Interface
     
     func updateMunuState(complete: (() -> Void)?) {
+        isUpdating = true
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
             switch self.config.state {
             case .isOpen:
@@ -235,6 +262,7 @@ extension MOONMenu.Basic {
             }
             complete?()
             
+            self.isUpdating = false
             //TODO: Fade
         }
     }
@@ -268,15 +296,17 @@ extension MOONMenu.Basic {
     //MARK: Private
     
     private func touchesHandle() {
-        switch config.state {
-        case .isOpen:
-            break
-        case .isClose:
-            let result = countingAdaptPosition()
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
-                self.center = result
-            }) { (finished) in
-                self.config.closeCenter = self.center
+        if !isUpdating {
+            switch config.state {
+            case .isOpen:
+                break
+            case .isClose:
+                let result = countingAdaptPosition()
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.center = result
+                }) { (finished) in
+                    self.config.closeCenter = self.center
+                }
             }
         }
     }
