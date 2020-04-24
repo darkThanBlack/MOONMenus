@@ -8,16 +8,35 @@
 
 import UIKit
 
-class MOONMenu {
+class MOONMenu: NSObject {
     static let core = MOONMenu()
     private let key = "kMOONMenuConfigKey"
-    private init() {
+    private override init() {
+        let jsonString = UserDefaults.standard.string(forKey: key)
+        print("MOON__Log__init  \(jsonString ?? "")")
+        guard let data = jsonString?.data(using: .utf8) else {
+            config = Config()
+            return
+        }
+        config = (try? JSONDecoder().decode(Config.self, from: data)) ?? Config()
     }
     
-    let config = Config()
+    deinit {
+        
+    }
+    
+    let config: Config
     
     func start() {
         window.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            guard let data = try? JSONEncoder().encode(self.config) else { return }
+            guard let jsonString = String(data: data, encoding: .utf8) else { return }
+            print("MOON__Log__deinit  \(jsonString)")
+            UserDefaults.standard.set(jsonString, forKey: self.key)
+            UserDefaults.standard.synchronize()
+        }
     }
     
     private lazy var window: Window = {
@@ -34,7 +53,7 @@ class MOONMenu {
     }()
     
     @objc(MOONMenuConfig)
-    class Config: NSObject, NSCoding {
+    class Config: NSObject, NSCoding, Codable {
         func encode(with coder: NSCoder) {
             coder.encode(state, forKey: "state")
             coder.encode(absorb, forKey: "state")
@@ -57,13 +76,13 @@ class MOONMenu {
             
         }
         
-        enum MenuState {
+        enum MenuState: String, Codable {
             case isOpen
             case isClose
         }
         var state = MenuState.isClose
         
-        enum AbsorbMode {
+        enum AbsorbMode: String, Codable {
             case system
             case edge
             case none
