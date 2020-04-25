@@ -171,7 +171,7 @@ class MOONMenu: NSObject {
         }()
         
         private lazy var display: Display = {
-            let display = Display()
+            let display = Display(items: [])
             return display
         }()
         
@@ -180,6 +180,163 @@ class MOONMenu: NSObject {
     @objc(MOONMenuDisplay)
     fileprivate class Display: UIView {
         
+        private var items: [Item] = []
+        private let more = Item(style: .more)
+        private let back = Item(style: .back)
+        
+        init(items: [Item]) {
+            super.init(frame: .zero)
+            
+            if items.count > 7 {
+                self.items[0...7] = items[0...7]
+                more.isHidden = false
+            } else {
+                self.items = items
+                more.isHidden = true
+            }
+            
+            for item in self.items {
+                self.addSubview(item)
+            }
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            let h_gap: CGFloat = 10.0
+            let v_gap: CGFloat = 10.0
+            let itemSize = CGSize(width: 80.0, height: 80.0)
+            let p0 = CGPoint(x: h_gap + (h_gap + itemSize.width) * 0, y: v_gap + (v_gap + itemSize.height) * 0)
+            let p1 = CGPoint(x: h_gap + itemSize.width * 1, y: p0.y)
+            let p2 = CGPoint(x: h_gap + itemSize.width * 2, y: p0.y)
+            let p3 = CGPoint(x: p0.x, y: v_gap + (v_gap + itemSize.height) * 1)
+            let p4 = CGPoint(x: p1.x, y: p3.y)
+            let p5 = CGPoint(x: p2.x, y: p3.y)
+            let p6 = CGPoint(x: p0.x, y: v_gap + (v_gap + itemSize.height) * 2)
+            let p7 = CGPoint(x: p1.x, y: p6.y)
+            let p8 = CGPoint(x: p2.x, y: p6.y)
+            
+            back.frame = CGRect(origin: p4, size: itemSize)
+            more.frame = CGRect(origin: p8, size: itemSize)
+            
+            for (index, item) in items.enumerated() {
+                switch items.count {
+                case 1:
+                    item.frame = CGRect(origin: p1, size: itemSize)
+                case 2:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p3, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p5, size: itemSize)
+                    default:
+                        break
+                    }
+                case 3:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p1, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p3, size: itemSize)
+                    case 2:
+                        item.frame = CGRect(origin: p5, size: itemSize)
+                    default:
+                        break
+                    }
+                case 4:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p0, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p2, size: itemSize)
+                    case 2:
+                        item.frame = CGRect(origin: p6, size: itemSize)
+                    case 3:
+                        item.frame = CGRect(origin: p8, size: itemSize)
+                    default:
+                        break
+                    }
+                case 5:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p1, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p3, size: itemSize)
+                    case 2:
+                        item.frame = CGRect(origin: p5, size: itemSize)
+                    case 3:
+                        item.frame = CGRect(origin: p6, size: itemSize)
+                    case 4:
+                        item.frame = CGRect(origin: p8, size: itemSize)
+                    default:
+                        break
+                    }
+                case 6:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p0, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p2, size: itemSize)
+                    case 2:
+                        item.frame = CGRect(origin: p3, size: itemSize)
+                    case 3:
+                        item.frame = CGRect(origin: p5, size: itemSize)
+                    case 4:
+                        item.frame = CGRect(origin: p6, size: itemSize)
+                    case 5:
+                        item.frame = CGRect(origin: p8, size: itemSize)
+                    default:
+                        break
+                    }
+                case 7:
+                    switch index {
+                    case 0:
+                        item.frame = CGRect(origin: p0, size: itemSize)
+                    case 1:
+                        item.frame = CGRect(origin: p1, size: itemSize)
+                    case 2:
+                        item.frame = CGRect(origin: p2, size: itemSize)
+                    case 3:
+                        item.frame = CGRect(origin: p3, size: itemSize)
+                    case 4:
+                        item.frame = CGRect(origin: p5, size: itemSize)
+                    case 5:
+                        item.frame = CGRect(origin: p6, size: itemSize)
+                    case 6:
+                        item.frame = CGRect(origin: p7, size: itemSize)
+                    default:
+                        break
+                    }
+                default:
+                    break
+                }
+            }
+            
+        }
+    }
+    
+    @objc(MOONMenuItem)
+    class Item: UIView {
+        enum Style {
+            case item
+            case more
+            case back
+        }
+        var style: Style = .item
+        
+        init(style: Style) {
+            super.init(frame: .zero)
+            
+            self.style = style
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     }
 }
 
