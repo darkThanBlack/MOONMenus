@@ -13,7 +13,6 @@ class MOONMenu: NSObject {
     private let key = "kMOONMenuConfigKey"
     private override init() {
         let jsonString = UserDefaults.standard.string(forKey: key)
-        print("MOON__Log__init  \(jsonString ?? "")")
         guard let data = jsonString?.data(using: .utf8) else {
             config = Config()
             return
@@ -21,22 +20,18 @@ class MOONMenu: NSObject {
         config = (try? JSONDecoder().decode(Config.self, from: data)) ?? Config()
     }
     
-    deinit {
-        
-    }
-    
     let config: Config
     
     func start() {
         window.isHidden = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            guard let data = try? JSONEncoder().encode(self.config) else { return }
-            guard let jsonString = String(data: data, encoding: .utf8) else { return }
-            print("MOON__Log__deinit  \(jsonString)")
-            UserDefaults.standard.set(jsonString, forKey: self.key)
-            UserDefaults.standard.synchronize()
-        }
+    }
+    
+    private func saveConfigs() {
+        guard let data = try? JSONEncoder().encode(self.config) else { return }
+        guard let jsonString = String(data: data, encoding: .utf8) else { return }
+        print("MOON__Log__deinit  \(jsonString)")
+        UserDefaults.standard.set(jsonString, forKey: self.key)
+        UserDefaults.standard.synchronize()
     }
     
     private lazy var window: Window = {
@@ -53,28 +48,7 @@ class MOONMenu: NSObject {
     }()
     
     @objc(MOONMenuConfig)
-    class Config: NSObject, NSCoding, Codable {
-        func encode(with coder: NSCoder) {
-            coder.encode(state, forKey: "state")
-            coder.encode(absorb, forKey: "state")
-            coder.encode(openSize, forKey: "openSize")
-            coder.encode(closeSize, forKey: "closeSize")
-            coder.encode(openCenter, forKey: "openCenter")
-            coder.encode(closeCenter, forKey: "closeCenter")
-        }
-        
-        required init?(coder: NSCoder) {
-            state = coder.decodeObject(forKey: "state") as? MenuState ?? .isClose
-            absorb = coder.decodeObject(forKey: "absorb") as? AbsorbMode ?? .system
-            openSize = coder.decodeCGSize(forKey: "openSize")
-            closeSize = coder.decodeCGSize(forKey: "closeSize")
-            openCenter = coder.decodeCGPoint(forKey: "openCenter")
-            closeCenter = coder.decodeCGPoint(forKey: "closeCenter")
-        }
-        
-        override init() {
-            
-        }
+    class Config: NSObject, Codable {
         
         enum MenuState: String, Codable {
             case isOpen
@@ -282,7 +256,7 @@ extension MOONMenu.Basic {
             complete?()
             
             self.isUpdating = false
-            //TODO: Fade
+            //TODO: Delay fade
         }
     }
     
@@ -314,6 +288,7 @@ extension MOONMenu.Basic {
     
     //MARK: Private
     
+    //TODO: Filter tap and pan gesture
     private func touchesHandle() {
         if !isUpdating {
             switch config.state {

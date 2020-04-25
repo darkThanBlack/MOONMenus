@@ -18,8 +18,6 @@
 		88AE58F623F7D8C300127C8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88AE58F523F7D8C300127C8E /* Assets.xcassets */; };
 		88AE590423F7D8C400127C8E /* MOONMenusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE590323F7D8C400127C8E /* MOONMenusTests.swift */; };
 		88AE590F23F7D8C400127C8E /* MOONMenusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE590E23F7D8C400127C8E /* MOONMenusUITests.swift */; };
-		88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE591F23F7F58700127C8E /* BasicMenuView.swift */; };
-		88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE592123F7F5A400127C8E /* MenuConfigs.swift */; };
 		88B351A723FA99C00051C34C /* MOONMenuSkin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */; };
 		88F6A707245141E800A62E51 /* EnglishTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6A706245141E800A62E51 /* EnglishTextViewController.swift */; };
 		88F6A709245186AB00A62E51 /* MOONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6A708245186AB00A62E51 /* MOONMenu.swift */; };
@@ -110,8 +108,6 @@
 		88AE590A23F7D8C400127C8E /* MOONMenusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOONMenusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88AE590E23F7D8C400127C8E /* MOONMenusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONMenusUITests.swift; sourceTree = "<group>"; };
 		88AE591023F7D8C400127C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88AE591F23F7F58700127C8E /* BasicMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMenuView.swift; sourceTree = "<group>"; };
-		88AE592123F7F5A400127C8E /* MenuConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigs.swift; sourceTree = "<group>"; };
 		88B351A623FA99C00051C34C /* MOONMenuSkin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MOONMenuSkin.bundle; sourceTree = "<group>"; };
 		88F6A706245141E800A62E51 /* EnglishTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTextViewController.swift; sourceTree = "<group>"; };
 		88F6A708245186AB00A62E51 /* MOONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOONMenu.swift; sourceTree = "<group>"; };
@@ -261,8 +257,6 @@
 				A293D0F6243583E40032806D /* DemoViewController.swift */,
 				88FF2AAF23FE811600B7CB92 /* MOONSegment.swift */,
 				88F6A708245186AB00A62E51 /* MOONMenu.swift */,
-				88AE592123F7F5A400127C8E /* MenuConfigs.swift */,
-				88AE591F23F7F58700127C8E /* BasicMenuView.swift */,
 				885F642123F98C9F0089FDD3 /* SubMenuView.swift */,
 				88FB1B052403B8BB006A48AA /* MenuItem.swift */,
 				88FB1B072403E1D4006A48AA /* ItemConfigs.swift */,
@@ -654,7 +648,6 @@
 				A26D2BAB241F4E0A005666AF /* LessonAuthorView.swift in Sources */,
 				A26D2BA5241B2D3B005666AF /* CapacityAlertController.swift in Sources */,
 				A26D2BA9241B91E9005666AF /* LessonCell.swift in Sources */,
-				88AE592223F7F5A400127C8E /* MenuConfigs.swift in Sources */,
 				A2C91784243E04BE0018D8CD /* ExamHistoryViewController.swift in Sources */,
 				A2BB624A2422616C0020A85B /* CorrectingVoiceCell.swift in Sources */,
 				88AB65C8243A3B3C00311F50 /* ExamEnglishCell.swift in Sources */,
@@ -670,7 +663,6 @@
 				881BE9D3241E23F600C06290 /* SubLessonViewController.swift in Sources */,
 				88FB1B062403B8BB006A48AA /* MenuItem.swift in Sources */,
 				A26D2BA1241B22B6005666AF /* LessonHelper.swift in Sources */,
-				88AE592023F7F58700127C8E /* BasicMenuView.swift in Sources */,
 				88F6A709245186AB00A62E51 /* MOONMenu.swift in Sources */,
 				A2C9177F243DA7B20018D8CD /* ExamStepView.swift in Sources */,
 				88FF2AB023FE811600B7CB92 /* MOONSegment.swift in Sources */,
