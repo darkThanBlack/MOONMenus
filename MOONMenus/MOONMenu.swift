@@ -171,7 +171,14 @@ class MOONMenu: NSObject {
         }()
         
         private lazy var display: Display = {
-            let display = Display(items: [])
+            var items: [Item] = []
+            for index in 0..<9 {
+                let item = Item(style: .item(title: "title\(index)"))
+                items.append(item)
+            }
+            
+            let display = Display(items: items, backAction: nil)
+            display.alpha = 0.0
             return display
         }()
         
@@ -184,11 +191,12 @@ class MOONMenu: NSObject {
         private let more = Item(style: .more)
         private let back = Item(style: .back)
         
-        init(items: [Item]) {
+        init(items: [Item], backAction: (() -> Void)?) {
             super.init(frame: .zero)
             
+            back.isHidden = backAction == nil ? true : false
             if items.count > 7 {
-                self.items[0...7] = items[0...7]
+                self.items = Array(items[0...6])
                 more.isHidden = false
             } else {
                 self.items = items
@@ -196,8 +204,14 @@ class MOONMenu: NSObject {
             }
             
             for item in self.items {
+                
+                item.layer.borderWidth = 0.5
+                item.layer.borderColor = UIColor.black.cgColor
+                
                 self.addSubview(item)
             }
+            self.addSubview(more)
+            self.addSubview(back)
         }
         
         required init?(coder: NSCoder) {
@@ -207,12 +221,12 @@ class MOONMenu: NSObject {
         override func layoutSubviews() {
             super.layoutSubviews()
             
-            let h_gap: CGFloat = 10.0
-            let v_gap: CGFloat = 10.0
+            let h_gap: CGFloat = 15.0
+            let v_gap: CGFloat = 15.0
             let itemSize = CGSize(width: 80.0, height: 80.0)
             let p0 = CGPoint(x: h_gap + (h_gap + itemSize.width) * 0, y: v_gap + (v_gap + itemSize.height) * 0)
-            let p1 = CGPoint(x: h_gap + itemSize.width * 1, y: p0.y)
-            let p2 = CGPoint(x: h_gap + itemSize.width * 2, y: p0.y)
+            let p1 = CGPoint(x: h_gap + (h_gap + itemSize.width) * 1, y: p0.y)
+            let p2 = CGPoint(x: h_gap + (h_gap + itemSize.width) * 2, y: p0.y)
             let p3 = CGPoint(x: p0.x, y: v_gap + (v_gap + itemSize.height) * 1)
             let p4 = CGPoint(x: p1.x, y: p3.y)
             let p5 = CGPoint(x: p2.x, y: p3.y)
@@ -322,21 +336,64 @@ class MOONMenu: NSObject {
     @objc(MOONMenuItem)
     class Item: UIView {
         enum Style {
-            case item
+            case item(title: String)
             case more
             case back
         }
-        var style: Style = .item
+        private var style: Style = .item(title: "")
         
         init(style: Style) {
             super.init(frame: .zero)
             
             self.style = style
+            switch self.style {
+            case .item(let title):
+                titleLabel.text = title
+            case .more:
+                titleLabel.text = "更多"
+            case .back:
+                break
+            }
+            
+            picture.layer.borderWidth = 0.5
+            picture.layer.borderColor = UIColor.blue.cgColor
+            
+            titleLabel.layer.borderWidth = 0.5
+            titleLabel.layer.borderColor = UIColor.green.cgColor
+            
+            addSubview(picture)
+            addSubview(titleLabel)
         }
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            picture.frame = CGRect(x: 16.0, y: 8.0, width: self.bounds.width - 32.0, height: self.bounds.width - 32.0)
+            
+            titleLabel.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+            titleLabel.sizeToFit()
+            titleLabel.center = CGPoint(x: picture.frame.midX, y: picture.frame.maxY + titleLabel.bounds.maxY / 2.0 + 4.0)
+        }
+        
+        private lazy var picture: UIImageView = {
+            let picture = UIImageView()
+            return picture
+        }()
+        
+        private lazy var titleLabel: UILabel = {
+            let titleLabel = UILabel()
+            titleLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .regular)
+            titleLabel.textColor = .black
+            titleLabel.text = " "
+            titleLabel.numberOfLines = 0
+            titleLabel.textAlignment = .center
+            return titleLabel
+        }()
+        
     }
 }
 
