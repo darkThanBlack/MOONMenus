@@ -38,6 +38,7 @@ extension MOONMenu.Display {
         
         for option in currentOptions {
             let item = MOONMenu.Item(style: .item(title: option.title))
+            item.configItem(skin: option.skin)
             item.bindItem {
                 if option.subOption.count > 0 {
                     self.openSubMenu(options: option.subOption)

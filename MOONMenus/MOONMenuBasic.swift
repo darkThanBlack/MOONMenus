@@ -45,6 +45,8 @@ extension MOONMenu.Basic {
             
             self.action?(.updated(state: self.config.state))
             
+            MOONMenu.core.saveConfigs()
+            
             //TODO: Delay fade
         }
     }

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        MOONMenu.core.config.debuging = true
+        MOONMenu.core.config.debuging = false
         
         var opts: [MOONMenu.Config.Option] = []
         for index in 0..<21 {
@@ -25,12 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for idx in 0..<3 {
                 let optttt = MOONMenu.Config.Option()
                 optttt.title = "title: \(idx)"
+                optttt.skin = "moonShadow"
                 opt.subOption.append(optttt)
             }
             opts.append(opt)
         }
         MOONMenu.core.config.options = opts
-
+        
         MOONMenu.core.start()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)

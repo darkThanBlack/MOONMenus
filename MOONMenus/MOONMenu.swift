@@ -19,10 +19,6 @@ class MOONMenu: NSObject {
     ///起飞
     func start() {
         window.isHidden = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
-            self.saveConfigs()
-        }
     }
     
     private override init() {
@@ -34,7 +30,7 @@ class MOONMenu: NSObject {
         config = (try? JSONDecoder().decode(Config.self, from: data)) ?? Config()
     }
     
-    private func saveConfigs() {
+    func saveConfigs() {
         guard let data = try? JSONEncoder().encode(self.config) else { return }
         guard let jsonString = String(data: data, encoding: .utf8) else { return }
         if config.debuging {
@@ -71,7 +67,7 @@ class MOONMenu: NSObject {
         ///状态:开启/关闭
         var state = MenuState.isClose
         
-        var debuging = true
+        var debuging = false
         
         enum AbsorbMode: String, Codable {
             case system
@@ -103,6 +99,8 @@ class MOONMenu: NSObject {
             var action: (() -> Void)?
             
             var subOption: [Option] = []
+            
+            var skin: String?
             
             func encode(to encoder: Encoder) throws {}
             required init(from decoder: Decoder) throws {}
@@ -240,6 +238,9 @@ class MOONMenu: NSObject {
         override init(frame: CGRect) {
             super.init(frame: frame)
             
+            more.configItem(skin: "moonmenu_dark_more")
+            back.configItem(skin: "moonmenu_dark_back")
+            
             self.addSubview(more)
             self.addSubview(back)
         }
@@ -262,6 +263,11 @@ class MOONMenu: NSObject {
         private var action: (() -> Void)?
         func bindItem(action: (() -> Void)?) {
             self.action = action
+        }
+        
+        func configItem(skin: String?) {
+            let imageName: String = skin ?? "moonmenu_item_dark_\(arc4random_uniform(19))"
+            picture.image = MOONMenuHelper.queryImage(named: imageName)
         }
         
         init(style: Style) {
@@ -316,6 +322,7 @@ class MOONMenu: NSObject {
         
         private lazy var picture: UIImageView = {
             let picture = UIImageView()
+            picture.contentMode = .scaleAspectFit
             return picture
         }()
         
