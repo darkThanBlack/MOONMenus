@@ -153,8 +153,8 @@ class ExamViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var flowLayout: UICollectionViewFlowLayout = {
-        let flowLayout = UICollectionViewFlowLayout()
+    private lazy var flowLayout: LinearLayout = {
+        let flowLayout = LinearLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.size.width, height: 48.0)
         flowLayout.minimumLineSpacing = 12.0
@@ -162,6 +162,28 @@ class ExamViewController: UIViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 12, right: 16)
         return flowLayout
     }()
+    
+    ///从左至右排列，固定间距
+    private class LinearLayout: UICollectionViewFlowLayout {
+        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+                guard let answer = super.layoutAttributesForElements(in: rect) else { return nil }
+
+                for i in 1..<answer.count {
+                    let currentAttributes = answer[i]
+                    let previousAttributes = answer[i - 1]
+                    
+                    let maximumSpacing: CGFloat = 12.0  //固定间距
+                    let origin = previousAttributes.frame.maxX
+
+                    if (((origin + maximumSpacing + currentAttributes.frame.size.width) < self.collectionViewContentSize.width) && (currentAttributes.frame.origin.x > previousAttributes.frame.origin.x)) {
+                        var frame = currentAttributes.frame
+                        frame.origin.x = origin + maximumSpacing
+                        currentAttributes.frame = frame
+                    }
+                }
+                return answer
+        }
+    }
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
