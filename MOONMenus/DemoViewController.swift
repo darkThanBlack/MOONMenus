@@ -20,8 +20,10 @@ class DemoViewController: UIViewController {
                                             navigationStyle: .present),
                                       .init(name: "LessonViewController"),
                                       .init(name: "ExamViewController"),
-                                      .init(name: "ClassEndHistoryAlertController", navigationStyle: .present)
-    ]
+                                      .init(name: "ClassEndHistoryAlertController", navigationStyle: .present),
+                                      .init(name: "ClassEndHintAlertController", navigationStyle: .present),
+                                      .init(name: "EnglishTextViewController")
+        ]
     
     //MARK: Life Cycle
     
@@ -151,7 +153,15 @@ extension DemoViewController: UITableViewDelegate {
         
         let projName = Bundle.main.infoDictionary?[kCFBundleExecutableKey as String]
         let vcName = "\(cellInfo.name)"
-        let subVC = (NSClassFromString("\(projName ?? "").\(vcName)") as! UIViewController.Type).init()
+        var subVC: UIViewController
+
+        if vcName == "ClassEndHistoryAlertController" {
+            subVC = ClassEndHistory.AlertController()
+        } else if vcName == "ClassEndHintAlertController" {
+            subVC = ClassEndHint.AlertController(studentName: "徐佳琪", className: "爵士高级课")
+        } else {
+            subVC = (NSClassFromString("\(projName ?? "").\(vcName)") as! UIViewController.Type).init()
+        }
         
         switch cellInfo.navigationStyle {
         case .push:

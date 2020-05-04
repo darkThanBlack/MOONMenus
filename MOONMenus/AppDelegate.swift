@@ -16,33 +16,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        MenuCore.core.start()
+        MOONMenu.core.config.debuging = true
+        
+        var opts: [MOONMenu.Config.Option] = []
+        for index in 0..<21 {
+            let opt = MOONMenu.Config.Option()
+            opt.title = "title: \(index)"
+            for idx in 0..<3 {
+                let optttt = MOONMenu.Config.Option()
+                optttt.title = "title: \(idx)"
+                opt.subOption.append(optttt)
+            }
+            opts.append(opt)
+        }
+        MOONMenu.core.config.options = opts
+
+        MOONMenu.core.start()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         let nav = UINavigationController.init(rootViewController: DemoViewController.init())
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            let historyVC = CorrectHistoryAlertController()
-//            nav.present(historyVC, animated: true, completion: nil)
-//            let leesonVC = CorrectingViewController()
-//            nav.pushViewController(leesonVC, animated: true)
-        }
-                
-//        let text = NSString(string: item.data?.text ?? "")
-//        var idx: Int = 0
-//        let attr = NSMutableAttributedString(string: text as String, attributes: base)
-//        for detail in item.data?.result?.details ?? [] {
-//            let range: NSRange = text.range(of: detail.char ?? "", options: NSString.CompareOptions.literal, range: NSRange(location: idx, length: text.length - idx))
-//            idx = range.location + range.length
-////                guard let range = text.range(of: detail.char ?? "") else { return }
-////                text.removeSubrange(range)
-//            attr.addAttributes(detail.queryTextStyle(), range: range)
-
         return true
     }
-
+    
     func configAttrs(string: String?) -> NSAttributedString {
         let text = NSString(string: string ?? "")
         var idx: Int = 0

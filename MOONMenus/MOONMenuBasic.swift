@@ -1,98 +1,69 @@
 //
-//  BasicMenuView.swift
+//  MOONMenuBasic.swift
 //  MOONMenus
 //
-//  Created by 月之暗面 on 2020/2/15.
+//  Created by 月之暗面 on 2020/4/26.
 //  Copyright © 2020 月之暗面. All rights reserved.
 //
 
 import UIKit
-import CoreGraphics
 
-protocol BasicMenuDelegate {
+extension MOONMenu.Basic {
     
-    func basicMenuStateWillChange(state: MenuState)
-}
-
-class BasicMenuView: UIView {
+    //MARK: Interface
     
-    var config = MenuConfigs()
-    
-    private lazy var bgView: UIImageView = {
-        let bgView = UIImageView.init(image: UIImage.init(named: "moonShadow"))
-        bgView.contentMode = .scaleAspectFill
-        return bgView
-    }()
-    
-//MARK: Life Cycle
-    
-    required init(customConfig: MenuConfigs?) {
-        if customConfig != nil {
-            config = customConfig!
-        }
-        super.init(frame: config.queryMenuFrame())
-        
-        self.addSubview(bgView)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-        
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        bgView.layer.cornerRadius = 18.0
-        bgView.layer.masksToBounds = true
-        
-        subMenu?.frame = self.bounds
-        bgView.frame = self.bounds
-    }
-    
-//MARK: Interface
-    
-    private var subMenu: SubMenuView?
-    
-    func configSubMenu(menu: SubMenuView) {
-        self.addSubview(menu)
-        
-        subMenu = menu
-        subMenu?.alpha = (config.state == .isClose) ? 0 : 1.0
-    }
-    
-    func updateMenuState(completion: ((MenuState) -> Void)? = nil) {
-        let newState: MenuState = (config.state == .isClose) ? .isOpen : .isClose
-        if config.updateMenuState(newState: newState) {
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                self.frame = self.config.queryMenuFrame()
+    func updateMunuState() {
+        isUpdating = true
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            switch self.config.state {
+            case .isOpen:
+                self.bounds = CGRect(origin: .zero, size: self.config.closeSize)
+                self.center = self.config.closeCenter
                 
-                self.subMenu?.alpha = (newState == .isClose) ? 0 : 1.0
-                self.bgView.alpha = (newState == .isClose) ? 1.0 : 0
+                self.icon.alpha = 1.0
+                self.visualView.alpha = 0.0
+                self.display.alpha = 0.0
+            case .isClose:
+                self.bounds = CGRect(origin: .zero, size: self.config.openSize)
+                self.center = self.config.openCenter
                 
-                self.setNeedsLayout()
-                self.layoutIfNeeded()
-            }) { (finished) in
-                completion?(newState)
-                
-                //TODO: Fade
+                self.icon.alpha = 0.0
+                self.visualView.alpha = 1.0
+                self.display.alpha = 1.0
             }
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+        }) { (finished) in
+            switch self.config.state {
+            case .isOpen:
+                self.config.state = .isClose
+            case .isClose:
+                self.config.state = .isOpen
+            }
+            self.isUpdating = false
+            
+            self.action?(.updated(state: self.config.state))
+            
+            //TODO: Delay fade
         }
     }
     
-//MARK: Touches
-        
-    private var beginPoint_ = CGPoint.zero
+    //MARK: Touches
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        beginPoint_ = touches.first?.previousLocation(in: self) ?? CGPoint.zero
+        beginPoint = touches.first?.previousLocation(in: self) ?? CGPoint.zero
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if config.state == .isClose {
+        switch config.state {
+        case .isOpen:
+            break
+        case .isClose:
             let newPoint = touches.first?.location(in: self) ?? CGPoint.zero
             
-            self.center.x += newPoint.x - beginPoint_.x
-            self.center.y += newPoint.y - beginPoint_.y
+            self.center.x += newPoint.x - beginPoint.x
+            self.center.y += newPoint.y - beginPoint.y
         }
     }
     
@@ -101,22 +72,33 @@ class BasicMenuView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first?.tapCount == 1 {
+            if touches.first?.view == icon {
+                print("MOON__Log  got icon toches...")
+            }
+        }
         touchesHandle()
     }
-        
-//MARK: Private
     
+    //MARK: Private
+    
+    //TODO: Filter tap and pan gesture
     private func touchesHandle() {
-                if config.state == .isClose {
-                    let result = countingAdaptPosition()
-                    UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
-                        self.center = result
-                    }) { (finished) in
-                        self.config.updateMenuPosition(center: self.center)
-                    }
+        if !isUpdating {
+            switch config.state {
+            case .isOpen:
+                break
+            case .isClose:
+                let result = countingAdaptPosition()
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.center = result
+                }) { (finished) in
+                    self.config.closeCenter = self.center
                 }
+            }
+        }
     }
-
+    
     ///计算最终位置
     private func countingAdaptPosition() -> CGPoint {
         var result = CGRect(origin: CGPoint(x: self.center.x - self.bounds.width / 2.0, y: self.center.y - self.bounds.height / 2.0), size: self.bounds.size)
@@ -169,9 +151,9 @@ class BasicMenuView: UIView {
         } else if (dMin == dB) {
             result = CGRect(origin: CGPoint(x: result.origin.x, y: maxY), size: result.size)
         } else if (dMin == dL) {
-           result = CGRect(origin: CGPoint(x: 0, y: result.origin.y), size: result.size)
+            result = CGRect(origin: CGPoint(x: 0, y: result.origin.y), size: result.size)
         } else if (dMin == dR) {
-           result = CGRect(origin: CGPoint(x: maxX, y: result.origin.y), size: result.size)
+            result = CGRect(origin: CGPoint(x: maxX, y: result.origin.y), size: result.size)
         }
         
         return result
@@ -188,4 +170,6 @@ class BasicMenuView: UIView {
             return makeFrameAbsorb(frame: frame, barrier: newBarrier)
         }
     }
+    
+    
 }
