@@ -46,6 +46,9 @@
 		A293D0FC2435E22E0032806D /* ExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0FB2435E22E0032806D /* ExamViewController.swift */; };
 		A293D0FE2435E52F0032806D /* ExamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D0FD2435E52F0032806D /* ExamViewModel.swift */; };
 		A293D1032436E98D0032806D /* ExamAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D1022436E98D0032806D /* ExamAnswerCell.swift */; };
+		A299548A245FB6E90045E87D /* ClassEndHistorys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2995489245FB6E90045E87D /* ClassEndHistorys.swift */; };
+		A299548C246008C30045E87D /* ClassEndHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299548B246008C30045E87D /* ClassEndHints.swift */; };
+		A299548E24600DDB0045E87D /* ClassEndHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299548D24600DDB0045E87D /* ClassEndHelper.swift */; };
 		A2BB623A242073810020A85B /* SubLessonSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB6239242073810020A85B /* SubLessonSelectCell.swift */; };
 		A2BB623D2421BD410020A85B /* CorrectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB623C2421BD410020A85B /* CorrectingViewController.swift */; };
 		A2BB623F2421C0350020A85B /* CorrectingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB623E2421C0350020A85B /* CorrectingHelper.swift */; };
@@ -138,6 +141,9 @@
 		A293D0FB2435E22E0032806D /* ExamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamViewController.swift; sourceTree = "<group>"; };
 		A293D0FD2435E52F0032806D /* ExamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamViewModel.swift; sourceTree = "<group>"; };
 		A293D1022436E98D0032806D /* ExamAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamAnswerCell.swift; sourceTree = "<group>"; };
+		A2995489245FB6E90045E87D /* ClassEndHistorys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassEndHistorys.swift; sourceTree = "<group>"; };
+		A299548B246008C30045E87D /* ClassEndHints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassEndHints.swift; sourceTree = "<group>"; };
+		A299548D24600DDB0045E87D /* ClassEndHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassEndHelper.swift; sourceTree = "<group>"; };
 		A2BB6239242073810020A85B /* SubLessonSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonSelectCell.swift; sourceTree = "<group>"; };
 		A2BB623C2421BD410020A85B /* CorrectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingViewController.swift; sourceTree = "<group>"; };
 		A2BB623E2421C0350020A85B /* CorrectingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectingHelper.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 		88AE58E023F7D8C000127C8E = {
 			isa = PBXGroup;
 			children = (
+				A2995488245FB4480045E87D /* ClassEnd */,
 				A293D0F82435D0C20032806D /* Exam */,
 				A293D0F5243583B90032806D /* SignUpIncome */,
 				A2BB623B2421BBE20020A85B /* Correcting */,
@@ -375,6 +382,16 @@
 				A2D4DB52243727C600A77B26 /* Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A2995488245FB4480045E87D /* ClassEnd */ = {
+			isa = PBXGroup;
+			children = (
+				A299548B246008C30045E87D /* ClassEndHints.swift */,
+				A2995489245FB6E90045E87D /* ClassEndHistorys.swift */,
+				A299548D24600DDB0045E87D /* ClassEndHelper.swift */,
+			);
+			path = ClassEnd;
 			sourceTree = "<group>";
 		};
 		A2BB623B2421BBE20020A85B /* Correcting */ = {
@@ -623,7 +640,9 @@
 				A2D4DB54243727E500A77B26 /* ExamOptionCells.swift in Sources */,
 				881BE9D5241E242500C06290 /* LessonViewModel.swift in Sources */,
 				A2BB625224246A000020A85B /* AddCorrectAlertController.swift in Sources */,
+				A299548E24600DDB0045E87D /* ClassEndHelper.swift in Sources */,
 				88F6A7112455835D00A62E51 /* MOONMenuDisplay.swift in Sources */,
+				A299548C246008C30045E87D /* ClassEndHints.swift in Sources */,
 				A2BB623D2421BD410020A85B /* CorrectingViewController.swift in Sources */,
 				A2BB62422421C15D0020A85B /* CorrectingStudentCell.swift in Sources */,
 				A2D4DB4E24370ADB00A77B26 /* ExamHelper.swift in Sources */,
@@ -639,6 +658,7 @@
 				88F6A7132456E82000A62E51 /* MOONMenuHelper.swift in Sources */,
 				A2BB624E242261A70020A85B /* CorrectingVideoCell.swift in Sources */,
 				A2C91786243E050B0018D8CD /* ExamHistoryCell.swift in Sources */,
+				A299548A245FB6E90045E87D /* ClassEndHistorys.swift in Sources */,
 				A26D2BA7241B3825005666AF /* LessonView.swift in Sources */,
 				88AB65CB243ADAFF00311F50 /* ExamHeader.swift in Sources */,
 				A2BB62502424682C0020A85B /* CorrectEditView.swift in Sources */,
