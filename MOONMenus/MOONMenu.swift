@@ -267,7 +267,7 @@ class MOONMenu: NSObject {
         
         func configItem(skin: String?) {
             let imageName: String = skin ?? "moonmenu_item_dark_\(arc4random_uniform(19))"
-            picture.image = MOONMenuHelper.queryImage(named: imageName)
+//            picture.image = MOONMenuHelper.queryImage(named: imageName)
         }
         
         init(style: Style) {
